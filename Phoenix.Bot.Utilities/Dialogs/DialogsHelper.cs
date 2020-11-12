@@ -1,8 +1,11 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Newtonsoft.Json.Linq;
 using Phoenix.Bot.Utilities.Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Phoenix.Bot.Utilities.Dialogs
 {
@@ -27,6 +30,19 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
             // Just return the closest date including its year.
             return dateTimes.Aggregate((d, cd) => Math.Abs((d - grDateTime).Days) < Math.Abs((cd - grDateTime).Days) ? d : cd);
+        }
+
+        public static async Task<string> CreateGifUrlAsync(string rating, string query, int limit, int? offset, string key)
+        {
+            string giphyUrl = "http://api.giphy.com/v1/gifs/search" + $"?rating={rating}&q={query}&limit={limit}&offset={offset}&api_key={key}";
+            string response;
+
+            using (var httpClient = new HttpClient())
+            {
+                response = await httpClient.GetAsync(giphyUrl).Result.Content.ReadAsStringAsync();
+            }
+
+            return JObject.Parse(response)["data"].First["images"]["downsized"]["url"].ToString();
         }
     }
 }
