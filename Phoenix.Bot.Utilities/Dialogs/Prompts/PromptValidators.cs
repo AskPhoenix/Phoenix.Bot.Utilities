@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Phoenix.Bot.Utilities.Dialogs
+namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
