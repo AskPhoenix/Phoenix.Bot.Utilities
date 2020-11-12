@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents;
 
 namespace Phoenix.Bot.Utilities.Channels.Facebook
 {
