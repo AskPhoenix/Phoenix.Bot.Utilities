@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Phoenix.Bot.Utilities.Arithmetic
+namespace Phoenix.Bot.Utilities.Miscellaneous
 {
     public static class ArithmeticExtensions
     {

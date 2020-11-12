@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 
-namespace Phoenix.Bot.Linguistic
+namespace Phoenix.Bot.Utilities.Linguistic
 {
     public static class Synonyms
     {
