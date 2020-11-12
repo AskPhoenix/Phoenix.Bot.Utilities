@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Description>A library for extending bot's capabilities across all the supported channels</Description>
+    <Authors>AskPhoenix</Authors>
+    <Company>AskPhoenix</Company>
+    <Copyright>AskPhoenix 2020</Copyright>
+    <PackageProjectUrl>https://www.askphoenix.gr/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AskPhoenix/Phoenix.Bot.Utilities</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
