@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Bot.Helpers
+﻿namespace Phoenix.Bot.Utilities.Channels.Facebook
 {
     public static class Persistent
     {

@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Bot.Utilities.Channels.Facebook
+﻿namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
 {
     public abstract class Template
     {

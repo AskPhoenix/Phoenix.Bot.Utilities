@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Phoenix.Bot.Utilities.Channels.Facebook
+namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
 {
     [JsonObject]
     public class UrlAction : UrlButton

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Phoenix.Bot.Utilities.Channels.Facebook
+namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
 {
     [JsonObject]
     public class ButtonTemplate : Template
