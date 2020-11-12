@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Bot.Utilities", "Phoenix.Bot.Utilities\Phoenix.Bot.Utilities.csproj", "{532B2685-1B53-4956-B626-F05B51125514}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{532B2685-1B53-4956-B626-F05B51125514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532B2685-1B53-4956-B626-F05B51125514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532B2685-1B53-4956-B626-F05B51125514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532B2685-1B53-4956-B626-F05B51125514}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C43B5FC2-E759-4279-B814-D16F7E6F6C99}
+	EndGlobalSection
+EndGlobal
