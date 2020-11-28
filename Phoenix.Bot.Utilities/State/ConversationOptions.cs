@@ -10,13 +10,13 @@
         public CourseOptions Course { get; set; }
     }
 
-    public struct AuthenticationOptions
+    public class AuthenticationOptions
     {
         public string PhoneNumber { get; set; }
         public string OneTimeCode { get; set; }
     }
 
-    public struct CourseOptions
+    public class CourseOptions
     {
         public int[] SelectedCourseIds { get; set; }
         public int EnrolledCoursesCount { get; set; }
