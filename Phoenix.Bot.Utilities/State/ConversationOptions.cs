@@ -4,7 +4,6 @@ namespace Phoenix.Bot.Utilities.State
 {
     public struct ConversationsOptions
     {
-        public bool NeedsWelcoming { get; set; }
         public int Page { get; set; }
         public string Locale { get; set; }
 
