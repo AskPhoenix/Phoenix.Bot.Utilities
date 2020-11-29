@@ -1,4 +1,6 @@
-﻿namespace Phoenix.Bot.Utilities.State
+﻿using System;
+
+namespace Phoenix.Bot.Utilities.State
 {
     public struct ConversationsOptions
     {
@@ -13,7 +15,9 @@
     public class AuthenticationOptions
     {
         public string PhoneNumber { get; set; }
-        public string OneTimeCode { get; set; }
+        public string OTC { get; set; }
+        public bool OTCUsed { get; set; }
+        public DateTimeOffset OTCCreatedAt { get; set; }
     }
 
     public class CourseOptions
