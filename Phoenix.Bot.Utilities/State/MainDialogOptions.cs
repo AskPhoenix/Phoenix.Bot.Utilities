@@ -2,7 +2,7 @@
 {
     public class MainDialogOptions
     {
-        public string NeedsWelcoming { get; set; }
-        public string CheckRole { get; set; }
+        public bool NeedsWelcoming { get; set; }
+        public bool CheckRole { get; set; }
     }
 }
