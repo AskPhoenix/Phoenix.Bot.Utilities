@@ -2,9 +2,9 @@
 
 namespace Phoenix.Bot.Utilities.Dialogs
 {
-    internal static class WaterfallNames
+    public static class WaterfallNames
     {
-        internal static string GetWaterfallName(string name, string subname = null)
+        public static string GetWaterfallName(string name, string subname = null)
         {
             if (!string.IsNullOrEmpty(subname))
                 subname = "_" + subname;
