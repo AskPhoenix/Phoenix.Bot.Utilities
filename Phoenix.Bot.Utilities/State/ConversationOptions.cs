@@ -11,6 +11,11 @@ namespace Phoenix.Bot.Utilities.State
         public CourseOptions Course { get; set; }
     }
 
+    public static class ConversationOptionsDefaults
+    {
+        public const string PropertyName = "Options";
+    }
+
     public class AuthenticationOptions
     {
         public string PhoneNumber { get; set; }
