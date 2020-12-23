@@ -19,6 +19,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
         public static class Auth
         {
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
+
             public static class Credentials
             {
                 public static string Phone => BuildWaterfallName(nameof(Phone), nameof(Auth));
@@ -27,7 +29,6 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
             public static class Verification
             {
-                public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
                 public static string SendPin => BuildWaterfallName(nameof(SendPin), nameof(Auth));
                 public static string CheckPin => BuildWaterfallName(nameof(CheckPin), nameof(Auth));
             }
