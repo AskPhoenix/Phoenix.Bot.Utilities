@@ -11,39 +11,33 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
             return $"{name}{subname}_{nameof(WaterfallDialog)}";
         }
-    }
 
-    public static class MainWaterfallNames
-    {
-        public static string Main => WaterfallNames.BuildWaterfallName(nameof(Main));
-    }
+        public static class Main
+        {
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Main));
+        }
 
-    public static class AuthWaterfallNames
-    {
-        private const string Subname    = "Auth";
+        public static class Auth
+        {
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
+            public static string Phone => BuildWaterfallName(nameof(Phone), nameof(Auth));
+            public static string Code => BuildWaterfallName(nameof(Code), nameof(Auth));
+            public static string SendPin => BuildWaterfallName(nameof(SendPin), nameof(Auth));
+            public static string CheckPin => BuildWaterfallName(nameof(CheckPin), nameof(Auth));
+        }
 
-        public static string Main       => WaterfallNames.BuildWaterfallName(nameof(Main), Subname);
-        public static string Phone      => WaterfallNames.BuildWaterfallName(nameof(Phone), Subname);
-        public static string Code       => WaterfallNames.BuildWaterfallName(nameof(Code), Subname);
-        public static string SendPin    => WaterfallNames.BuildWaterfallName(nameof(SendPin), Subname);
-        public static string CheckPin   => WaterfallNames.BuildWaterfallName(nameof(CheckPin), Subname);
-    }
+        public static class Feedback
+        {
+            public static string Spontaneous => BuildWaterfallName(nameof(Spontaneous), nameof(Feedback));
+            public static string Triggered => BuildWaterfallName(nameof(Triggered), nameof(Feedback));
+            public static string Comment => BuildWaterfallName(nameof(Comment), nameof(Feedback));
+            public static string Rating => BuildWaterfallName(nameof(Rating), nameof(Feedback));
+        }
 
-    public static class FeedbackWaterfallNames
-    {
-        private const string Subname        = "Feedback";
-
-        public static string Spontaneous    => WaterfallNames.BuildWaterfallName(nameof(Spontaneous), Subname);
-        public static string Triggered      => WaterfallNames.BuildWaterfallName(nameof(Triggered), Subname);
-        public static string Comment        => WaterfallNames.BuildWaterfallName(nameof(Comment), Subname);
-        public static string Rating         => WaterfallNames.BuildWaterfallName(nameof(Rating), Subname);
-    }
-
-    public static class WelcomeWaterfallNames
-    {
-        private const string Subname        = "Welcome";
-
-        public static string AskForTutorial => WaterfallNames.BuildWaterfallName(nameof(AskForTutorial), Subname);
-        public static string Tutorial       => WaterfallNames.BuildWaterfallName(nameof(Tutorial), Subname);
+        public static class Welcome
+        {
+            public static string AskForTutorial => BuildWaterfallName(nameof(AskForTutorial), nameof(Welcome));
+            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Welcome));
+        }
     }
 }
