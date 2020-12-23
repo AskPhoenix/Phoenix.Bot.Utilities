@@ -17,6 +17,11 @@ namespace Phoenix.Bot.Utilities.Dialogs
             public static string Top => BuildWaterfallName(nameof(Top), nameof(Main));
         }
 
+        public static class Introduction
+        {
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Introduction));
+        }
+
         public static class Auth
         {
             public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
