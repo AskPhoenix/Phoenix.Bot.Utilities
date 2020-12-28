@@ -8,7 +8,7 @@
         public CourseOptions Course { get; set; }
     }
 
-    public static class ConversationOptionsDefaults
+    public static class ConversationDefaults
     {
         public const string PropertyName = "Options";
     }

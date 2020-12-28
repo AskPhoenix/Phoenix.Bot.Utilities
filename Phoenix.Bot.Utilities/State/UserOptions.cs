@@ -8,7 +8,7 @@
         public int Role { get; set; }
     }
 
-    public static class UserOptionsDefaults
+    public static class UserDefaults
     {
         public const string PropertyName = "Options";
         public const int MaxSmsNumber = 5;
