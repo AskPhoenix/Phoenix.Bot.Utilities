@@ -1,6 +1,6 @@
 ﻿namespace Phoenix.Bot.Utilities.State.Dialogs
 {
-    public class VerificationOptions
+    public class AuthenticationOptions
     {
         public bool IsOwnerVerification { get; set; }
         public int? UserToVerifyId { get; set; }
