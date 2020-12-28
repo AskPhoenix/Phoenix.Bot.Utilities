@@ -1,5 +1,6 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Newtonsoft.Json.Linq;
+using Phoenix.Bot.Utilities.Linguistic;
 using Phoenix.Bot.Utilities.Miscellaneous;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,22 @@ namespace Phoenix.Bot.Utilities.Dialogs
             }
 
             return JObject.Parse(response)["data"].First["images"]["downsized"]["url"].ToString();
+        }
+
+        public static int GenerateVerificationPin(uint digitsNum = 4)
+        {
+            if (digitsNum > 9)
+                throw new Exception("The number of digits must be less than or equal to 9.");
+
+            int min = (int)Math.Pow(10, digitsNum-1);
+            int max = min * 10 - 1;
+
+            return new Random().Next(min, max);
+        }
+
+        public static string GenerateVerificationCode(string token, uint digitsNum = 2)
+        {
+            return token.Substring(0, 2).ToUnaccented().ToUpper() + GenerateVerificationPin(digitsNum);
         }
     }
 }
