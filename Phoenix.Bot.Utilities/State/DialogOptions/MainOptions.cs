@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Bot.Utilities.State.Dialogs
+﻿namespace Phoenix.Bot.Utilities.State.DialogOptions
 {
     public class MainOptions
     {
