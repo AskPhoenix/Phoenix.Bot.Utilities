@@ -3,8 +3,8 @@
     public class AuthenticationOptions
     {
         public bool IsOwnerVerification { get; set; }
-        public int? UserToVerifyId { get; set; }
         public string Phone { get; set; }
+        public string[] Codes { get; set; }
         public bool Verified { get; set; }
     }
 }
