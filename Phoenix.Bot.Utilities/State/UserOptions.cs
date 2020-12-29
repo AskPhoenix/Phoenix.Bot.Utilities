@@ -6,11 +6,13 @@
         public bool HasAcceptedTerms { get; set; }
         public int SmsCount { get; set; }
         public int Role { get; set; }
+        public int LoginAttempts { get; set; }
     }
 
     public static class UserDefaults
     {
         public const string PropertyName = "Options";
-        public const int MaxSmsNumber = 5;
+        public const uint MaxSmsNumber = 5;
+        public const uint MaxLoginAttempts = 5;
     }
 }
