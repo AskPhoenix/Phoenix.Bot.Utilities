@@ -4,7 +4,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class WaterfallNames
     {
-        public static string BuildWaterfallName(string name, string subname = null)
+        private static string BuildWaterfallName(string name, string subname = null)
         {
             if (!string.IsNullOrEmpty(subname))
                 subname = "_" + subname;
@@ -48,7 +48,6 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
         public static class Welcome
         {
-            public static string AskForTutorial => BuildWaterfallName(nameof(AskForTutorial), nameof(Welcome));
             public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Welcome));
         }
     }
