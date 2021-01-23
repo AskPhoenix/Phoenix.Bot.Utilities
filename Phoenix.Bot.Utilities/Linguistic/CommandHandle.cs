@@ -14,15 +14,16 @@ namespace Phoenix.Bot.Utilities.Linguistic
 
                 "--greeting--"      => Command.Greeting,
                 "--home--"          => Command.Home,
-                "--feedback--"      => Command.Feedback,
-                "--cancel--"        =>Command.Cancel,
+                "--cancel--"        => Command.Cancel,
+                "--reset--"         => Command.Reset,
 
-                "--help--"          => Command.Help,
                 "--exercises--"     => Command.Exercises,
                 "--exams--"         => Command.Exams,
                 "--schedule"        => Command.Schedule,
+                "--help--"          => Command.Help,
+                "--feedback--"      => Command.Feedback,
 
-                _                   => Command.NoCommand
+                _ => Command.NoCommand
             };
 
             return cmd > 0;
