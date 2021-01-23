@@ -4,7 +4,7 @@
     {
         Invalid = -1,
 
-        GetStarted,
+        GetStarted = 0,
 
         Greeting,
         Home,

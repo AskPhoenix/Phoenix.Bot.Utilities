@@ -33,13 +33,16 @@ namespace Phoenix.Bot.Utilities.Linguistic
             cmd = Command.Invalid;
             var words = text.Split(' ');
 
-            var cmdNames = Enum.GetNames(typeof(Command)).Skip(2);
+            var cmdNames = Enum.GetNames(typeof(Command));
             foreach (var cmdName in cmdNames)
             {
-                var cmdSynonyms = typeof(Synonyms).GetField(cmdName).GetValue(null) as string[];
+                var cmdSynonyms = typeof(Synonyms).GetField(cmdName)?.GetValue(null) as string[];
+                if (cmdSynonyms == null)
+                    continue;
+
                 bool containsSynonyms = words.Any(w => cmdSynonyms.
                     Any(s => s.IsTheSameWith(w, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)));
-                
+
                 if (containsSynonyms)
                 {
                     cmd = (Command)Enum.Parse(typeof(Command), cmdName);
@@ -47,7 +50,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
                 }
             }
 
-            return cmd >= 0;    
+            return cmd >= 0;
         }
 
         public static bool IsCommand(string text) => text.StartsWith("--") && text.EndsWith("--");
