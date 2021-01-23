@@ -6,6 +6,7 @@
         public static readonly string[] Home = new string[] { "menu", "home", "start", "μενού", "αρχική", "έναρξη" };
         public static readonly string[] Feedback = new string[] { "feedback", "σχόλιο", "σχόλια" };
         public static readonly string[] Cancel = new string[] { "cancel", "quit", "exit", "άκυρο", "ακύρωση", "έξοδος" };
+        public static readonly string[] Reset = new string[] { "reset", "επαναφορά" };
 
         public static readonly string[] Help = new string[] { "help", "βοήθεια" };
         public static readonly string[] Exercises = new string[] { "exercise", "exercises", "άσκηση", "ασκήσεις", "εργασία", "εργασίες" };
