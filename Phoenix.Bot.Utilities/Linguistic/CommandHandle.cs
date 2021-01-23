@@ -22,15 +22,15 @@ namespace Phoenix.Bot.Utilities.Linguistic
                 "--exams--"         => Command.Exams,
                 "--schedule"        => Command.Schedule,
 
-                _                   => Command.Invalid
+                _                   => Command.NoCommand
             };
 
-            return cmd >= 0;
+            return cmd > 0;
         }
 
         public static bool TryInferCommand(string text, out Command cmd)
         {
-            cmd = Command.Invalid;
+            cmd = Command.NoCommand;
             var words = text.Split(' ');
 
             var cmdNames = Enum.GetNames(typeof(Command));
@@ -50,7 +50,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
                 }
             }
 
-            return cmd >= 0;
+            return cmd > 0;
         }
 
         public static bool IsCommand(string text) => text.StartsWith("--") && text.EndsWith("--");

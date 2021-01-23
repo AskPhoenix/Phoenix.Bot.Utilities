@@ -2,21 +2,20 @@
 {
     public enum Command
     {
-        // Invalid: [-10, 0)
-        Invalid = -10,
+        NoCommand = 0,
 
-        // Channels related: [0, 10)
-        GetStarted = 0,
+        // Channels related: [10, 20)
+        GetStarted = 10,
 
-        // General: [10, 20)
-        Greeting = 10,
+        // General: [20, 30)
+        Greeting = 20,
         Home,
         Feedback,
         Cancel,
         Reset,
         
-        // User's role specific: [20, 30)
-        Help = 20,
+        // User's role specific: [30, 40)
+        Help = 30,
         Exercises,
         Exams,
         Schedule
