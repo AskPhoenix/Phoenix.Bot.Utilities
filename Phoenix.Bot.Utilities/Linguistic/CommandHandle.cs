@@ -32,8 +32,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
         public static bool TryInferCommand(string text, out Command cmd)
         {
             cmd = Command.NoCommand;
-            var words = text.Split(' ');
-
+            
             var cmdNames = Enum.GetNames(typeof(Command));
             foreach (var cmdName in cmdNames)
             {
@@ -41,10 +40,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
                 if (cmdSynonyms == null)
                     continue;
 
-                bool containsSynonyms = words.Any(w => cmdSynonyms.
-                    Any(s => s.IsTheSameWith(w, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)));
-
-                if (containsSynonyms)
+                if (cmdSynonyms.Any(s => s.IsTheSameWith(text.Trim(), CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)))
                 {
                     cmd = (Command)Enum.Parse(typeof(Command), cmdName);
                     break;
