@@ -46,9 +46,10 @@ namespace Phoenix.Bot.Utilities.Dialogs
             public static string Rating => BuildWaterfallName(nameof(Rating), nameof(Feedback));
         }
 
-        public static class Welcome
+        public static class Help
         {
-            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Welcome));
+            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Help));
+            public static string Ask => BuildWaterfallName(nameof(Ask), nameof(Help));
         }
     }
 }
