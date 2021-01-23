@@ -1,6 +1,6 @@
 ﻿namespace Phoenix.Bot.Utilities.State
 {
-    public struct UserOptions
+    public struct UserData
     {
         public bool IsAuthenticated { get; set; }
         public bool HasAcceptedTerms { get; set; }
@@ -9,9 +9,8 @@
         public int LoginAttempts { get; set; }
     }
 
-    public static class UserDefaults
+    public static class UserDataDefaults
     {
-        public const string PropertyName = "Options";
         public const uint MaxSmsNumber = 5;
         public const uint MaxLoginAttempts = 5;
     }
