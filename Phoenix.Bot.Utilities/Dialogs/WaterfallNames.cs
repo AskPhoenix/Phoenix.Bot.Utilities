@@ -40,16 +40,16 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
         public static class Feedback
         {
-            public static string Spontaneous => BuildWaterfallName(nameof(Spontaneous), nameof(Feedback));
-            public static string Triggered => BuildWaterfallName(nameof(Triggered), nameof(Feedback));
+            public static string Ask => BuildWaterfallName(nameof(Ask), nameof(Feedback));
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Feedback));
             public static string Comment => BuildWaterfallName(nameof(Comment), nameof(Feedback));
             public static string Rating => BuildWaterfallName(nameof(Rating), nameof(Feedback));
         }
 
         public static class Help
         {
-            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Help));
             public static string Ask => BuildWaterfallName(nameof(Ask), nameof(Help));
+            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Help));
         }
 
         public static class Student
