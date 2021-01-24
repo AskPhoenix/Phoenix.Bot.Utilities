@@ -7,9 +7,10 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public class NavigationPromptOptions : PromptOptions
     {
-        public NavigationPromptOptions(bool hasPrevious = true, bool hasNext = true) 
+        public NavigationPromptOptions(string promptText = null, bool hasPrevious = true, bool hasNext = true) 
             : base()
         {
+            this.Prompt = MessageFactory.Text(promptText);
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
             this.Choices = new List<Choice>(3);
             if (hasNext)
@@ -17,12 +18,6 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             if (hasPrevious)
                 this.Choices.Add(new Choice("⤴️ Προηγούμενο"));
             this.Choices.Add(new Choice("🛑 Τέλος"));
-        }
-
-        public NavigationPromptOptions(string promptText, bool hasPrevious = true, bool hasNext = true) 
-            : this(hasPrevious, hasNext)
-        {
-            this.Prompt = MessageFactory.Text(promptText);
         }
     }
 }
