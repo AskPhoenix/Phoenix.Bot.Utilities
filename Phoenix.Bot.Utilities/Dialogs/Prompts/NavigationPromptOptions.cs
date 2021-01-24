@@ -10,6 +10,9 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         public NavigationPromptOptions(string promptText = null, bool hasPrevious = true, bool hasNext = true) 
             : base()
         {
+            if (string.IsNullOrWhiteSpace(promptText))
+                promptText = "Επίλεξε επόμενο για να συνεχίσουμε:";
+
             this.Prompt = MessageFactory.Text(promptText);
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
             this.Choices = new List<Choice>(3);
