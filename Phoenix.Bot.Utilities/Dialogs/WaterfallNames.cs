@@ -49,7 +49,10 @@ namespace Phoenix.Bot.Utilities.Dialogs
         public static class Help
         {
             public static string Ask => BuildWaterfallName(nameof(Ask), nameof(Help));
-            public static string Tutorial => BuildWaterfallName(nameof(Tutorial), nameof(Help));
+            public static string Intro => BuildWaterfallName(nameof(Intro), nameof(Help));
+            public static string Menu => BuildWaterfallName(nameof(Menu), nameof(Help));
+            public static string Actions => BuildWaterfallName(nameof(Actions), nameof(Help));
+            public static string Commands => BuildWaterfallName(nameof(Commands), nameof(Help));
         }
 
         public static class Student
