@@ -2,6 +2,6 @@
 {
     public class FeedbackOptions
     {
-        public string TriggerAction { get; set; }
+        public bool BotAskedForFeedback { get; set; }
     }
 }
