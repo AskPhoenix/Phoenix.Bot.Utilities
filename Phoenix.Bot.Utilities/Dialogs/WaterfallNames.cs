@@ -52,14 +52,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
             public static string Intro => BuildWaterfallName(nameof(Intro), nameof(Help));
             public static string Menu => BuildWaterfallName(nameof(Menu), nameof(Help));
             public static string Actions => BuildWaterfallName(nameof(Actions), nameof(Help));
+            public static string ActionDetails => BuildWaterfallName(nameof(ActionDetails), nameof(Help));
             public static string Commands => BuildWaterfallName(nameof(Commands), nameof(Help));
-
-            public static class Action
-            {
-                public static string Exercise => BuildWaterfallName(nameof(Exercise), nameof(Help));
-                public static string Exam => BuildWaterfallName(nameof(Exam), nameof(Help));
-                public static string Schedule => BuildWaterfallName(nameof(Schedule), nameof(Help));
-            }
         }
 
         public static class Student
