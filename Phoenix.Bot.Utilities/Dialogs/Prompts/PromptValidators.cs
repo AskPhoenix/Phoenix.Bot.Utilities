@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                     result[2..].All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<string> promptContext, CancellationToken _)
+        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext, CancellationToken _)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);
@@ -51,7 +52,11 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 
             int i = hiddenChoices.IndexOf(promptContext.Context.Activity.Text);
             if (i >= 0)
-                promptContext.Recognized.Value = (promptContext.Options.Choices.Count() + i).ToString();
+                promptContext.Recognized.Value = new FoundChoice()
+                {
+                    Index = promptContext.Options.Choices.Count() + i,
+                    Value = promptContext.Context.Activity.Text
+                };
 
             return Task.FromResult(i >= 0);
         }
