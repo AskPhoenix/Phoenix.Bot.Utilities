@@ -11,13 +11,16 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             : base()
         {
             if (string.IsNullOrWhiteSpace(promptText))
-                promptText = "Επίλεξε επόμενο για να συνεχίσουμε:";
+                promptText = "Επίλεξε «Επόμενο» για να συνεχίσουμε:";
 
             this.Prompt = MessageFactory.Text(promptText);
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
             this.Choices = new List<Choice>(3);
+            
             if (hasNext)
                 this.Choices.Add(new Choice("⤵️ Επόμενο"));
+            else
+                this.Choices.Add(new Choice("⌛ Ολοκλήρωση"));
             if (hasPrevious)
                 this.Choices.Add(new Choice("⤴️ Προηγούμενο"));
             this.Choices.Add(new Choice("🛑 Τέλος"));
