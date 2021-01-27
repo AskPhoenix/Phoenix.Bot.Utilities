@@ -3,5 +3,6 @@
     public class HelpOptions
     {
         public bool AskForTutorial { get; set; }
+        public int DetailedAction { get; set; }
     }
 }
