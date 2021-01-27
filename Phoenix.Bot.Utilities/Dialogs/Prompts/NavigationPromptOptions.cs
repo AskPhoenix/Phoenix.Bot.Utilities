@@ -16,16 +16,13 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             this.Prompt = MessageFactory.Text(promptText);
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
             this.Choices = new List<Choice>(3);
-            
-            if (hasNext)
-                this.Choices.Add(new Choice("⤵️ Επόμενο"));
-            else
-                this.Choices.Add(new Choice("⌛ Ολοκλήρωση"));
+
             if (hasPrevious)
                 this.Choices.Add(new Choice("⤴️ Προηγούμενο"));
-            
             if (hasNext)
-                this.Choices.Add(new Choice("🛑 Τέλος"));
+                this.Choices.Add(new Choice("⤵️ Επόμενο"));
+            
+            this.Choices.Add(new Choice("⌛ Ολοκλήρωση"));
         }
     }
 }
