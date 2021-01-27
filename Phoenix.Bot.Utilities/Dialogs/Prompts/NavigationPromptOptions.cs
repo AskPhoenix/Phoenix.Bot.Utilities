@@ -23,7 +23,9 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 this.Choices.Add(new Choice("⌛ Ολοκλήρωση"));
             if (hasPrevious)
                 this.Choices.Add(new Choice("⤴️ Προηγούμενο"));
-            this.Choices.Add(new Choice("🛑 Τέλος"));
+            
+            if (hasNext)
+                this.Choices.Add(new Choice("🛑 Τέλος"));
         }
     }
 }
