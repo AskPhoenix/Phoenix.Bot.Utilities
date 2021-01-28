@@ -12,9 +12,9 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
             return repository.FindUserFromLogin(activity.ChannelId.ToLoginProvider(), activity.From.Id);
         }
 
-        public static bool AnyLogin(this AspNetUserRepository repository, Activity activity)
+        public static bool AnyLogin(this AspNetUserRepository repository, Activity activity, bool onlyActive = false)
         {
-            return repository.AnyLogin(activity.ChannelId.ToLoginProvider(), activity.From.Id);
+            return repository.AnyLogin(activity.ChannelId.ToLoginProvider(), activity.From.Id, onlyActive);
         }
     }
 }
