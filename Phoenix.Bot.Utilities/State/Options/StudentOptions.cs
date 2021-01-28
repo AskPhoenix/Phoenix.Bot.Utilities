@@ -2,9 +2,9 @@
 
 namespace Phoenix.Bot.Utilities.State.Options
 {
-    public class StudentOptions
+    public class HomeOptions
     {
-        public int StudentId { get; set; }
-        public StudentAction Action { get; set; }
+        public int UserId { get; set; }
+        public BotAction Action { get; set; }
     }
 }

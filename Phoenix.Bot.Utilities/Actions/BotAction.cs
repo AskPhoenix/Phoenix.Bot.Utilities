@@ -1,10 +1,10 @@
 ﻿namespace Phoenix.Bot.Utilities.Actions
 {
-    public enum StudentAction
+    public enum BotAction
     {
         NoAction = 0,
-        Exercises,
-        Exams,
+        Exercise,
+        Exam,
         Schedule,
         Help,
         Feedback
