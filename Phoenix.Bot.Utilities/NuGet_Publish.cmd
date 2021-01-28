@@ -5,10 +5,15 @@ echo dotnet nuget add source https://nuget.pkg.github.com/AskPhoenix/index.json 
 echo.
 echo.
 
-echo Installing dependencies
+echo Installing dependencies...
 echo.
 
 dotnet restore
+
+echo Building...
+echo.
+
+dotnet build --configuration Release --no-restore
 
 echo Packing for Release configuration...
 echo.
