@@ -56,10 +56,9 @@ namespace Phoenix.Bot.Utilities.Dialogs
             public static string Commands => BuildWaterfallName(nameof(Commands), nameof(Help));
         }
 
-        public static class Student
+        public static class Home
         {
-            public static string Home => BuildWaterfallName(nameof(Home), nameof(Student));
-            public static string Help => BuildWaterfallName(nameof(Help), nameof(Student));
+            public static string Top => BuildWaterfallName(nameof(Top), nameof(Home));
         }
     }
 }
