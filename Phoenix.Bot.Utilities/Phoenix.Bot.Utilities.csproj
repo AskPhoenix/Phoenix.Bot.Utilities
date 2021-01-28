@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="AdaptiveCards" Version="2.4.*" />
     <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.11.*" />
+    <PackageReference Include="Phoenix.DataHandle" Version="1.9.0-beta.4" />
   </ItemGroup>
 
 </Project>

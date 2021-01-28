@@ -1,11 +1,13 @@
-﻿namespace Phoenix.Bot.Utilities.State
+﻿using Phoenix.DataHandle.Main;
+
+namespace Phoenix.Bot.Utilities.State
 {
     public struct UserData
     {
         public bool IsAuthenticated { get; set; }
         public bool HasAcceptedTerms { get; set; }
         public int SmsCount { get; set; }
-        public int Role { get; set; }
+        public Role Role { get; set; }
         public int LoginAttempts { get; set; }
     }
 
