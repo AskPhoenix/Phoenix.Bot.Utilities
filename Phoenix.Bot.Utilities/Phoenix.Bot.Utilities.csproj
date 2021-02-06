@@ -8,7 +8,7 @@
     <Copyright>AskPhoenix 2020</Copyright>
     <PackageProjectUrl>https://www.askphoenix.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AskPhoenix/Phoenix.Bot.Utilities</RepositoryUrl>
-    <Version>1.2.0-staging.41</Version>
+    <Version>1.2.0-staging.42</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

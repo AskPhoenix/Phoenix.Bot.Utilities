@@ -1,9 +1,7 @@
-﻿using Phoenix.DataHandle.Main;
-
-namespace Phoenix.Bot.Utilities.State
+﻿namespace Phoenix.Bot.Utilities.State
 {
     public struct MainState
     {
-        public bool RolesOverlapChecked { get; set; }
+        public bool TesterRoleChecked { get; set; }
     }
 }
