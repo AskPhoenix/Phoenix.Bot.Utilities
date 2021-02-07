@@ -5,19 +5,26 @@
         NoCommand = 0,
 
         // Channel related: [10, 20)
-        GetStarted = 10,
+        GetStarted = CommandAttributes.ChannelCommandsBase,
 
         // General: [20, 30)
-        Greeting = 20,
+        Greeting = CommandAttributes.GeneralCommandsBase,
         Home,
         Cancel,
         Reset,
         
         // Action related: [30, 40)
-        Exercises = 30,
+        Exercises = CommandAttributes.ActionCommandsBase,
         Exams,
         Schedule,
         Help,
         Feedback
+    }
+
+    public static class CommandAttributes
+    {
+        public const int ChannelCommandsBase = 10;
+        public const int GeneralCommandsBase = 20;
+        public const int ActionCommandsBase = 30;
     }
 }
