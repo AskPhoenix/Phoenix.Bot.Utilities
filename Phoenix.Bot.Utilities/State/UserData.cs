@@ -1,11 +1,8 @@
-﻿using Phoenix.DataHandle.Main;
-
-namespace Phoenix.Bot.Utilities.State
+﻿namespace Phoenix.Bot.Utilities.State
 {
     public struct UserData
     {
         public int SmsCount { get; set; }
-        public Role SelectedTesterRole { get; set; }
         public int LoginAttempts { get; set; }
     }
 
