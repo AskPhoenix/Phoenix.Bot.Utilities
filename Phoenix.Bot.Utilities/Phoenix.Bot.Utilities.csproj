@@ -8,7 +8,7 @@
     <Copyright>AskPhoenix 2020</Copyright>
     <PackageProjectUrl>https://www.askphoenix.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AskPhoenix/Phoenix.Bot.Utilities</RepositoryUrl>
-    <Version>1.2.0-staging.44</Version>
+    <Version>1.2.0-staging.47</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="AdaptiveCards" Version="2.4.*" />
     <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.11.*" />
-    <PackageReference Include="Phoenix.DataHandle" Version="1.9.0-beta.4" />
+    <PackageReference Include="Phoenix.DataHandle" Version="1.9.0-beta.7" />
   </ItemGroup>
 
 </Project>
