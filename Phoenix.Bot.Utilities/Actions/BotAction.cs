@@ -4,10 +4,17 @@
     {
         NoAction = 0,
 
-        Exercise,
-        Exam,
+        Assignments,
+        Supplementary,
         Schedule,
+        Search,
+        Grades,
+
         Access,
+
+        Exercises,
+        Exams,
+        Broadcast,
 
         Help,
         Feedback
@@ -20,13 +27,22 @@
         {
             return action switch
             {
-                BotAction.Exercise  => "Ασκήσεις",
-                BotAction.Exam      => "Διαγωνίσματα",
-                BotAction.Schedule  => "Πρόγραμμα",
-                BotAction.Access    => "Πρόσβαση",
-                BotAction.Help      => "Βοήθεια",
-                BotAction.Feedback  => "Κάνε ένα σχόλιο",
-                _                   => "Καμία ενέργεια",
+                BotAction.Assignments   => "Για διάβασμα",
+                BotAction.Supplementary => "Επιπλέον υλικό",
+                BotAction.Schedule      => "Πρόγραμμα",
+                BotAction.Search        => "Αναζήτηση εργασιών",
+                BotAction.Grades        => "Βαθμοί",
+                
+                BotAction.Access        => "Πρόσβαση",
+
+                BotAction.Exercises     => "Ασκήσεις",
+                BotAction.Exams         => "Διαγωνίσματα",
+                BotAction.Broadcast     => "Ανακοινώσεις",
+
+
+                BotAction.Help          => "Βοήθεια",
+                BotAction.Feedback      => "Κάνε ένα σχόλιο",
+                _                       => "Καμία ενέργεια"
             };
         }
     }

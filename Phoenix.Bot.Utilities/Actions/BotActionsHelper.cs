@@ -17,27 +17,30 @@ namespace Phoenix.Bot.Utilities.Actions
                     actions.Add(BotAction.Access);
                     goto case Role.Student;
                 case Role.Student:
-                    actions.Add(BotAction.Exercise);
-                    actions.Add(BotAction.Exam);
+                    actions.Add(BotAction.Assignments);
+                    actions.Add(BotAction.Supplementary);
+                    actions.Add(BotAction.Grades);
                     actions.Add(BotAction.Schedule);
+                    actions.Add(BotAction.Search);
                     goto default;
 
                 case Role.SchoolOwner:
                 case Role.SchoolAdmin:
                 case Role.Secretary:
                 case Role.Teacher:
-                    actions.Add(BotAction.Exercise);
-                    actions.Add(BotAction.Exam);
+                    actions.Add(BotAction.Broadcast);
+                    actions.Add(BotAction.Exercises);
+                    actions.Add(BotAction.Supplementary);
+                    actions.Add(BotAction.Exams);
+                    actions.Add(BotAction.Grades);
                     actions.Add(BotAction.Schedule);
                     goto default;
 
+                // Testers select the Role they want to connect as
                 case Role.SuperAdmin:
                 case Role.SuperTester:
                 case Role.SchoolTester:
-                    actions.Add(BotAction.Exercise);
-                    actions.Add(BotAction.Exam);
-                    actions.Add(BotAction.Schedule);
-                    goto default;
+                    goto case Role.Student;
 
                 default:
                     actions.Add(BotAction.Help);
@@ -52,13 +55,22 @@ namespace Phoenix.Bot.Utilities.Actions
         {
             return action switch
             {
-                BotAction.Exercise  => "📚",
-                BotAction.Exam      => "📝",
-                BotAction.Schedule  => "📅",
-                BotAction.Access    => "🗝",
-                BotAction.Help      => "💪",
-                BotAction.Feedback  => "👍",
-                _                   => string.Empty,
+                BotAction.Assignments   => "📋",
+                BotAction.Supplementary => "➕",
+                BotAction.Schedule      => "📅",
+                BotAction.Search        => "🔎",
+                BotAction.Grades        => "💯",
+
+                BotAction.Access        => "🗝",
+
+                BotAction.Exercises     => "📚",
+                BotAction.Exams         => "📝",
+                BotAction.Broadcast     => "🔔",
+
+
+                BotAction.Help          => "💪",
+                BotAction.Feedback      => "👍",
+                _                       => string.Empty
             };
         }
 
