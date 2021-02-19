@@ -61,5 +61,13 @@ namespace Phoenix.Bot.Utilities.Dialogs
         {
             public static string Top => BuildWaterfallName(nameof(Top), nameof(Home));
         }
+
+        public static class Actions
+        {
+            public static class Common
+            {
+                public static string Course => BuildWaterfallName(nameof(Course), nameof(Common));
+            }
+        }
     }
 }
