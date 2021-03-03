@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Phoenix.Bot.Utilities.Actions;
 
 namespace Phoenix.Bot.Utilities.Dialogs
 {
@@ -64,9 +65,13 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
         public static class Actions
         {
-            public static class Common
+            public static class Preparation
             {
-                public static string Course => BuildWaterfallName(nameof(Course), nameof(Common));
+                public static string Top => BuildWaterfallName(nameof(Top), nameof(Preparation));
+                public static string PreparationWaterfallName(BotActionPreparation preparation)
+                {
+                    return BuildWaterfallName(preparation.ToString(), nameof(Preparation));
+                }
             }
         }
     }
