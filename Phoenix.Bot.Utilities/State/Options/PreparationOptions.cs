@@ -12,6 +12,7 @@ namespace Phoenix.Bot.Utilities.State.Options
         public int AffiliatedUserIdSelected { get; set; }
         public int CourseIdSelected { get; set; }
         public int LectureIdSelected { get; set; }
+        public int PreparationsIndex { get; set; } = 0;
 
         public PreparationOptions(IList<int> courseIds, IList<int> affiliatedUserIds, IList<BotActionPreparation> preparations)
             : base(courseIds, affiliatedUserIds)
