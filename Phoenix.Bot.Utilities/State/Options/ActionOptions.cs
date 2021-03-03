@@ -1,28 +1,38 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Phoenix.Bot.Utilities.State.Options
 {
     public class ActionOptions
     {
-        private readonly int[] affiliatedUserIds;
+        public int[] GetAffiliatedUserIds() => (int[])affiliatedUserIds?.Clone();
+        protected readonly int[] affiliatedUserIds;
+
+        public int[] GetCourseIds() => (int[])courseIds?.Clone();
         private readonly int[] courseIds;
 
         public int UserId { get; set; }
 
-        public ActionOptions() 
-            : this(null, null) { }
-        
+        public ActionOptions(IList<int> courseIds, IList<int> affiliatedUserIds)
+        {
+            this.courseIds = courseIds?.ToArray();
+            this.affiliatedUserIds = affiliatedUserIds?.ToArray();
+        }
+
         public ActionOptions(int[] courseIds)
             : this(courseIds, null) { }
 
-        public ActionOptions(int[] courseIds, int[] affiliatedUserIds)
-        {
-            this.courseIds = courseIds;
-            this.affiliatedUserIds = affiliatedUserIds;
-        }
+        public ActionOptions()
+            : this(null, null) { }
 
-        public int[] GetAffiliatedUserIds() => (int[])affiliatedUserIds.Clone();
-        public int[] GetCourseIds()         => (int[])courseIds.Clone();
-        public int[] GetAllUsersIds()       => this.GetAffiliatedUserIds().Prepend(this.UserId).ToArray();
+        public int[] GetAllUsersIds()
+        {
+            List<int> allUsers = new List<int>(affiliatedUserIds?.Length ?? 0 + 1) { this.UserId };
+
+            if (affiliatedUserIds != null)
+                allUsers.AddRange(affiliatedUserIds);
+
+            return allUsers.ToArray();
+        }
     }
 }

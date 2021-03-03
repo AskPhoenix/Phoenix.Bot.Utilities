@@ -28,6 +28,7 @@ namespace Phoenix.Bot.Utilities.Actions
                 case Role.SchoolAdmin:
                 case Role.Secretary:
                 case Role.Teacher:
+                    actions.Add(BotAction.Assignments);
                     actions.Add(BotAction.Broadcast);
                     actions.Add(BotAction.Exercises);
                     actions.Add(BotAction.Supplementary);
