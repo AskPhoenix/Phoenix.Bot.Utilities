@@ -5,7 +5,7 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionPreparationHelper
     {
-        public static IList<BotActionPreparation> GetPreparationForAction(BotAction action, Role role)
+        public static IList<BotActionPreparation> GetPreparationsForAction(BotAction action, Role role)
         {
             IList<BotActionPreparation> preparations = new List<BotActionPreparation>();
 

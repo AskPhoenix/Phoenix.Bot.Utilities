@@ -1,22 +1,18 @@
-﻿using Phoenix.DataHandle.Main;
-using Phoenix.DataHandle.Main.Models;
+﻿using Phoenix.DataHandle.Main.Models;
 using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
     public class PreparationComponentOptions : UserOptions
     {
-        public AspNetUsers User { get; }
+        public AspNetUsers UserToPrepareFor { get; }
         public Dictionary<int, string> Selectables { get; set; }
-        public bool IsAffiliatedUser { get; set; } = false;
+        public bool IsPreparingForSomeoneElse { get => (UserToPrepareFor?.Id ?? 0) != this.UserId; }
 
-        public PreparationComponentOptions(AspNetUsers user, Role userRole)
-            : base(user?.Id ?? 0, userRole)
+        public PreparationComponentOptions(AspNetUsers userToPrepareFor, UserOptions actualUserOptions)
+            : base(actualUserOptions.UserId, actualUserOptions.UserRole) 
         {
-            this.User = user;
+            this.UserToPrepareFor = userToPrepareFor;
         }
-
-        public PreparationComponentOptions(AspNetUsers user, UserOptions userOptions)
-            : this(user, userOptions.UserRole) { }
     }
 }
