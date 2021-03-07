@@ -8,6 +8,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
     {
         public AspNetUsers User { get; }
         public Dictionary<int, string> Selectables { get; set; }
+        public bool IsAffiliatedUser { get; set; } = false;
 
         public PreparationComponentOptions(AspNetUsers user, Role userRole)
             : base(user?.Id ?? 0, userRole)
