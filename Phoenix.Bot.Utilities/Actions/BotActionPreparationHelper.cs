@@ -27,8 +27,8 @@ namespace Phoenix.Bot.Utilities.Actions
                         case Role.SchoolAdmin:
                         case Role.Secretary:
                         case Role.Teacher:
-                            preparations.Add(BotActionPreparation.LectureSelection);
-                            preparations.Add(BotActionPreparation.GroupSelection);
+                            preparations.Add(BotActionPreparation.DateSelectionByCourse);
+                            preparations.Add(BotActionPreparation.LectureSelectionByDate);
                             break;
                         
                         case Role.SchoolTester:
@@ -79,7 +79,7 @@ namespace Phoenix.Bot.Utilities.Actions
                         case Role.SchoolAdmin:
                         case Role.Secretary:
                         case Role.Teacher:
-                            preparations.Add(BotActionPreparation.GroupSelection);
+                            preparations.Add(BotActionPreparation.CourseSelectionByGroup);
                             break;
 
                         case Role.SchoolTester:

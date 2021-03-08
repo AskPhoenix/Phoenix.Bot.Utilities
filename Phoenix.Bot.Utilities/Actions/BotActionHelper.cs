@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Phoenix.Bot.Utilities.Actions
 {
-    public static class BotActionsHelper
+    public static class BotActionHelper
     {
         public static IList<BotAction> GetActionsForRole(Role role)
         {
