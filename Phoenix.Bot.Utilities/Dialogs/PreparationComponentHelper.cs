@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Phoenix.Bot.Utilities.Dialogs
 {
-    public static class PreparationHelper
+    public static class PreparationComponentHelper
     {
         public static Dictionary<int, string> FindClosestLectureDates(Course course, bool pastOnly, int daysNum = 5, string dateFormat = "d/M")
         {
