@@ -1,6 +1,7 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Phoenix.Bot.Utilities.Miscellaneous
@@ -27,6 +28,12 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
             return dateTimes.Aggregate((d, cd) => Math.Abs((d - DateTimeOffset.UtcNow).Days) < Math.Abs((cd - DateTimeOffset.UtcNow).Days) ? d : cd);
         }
 
+        public static DateTimeOffset ParseDate(string date, string dateFormat = "d/M")
+        {
+            return DateTimeOffset.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
+        }
+
+        //TODO: Remove
         public static DateTime GreeceLocalTime()
                => TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("E. Europe Standard Time"));
     }
