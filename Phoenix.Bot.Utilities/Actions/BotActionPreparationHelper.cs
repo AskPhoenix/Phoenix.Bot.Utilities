@@ -21,14 +21,16 @@ namespace Phoenix.Bot.Utilities.Actions
                             goto case Role.Student;
                         case Role.Student:
                             preparations.Add(BotActionPreparation.CourseSelection);
+                            preparations.Add(BotActionPreparation.DateSelection);
+                            preparations.Add(BotActionPreparation.LectureSelection);
                             break;
 
                         case Role.SchoolOwner:
                         case Role.SchoolAdmin:
                         case Role.Secretary:
                         case Role.Teacher:
-                            preparations.Add(BotActionPreparation.DateSelectionByCourse);
-                            preparations.Add(BotActionPreparation.LectureSelectionByDate);
+                            preparations.Add(BotActionPreparation.DateSelection);
+                            preparations.Add(BotActionPreparation.LectureSelection);
                             break;
                         
                         case Role.SchoolTester:
@@ -52,6 +54,7 @@ namespace Phoenix.Bot.Utilities.Actions
                             goto case Role.Student;
                         case Role.Student:
                             preparations.Add(BotActionPreparation.CourseSelection);
+                            preparations.Add(BotActionPreparation.DateSelection);
                             preparations.Add(BotActionPreparation.LectureSelection);
                             break;
 
@@ -79,7 +82,7 @@ namespace Phoenix.Bot.Utilities.Actions
                         case Role.SchoolAdmin:
                         case Role.Secretary:
                         case Role.Teacher:
-                            preparations.Add(BotActionPreparation.CourseSelectionByGroup);
+                            preparations.Add(BotActionPreparation.GroupSelection);
                             break;
 
                         case Role.SchoolTester:
