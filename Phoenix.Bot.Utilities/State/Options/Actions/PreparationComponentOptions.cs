@@ -25,9 +25,17 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             this.CourseToPrepareFor = courseToPrepareFor;
         }
 
-        public PreparationComponentOptions(DateTimeOffset dateToPrepareFor, UserOptions actualUserOptions)
+        public PreparationComponentOptions(AspNetUsers userToPrepareFor, DateTimeOffset dateToPrepareFor, UserOptions actualUserOptions)
             : base(actualUserOptions) 
         {
+            this.UserToPrepareFor = userToPrepareFor;
+            this.DateToPrepareFor = dateToPrepareFor;
+        }
+
+        public PreparationComponentOptions(Course courseToPrepareFor, DateTimeOffset dateToPrepareFor, UserOptions actualUserOptions)
+            : base(actualUserOptions)
+        {
+            this.CourseToPrepareFor = courseToPrepareFor;
             this.DateToPrepareFor = dateToPrepareFor;
         }
     }
