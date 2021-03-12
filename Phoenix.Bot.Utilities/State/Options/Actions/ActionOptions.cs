@@ -1,4 +1,5 @@
 ﻿using Phoenix.DataHandle.Main;
+using System;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -6,6 +7,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
     {
         public int? AffiliatedUserId { get; set; }
         public int? CourseId { get; set; }
+        public DateTimeOffset? DateToPrepareFor { get; set; }
         public int? LectureId { get; set; }
 
         public ActionOptions(int userId, Role userRole)

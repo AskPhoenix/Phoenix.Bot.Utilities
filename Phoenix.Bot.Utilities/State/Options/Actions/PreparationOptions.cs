@@ -51,6 +51,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             {
                 AffiliatedUserId = this.AffiliatedUserId,
                 CourseId = this.CourseId,
+                DateToPrepareFor = this.DateToPrepareFor,
                 LectureId = this.LectureId
             };
         }
