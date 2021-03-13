@@ -13,6 +13,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public int PreparationsIndex { get; private set; }
 
+        public bool SelectTheClosestFutureDate { get; set; } = false;
+
         public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role userRole)
             : base(userId, userRole)
         {

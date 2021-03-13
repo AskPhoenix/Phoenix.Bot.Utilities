@@ -9,26 +9,37 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class PreparationComponentHelper
     {
-        public static Dictionary<int, string> FindClosestLectureDates(Course course, bool pastOnly, int daysNum = 5, string dateFormat = "d/M")
+        public enum LectureTimeline
         {
-            IEnumerable<Lecture> lectures = pastOnly
-                ? course.Lecture?.Where(l => l.StartDateTime.ToUniversalTime() < DateTimeOffset.UtcNow && l.Status == LectureStatus.Scheduled)
-                : course.Lecture?.Where(l => l.Status == LectureStatus.Scheduled);
+            Anytime,
+            Past,
+            Future
+        }
+
+        public static Dictionary<int, string> FindClosestLectureDates(Course course, LectureTimeline timeline, int daysNum = 5, string dateFormat = "d/M")
+        {
+            IEnumerable<Lecture> lectures = timeline switch
+            {
+                LectureTimeline.Past    => course.Lecture?.Where(l => l.StartDateTime.ToUniversalTime() < DateTimeOffset.UtcNow && l.Status == LectureStatus.Scheduled),
+                LectureTimeline.Future  => course.Lecture?.Where(l => l.StartDateTime.ToUniversalTime() >= DateTimeOffset.UtcNow && l.Status == LectureStatus.Scheduled),
+                _                       => course.Lecture?.Where(l => l.Status == LectureStatus.Scheduled)
+            };
 
             return lectures?.
                 GroupBy(l => l.StartDateTime.Date).
                 Select(g => g.First()).
                 OrderByDescending(l => (l.StartDateTime.ToUniversalTime() - DateTimeOffset.UtcNow).Duration()).
                 Take(daysNum).
+                OrderBy(l => l.StartDateTime).
                 ToDictionary(l => l.Id, l => l.StartDateTime.ToString(dateFormat));
         }
 
-        public static Dictionary<int, string> GetDateSelectables(PreparationComponentOptions options, int daysNum = 5, string dateFormat = "d/M")
+        public static Dictionary<int, string> GetDateSelectables(PreparationComponentOptions options, LectureTimeline? timeline = null, int daysNum = 5, string dateFormat = "d/M")
         {
             bool singleCourse = options.CourseToPrepareFor != null;
 
             if (singleCourse)
-                return FindClosestLectureDates(options.CourseToPrepareFor, pastOnly: true);
+                return FindClosestLectureDates(options.CourseToPrepareFor, timeline ?? LectureTimeline.Past, daysNum, dateFormat);
             else
             {
                 var courses = options.UserToPrepareFor.TeacherCourse.Select(tc => tc.Course);
@@ -36,7 +47,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
                 foreach (var course in courses)
                 {
-                    var tempDict = FindClosestLectureDates(course, pastOnly: false);
+                    var tempDict = FindClosestLectureDates(course, timeline ?? LectureTimeline.Anytime, daysNum, dateFormat);
                     if (tempDict != null)
                         foreach (var lectureDatePair in tempDict)
                             tore.Add(lectureDatePair.Key, lectureDatePair.Value);
