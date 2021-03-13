@@ -17,10 +17,11 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool SelectTheClosestFutureDate { get; set; } = false;
 
         [JsonConstructor]
-        private PreparationOptions(int userId, Role userRole, int preparationsIndex)
+        private PreparationOptions(int userId, Role userRole, int preparationsIndex, BotActionPreparation[] preparations)
             : this(userId, userRole)
         {
             this.PreparationsIndex = preparationsIndex;
+            this.preparations = preparations;
         }
 
         public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role userRole)
