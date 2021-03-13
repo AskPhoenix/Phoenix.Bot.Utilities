@@ -15,6 +15,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public Dictionary<int, string> Selectables { get; set; }
         public bool IsPreparingForSomeoneElse { get => (UserToPrepareFor?.Id ?? 0) != this.UserId; }
 
+        public PreparationComponentOptions() { }
+
         public PreparationComponentOptions(AspNetUsers userToPrepareFor, UserOptions actualUserOptions)
             : base(actualUserOptions) 
         {

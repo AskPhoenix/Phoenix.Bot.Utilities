@@ -7,6 +7,8 @@ namespace Phoenix.Bot.Utilities.State.Options
         public int UserId { get; }
         public Role UserRole { get; }
 
+        public UserOptions() { }
+
         public UserOptions(int userId, Role userRole)
         {
             this.UserId = userId;

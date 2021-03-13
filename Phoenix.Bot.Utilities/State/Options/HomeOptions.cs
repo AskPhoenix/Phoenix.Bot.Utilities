@@ -7,6 +7,8 @@ namespace Phoenix.Bot.Utilities.State.Options
     {
         public BotAction Action { get; set; }
 
+        public HomeOptions() { }
+
         public HomeOptions(int userId, Role userRole)
              : base(userId, userRole) { }
 

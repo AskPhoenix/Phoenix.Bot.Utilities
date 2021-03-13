@@ -10,6 +10,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public DateTimeOffset? DateToPrepareFor { get; set; }
         public int? LectureId { get; set; }
 
+        public ActionOptions() { }
+
         public ActionOptions(int userId, Role userRole)
             : base(userId, userRole) { }
 
