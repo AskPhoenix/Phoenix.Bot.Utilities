@@ -1,4 +1,5 @@
-﻿using Phoenix.DataHandle.Main;
+﻿using Newtonsoft.Json;
+using Phoenix.DataHandle.Main;
 using System;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
@@ -10,8 +11,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public DateTimeOffset? DateToPrepareFor { get; set; }
         public int? LectureId { get; set; }
 
-        public ActionOptions() { }
-
+        [JsonConstructor]
         public ActionOptions(int userId, Role userRole)
             : base(userId, userRole) { }
 

@@ -1,4 +1,6 @@
-﻿using Phoenix.DataHandle.Main.Models;
+﻿using Newtonsoft.Json;
+using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Models;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +17,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public Dictionary<int, string> Selectables { get; set; }
         public bool IsPreparingForSomeoneElse { get => (UserToPrepareFor?.Id ?? 0) != this.UserId; }
 
-        public PreparationComponentOptions() { }
+        [JsonConstructor]
+        private PreparationComponentOptions(AspNetUsers userToPrepareFor, Course courseToPrepareFor, DateTimeOffset? dateToPrepareFor, int userId, Role userRole)
+            : base(userId, userRole)
+        {
+            this.UserToPrepareFor = userToPrepareFor;
+            this.CourseToPrepareFor = courseToPrepareFor;
+            this.DateToPrepareFor = dateToPrepareFor;
+        }
 
         public PreparationComponentOptions(AspNetUsers userToPrepareFor, UserOptions actualUserOptions)
             : base(actualUserOptions) 

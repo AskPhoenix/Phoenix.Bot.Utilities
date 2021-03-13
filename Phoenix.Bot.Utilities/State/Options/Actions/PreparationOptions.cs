@@ -1,4 +1,5 @@
-﻿using Phoenix.Bot.Utilities.Actions;
+﻿using Newtonsoft.Json;
+using Phoenix.Bot.Utilities.Actions;
 using Phoenix.DataHandle.Main;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,12 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public bool SelectTheClosestFutureDate { get; set; } = false;
 
-        public PreparationOptions() { }
+        [JsonConstructor]
+        private PreparationOptions(int userId, Role userRole, int preparationsIndex)
+            : this(userId, userRole)
+        {
+            this.PreparationsIndex = preparationsIndex;
+        }
 
         public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role userRole)
             : base(userId, userRole)

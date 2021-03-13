@@ -1,4 +1,5 @@
-﻿using Phoenix.Bot.Utilities.Actions;
+﻿using Newtonsoft.Json;
+using Phoenix.Bot.Utilities.Actions;
 using Phoenix.DataHandle.Main;
 
 namespace Phoenix.Bot.Utilities.State.Options
@@ -7,8 +8,7 @@ namespace Phoenix.Bot.Utilities.State.Options
     {
         public BotAction Action { get; set; }
 
-        public HomeOptions() { }
-
+        [JsonConstructor]
         public HomeOptions(int userId, Role userRole)
              : base(userId, userRole) { }
 
