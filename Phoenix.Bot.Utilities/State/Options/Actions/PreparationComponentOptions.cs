@@ -10,6 +10,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public Course CourseToPrepareFor { get; }
         public DateTimeOffset? DateToPrepareFor { get; }
 
+        public bool SelectTheClosestFutureDate { get; set; } = false;
+
         public Dictionary<int, string> Selectables { get; set; }
         public bool IsPreparingForSomeoneElse { get => (UserToPrepareFor?.Id ?? 0) != this.UserId; }
 

@@ -16,6 +16,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
                 : course.Lecture?.Where(l => l.Status == LectureStatus.Scheduled);
 
             return lectures?.
+                GroupBy(l => l.StartDateTime.Date).
+                Select(g => g.First()).
                 OrderByDescending(l => (l.StartDateTime.ToUniversalTime() - DateTimeOffset.UtcNow).Duration()).
                 Take(daysNum).
                 ToDictionary(l => l.Id, l => l.StartDateTime.ToString(dateFormat));
