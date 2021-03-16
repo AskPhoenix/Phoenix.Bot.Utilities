@@ -20,9 +20,6 @@ namespace Phoenix.Bot.Utilities.Actions
                             preparations.Add(BotActionPreparation.AffiliatedUserSelection);
                             goto case Role.Student;
                         case Role.Student:
-                            preparations.Add(BotActionPreparation.CourseSelection);
-                            preparations.Add(BotActionPreparation.DateSelection);
-                            preparations.Add(BotActionPreparation.LectureSelection);
                             break;
 
                         case Role.SchoolOwner:

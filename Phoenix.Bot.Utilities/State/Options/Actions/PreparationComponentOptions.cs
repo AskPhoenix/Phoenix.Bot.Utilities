@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.DataHandle.Main;
-using Phoenix.DataHandle.Main.Models;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +10,6 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public int IdToPrepareFor { get; }
         public bool PrepareForUserOrCourse { get; }    // true for User, false for Course
         public DateTimeOffset? DateToPrepareFor { get; }
-
-        public bool SelectTheClosestFutureDate { get; set; } = false;
 
         public Dictionary<int, string> Selectables { get; set; }
         public bool IsPreparingForSomeoneElse { get => this.PrepareForUserOrCourse && this.IdToPrepareFor != this.UserId; }

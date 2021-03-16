@@ -7,7 +7,7 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionHelper
     {
-        public static IList<BotAction> GetActionsForRole(Role role)
+        public static IList<BotAction> GetActions(Role role)
         {
             IList<BotAction> actions = new List<BotAction>();
 
@@ -77,7 +77,7 @@ namespace Phoenix.Bot.Utilities.Actions
 
         public static IList<Choice> GetActionChoices(Role role)
         {
-            var actionNames = GetActionsForRole(role).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
+            var actionNames = GetActions(role).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
             return ChoiceFactory.ToChoices(actionNames.ToList());
         }
     }

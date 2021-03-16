@@ -1,8 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.DataHandle.Main;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -10,13 +7,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
     {
         public bool Search { get; set; }
 
-        public AssignmentsOptions(ActionOptions actionOptions)
+        public AssignmentsOptions(ActionOptions actionOptions, bool search)
             : this(actionOptions.GetUserOptions())
         {
             this.AffiliatedUserId = actionOptions.AffiliatedUserId;
             this.CourseId = actionOptions.CourseId;
             this.DateToPrepareFor = actionOptions.DateToPrepareFor;
             this.LectureId = actionOptions.LectureId;
+            this.Search = search;
         }
         
         [JsonConstructor]
