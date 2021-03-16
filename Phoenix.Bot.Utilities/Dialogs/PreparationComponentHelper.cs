@@ -12,8 +12,11 @@ namespace Phoenix.Bot.Utilities.Dialogs
             return users.ToDictionary(u => u.Id, u => u.User.FirstName);
         }
 
-        public static Dictionary<int, string> GetSelectables(IEnumerable<Course> courses)
+        public static Dictionary<int, string> GetSelectables(IEnumerable<Course> courses, bool showByGroup = false)
         {
+            if (showByGroup)
+                return courses.ToDictionary(c => c.Id, c => c.Name + " - " + c.Group);
+            
             return courses.ToDictionary(c => c.Id, c => c.NameWithSubcourse);
         }
 
