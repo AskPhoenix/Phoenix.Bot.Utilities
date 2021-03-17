@@ -76,9 +76,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
             public static class Assignments
             {
-                public static string Top => BuildWaterfallName(nameof(Top), nameof(Assignments));
                 public static string Homework => BuildWaterfallName(nameof(Homework), nameof(Assignments));
-                public static string Search => BuildWaterfallName(nameof(Search), nameof(Assignments));
             }
         }
     }

@@ -11,6 +11,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public DateTimeOffset? DateToPrepareFor { get; set; }
         public int? LectureId { get; set; }
 
+        public int ActiveUserId { get => this.AffiliatedUserId ?? this.UserId; }
+
         [JsonConstructor]
         public ActionOptions(int userId, Role userRole)
             : base(userId, userRole) { }
