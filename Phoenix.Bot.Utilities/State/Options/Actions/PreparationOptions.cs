@@ -10,6 +10,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
     public class PreparationOptions : ActionOptions
     {
         public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations?.Clone();
+        [JsonProperty]
         private readonly BotActionPreparation[] preparations;
 
         public int PreparationsIndex { get; private set; }

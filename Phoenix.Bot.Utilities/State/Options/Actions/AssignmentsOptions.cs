@@ -8,15 +8,11 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool Search { get; set; }
 
         public AssignmentsOptions(ActionOptions actionOptions, bool search)
-            : this(actionOptions.GetUserOptions())
+            : base(actionOptions.GetUserOptions(), actionOptions)
         {
-            this.AffiliatedUserId = actionOptions.AffiliatedUserId;
-            this.CourseId = actionOptions.CourseId;
-            this.DateToPrepareFor = actionOptions.DateToPrepareFor;
-            this.LectureId = actionOptions.LectureId;
             this.Search = search;
         }
-        
+
         [JsonConstructor]
         public AssignmentsOptions(int userId, Role userRole)
             : base(userId, userRole) { }

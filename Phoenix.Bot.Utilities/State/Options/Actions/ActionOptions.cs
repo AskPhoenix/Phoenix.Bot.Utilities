@@ -13,6 +13,15 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public int ActiveUserId { get => this.AffiliatedUserId ?? this.UserId; }
 
+        protected ActionOptions(UserOptions userOptions, ActionOptions other)
+            : this(userOptions)
+        {
+            this.AffiliatedUserId = other.AffiliatedUserId;
+            this.CourseId = other.CourseId;
+            this.DateToPrepareFor = other.DateToPrepareFor;
+            this.LectureId = other.LectureId;
+        }
+
         [JsonConstructor]
         public ActionOptions(int userId, Role userRole)
             : base(userId, userRole) { }
