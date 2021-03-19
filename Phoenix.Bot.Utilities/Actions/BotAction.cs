@@ -7,7 +7,8 @@
         Assignments,
         Supplementary,
         Schedule,
-        Search,
+        SearchExercises,
+        SearchExams,
         Grades,
 
         Access,
@@ -27,22 +28,23 @@
         {
             return action switch
             {
-                BotAction.Assignments   => "Για διάβασμα",
-                BotAction.Supplementary => "Επιπλέον υλικό",
-                BotAction.Schedule      => "Πρόγραμμα",
-                BotAction.Search        => "Αναζήτηση εργασιών",
-                BotAction.Grades        => "Βαθμοί",
+                BotAction.Assignments       => "Για διάβασμα",
+                BotAction.Supplementary     => "Επιπλέον υλικό",
+                BotAction.Schedule          => "Πρόγραμμα",
+                BotAction.SearchExercises   => "Αναζήτηση εργασιών",
+                BotAction.SearchExams       => "Αναζήτηση βαθμών",
+                BotAction.Grades            => "Βαθμοί",
                 
-                BotAction.Access        => "Πρόσβαση",
+                BotAction.Access            => "Πρόσβαση",
 
-                BotAction.Exercises     => "Ασκήσεις",
-                BotAction.Exams         => "Διαγωνίσματα",
-                BotAction.Broadcast     => "Ανακοινώσεις",
+                BotAction.Exercises         => "Ασκήσεις",
+                BotAction.Exams             => "Διαγωνίσματα",
+                BotAction.Broadcast         => "Ανακοινώσεις",
 
 
-                BotAction.Help          => "Βοήθεια",
-                BotAction.Feedback      => "Κάνε ένα σχόλιο",
-                _                       => "Καμία ενέργεια"
+                BotAction.Help              => "Βοήθεια",
+                BotAction.Feedback          => "Κάνε ένα σχόλιο",
+                _                           => "Καμία ενέργεια"
             };
         }
     }

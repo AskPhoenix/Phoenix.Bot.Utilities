@@ -78,6 +78,14 @@ namespace Phoenix.Bot.Utilities.Dialogs
             {
                 public static string Homework => BuildWaterfallName(nameof(Homework), nameof(Assignments));
             }
+
+            public static class Grades
+            {
+                public static string Top => BuildWaterfallName(nameof(Top), nameof(Grades));
+                public static string Recent => BuildWaterfallName(nameof(Recent), nameof(Grades));
+                public static string Search => BuildWaterfallName(nameof(Search), nameof(Grades));
+                public static string Mark => BuildWaterfallName(nameof(Mark), nameof(Grades));
+            }
         }
     }
 }

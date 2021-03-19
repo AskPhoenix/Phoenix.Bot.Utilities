@@ -7,7 +7,7 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionHelper
     {
-        public static IList<BotAction> GetActions(Role role)
+        public static IList<BotAction> GetMenuActions(Role role, bool removePendingActions = false)
         {
             IList<BotAction> actions = new List<BotAction>();
 
@@ -21,7 +21,7 @@ namespace Phoenix.Bot.Utilities.Actions
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Grades);
                     actions.Add(BotAction.Schedule);
-                    actions.Add(BotAction.Search);
+                    actions.Add(BotAction.SearchExercises);
                     goto default;
 
                 case Role.SchoolOwner:
@@ -49,6 +49,10 @@ namespace Phoenix.Bot.Utilities.Actions
                     break;
             }
 
+            if (removePendingActions)
+                foreach (var action in GetPendingActions())
+                    actions.Remove(action);
+
             return actions;
         }
 
@@ -56,29 +60,39 @@ namespace Phoenix.Bot.Utilities.Actions
         {
             return action switch
             {
-                BotAction.Assignments   => "📋",
-                BotAction.Supplementary => "➕",
-                BotAction.Schedule      => "📅",
-                BotAction.Search        => "🔎",
-                BotAction.Grades        => "💯",
+                BotAction.Assignments       => "📋",
+                BotAction.Supplementary     => "➕",
+                BotAction.Schedule          => "📅",
+                BotAction.SearchExercises   => "🔎",
+                BotAction.SearchExams       => "🔎",
+                BotAction.Grades            => "💯",
 
-                BotAction.Access        => "🗝",
+                BotAction.Access            => "🗝",
 
-                BotAction.Exercises     => "📚",
-                BotAction.Exams         => "📝",
-                BotAction.Broadcast     => "🔔",
+                BotAction.Exercises         => "📚",
+                BotAction.Exams             => "📝",
+                BotAction.Broadcast         => "🔔",
 
 
-                BotAction.Help          => "💪",
-                BotAction.Feedback      => "👍",
-                _                       => string.Empty
+                BotAction.Help              => "💪",
+                BotAction.Feedback          => "👍",
+                _                           => string.Empty
             };
         }
 
-        public static IList<Choice> GetActionChoices(Role role)
+        public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false)
         {
-            var actionNames = GetActions(role).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
+            var actionNames = GetMenuActions(role, removePendingActions).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
             return ChoiceFactory.ToChoices(actionNames.ToList());
+        }
+
+        public static IList<BotAction> GetPendingActions()
+        {
+            return new List<BotAction> 
+            {
+                BotAction.Broadcast,
+                BotAction.Supplementary
+            };
         }
     }
 }

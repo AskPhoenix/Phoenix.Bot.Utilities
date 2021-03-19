@@ -5,105 +5,77 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionPreparationHelper
     {
-        public static IList<BotActionPreparation> GetPreparationsForAction(BotAction action, Role role)
+        public static IList<BotActionPreparation> GetPreparations(BotAction action, Role role)
         {
             IList<BotActionPreparation> preparations = new List<BotActionPreparation>();
 
-            switch (action)
+            switch (role)
             {
-                case BotAction.Grades:
-                case BotAction.Supplementary:
-                case BotAction.Assignments:
-                    switch (role)
+                case Role.Parent:
+                    switch (action)
                     {
-                        case Role.Parent:
+                        case BotAction.Assignments:
+                        case BotAction.Grades:
+                        case BotAction.Supplementary:
+                        case BotAction.SearchExercises:
+                        case BotAction.SearchExams:
                             preparations.Add(BotActionPreparation.AffiliatedUserSelection);
-                            goto case Role.Student;
-                        case Role.Student:
                             break;
-
-                        case Role.SchoolOwner:
-                        case Role.SchoolAdmin:
-                        case Role.Secretary:
-                        case Role.Teacher:
-                            preparations.Add(BotActionPreparation.DateSelection);
-                            preparations.Add(BotActionPreparation.LectureSelection);
-                            break;
-                        
-                        case Role.SchoolTester:
-                        case Role.SuperTester:
-                        case Role.SuperAdmin:
-                            goto case Role.Student;
-
-                        case Role.Undefined:
-                        case Role.None:
                         default:
-                            preparations.Add(BotActionPreparation.NoPreparation);
                             break;
                     }
-                    break;
-                
-                case BotAction.Search:
-                    switch (role)
+                    goto case Role.Student;
+                    
+                case Role.Student:
+                    switch (action)
                     {
-                        case Role.Parent:
-                            preparations.Add(BotActionPreparation.AffiliatedUserSelection);
-                            goto case Role.Student;
-                        case Role.Student:
+                        case BotAction.SearchExercises:
                             preparations.Add(BotActionPreparation.CourseSelection);
                             preparations.Add(BotActionPreparation.DateSelection);
                             preparations.Add(BotActionPreparation.LectureSelection);
                             break;
-
-                        case Role.SchoolTester:
-                        case Role.SuperTester:
-                        case Role.SuperAdmin:
-                            goto case Role.Student;
-
-                        case Role.SchoolOwner:
-                        case Role.SchoolAdmin:
-                        case Role.Secretary:
-                        case Role.Teacher:
-                        case Role.Undefined:
-                        case Role.None:
+                        case BotAction.SearchExams:
+                            preparations.Add(BotActionPreparation.CourseSelection);
+                            preparations.Add(BotActionPreparation.DateExamSelection);
+                            preparations.Add(BotActionPreparation.LectureExamSelection);
+                            break;
                         default:
                             preparations.Add(BotActionPreparation.NoPreparation);
                             break;
                     }
                     break;
-                
-                case BotAction.Broadcast:
-                    switch (role)
+
+                case Role.SchoolOwner:
+                case Role.SchoolAdmin:
+                case Role.Secretary:
+                case Role.Teacher:
+                    switch (action)
                     {
-                        case Role.SchoolOwner:
-                        case Role.SchoolAdmin:
-                        case Role.Secretary:
-                        case Role.Teacher:
+                        case BotAction.Assignments:
+                        case BotAction.Supplementary:
+                            preparations.Add(BotActionPreparation.DateSelection);
+                            preparations.Add(BotActionPreparation.LectureSelection);
+                            break;
+                        case BotAction.Grades:
+                            preparations.Add(BotActionPreparation.DateExamSelection);
+                            preparations.Add(BotActionPreparation.LectureExamSelection);
+                            break;
+                        case BotAction.Broadcast:
                             preparations.Add(BotActionPreparation.GroupSelection);
                             break;
-
-                        case Role.SchoolTester:
-                        case Role.SuperTester:
-                        case Role.SuperAdmin:
-                            goto case Role.Teacher;
-
-                        case Role.Parent:
-                        case Role.Student:
-                        case Role.Undefined:
-                        case Role.None:
                         default:
                             preparations.Add(BotActionPreparation.NoPreparation);
                             break;
                     }
                     break;
 
-                case BotAction.Exercises:
-                case BotAction.Exams:
-                case BotAction.Access:
-                case BotAction.Schedule:
-                case BotAction.Help:
-                case BotAction.Feedback:
-                case BotAction.NoAction:
+                case Role.SchoolTester:
+                case Role.SuperTester:
+                case Role.SuperAdmin:
+                    goto case Role.Student;
+
+                case Role.Undefined:
+                case Role.None:
                 default:
                     preparations.Add(BotActionPreparation.NoPreparation);
                     break;

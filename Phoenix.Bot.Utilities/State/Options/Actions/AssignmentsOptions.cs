@@ -8,7 +8,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool Search { get; set; }
 
         public AssignmentsOptions(ActionOptions actionOptions, bool search)
-            : base(actionOptions.GetUserOptions(), actionOptions)
+            : base(actionOptions, actionOptions)
         {
             this.Search = search;
         }

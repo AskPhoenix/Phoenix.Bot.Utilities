@@ -59,7 +59,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public ActionOptions GetActionOptions()
         {
-            return new ActionOptions(this.GetUserOptions())
+            return new ActionOptions(this)
             {
                 AffiliatedUserId = this.AffiliatedUserId,
                 CourseId = this.CourseId,
