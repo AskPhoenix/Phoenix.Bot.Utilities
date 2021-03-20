@@ -7,7 +7,7 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionHelper
     {
-        public static IList<BotAction> GetMenuActions(Role role, bool removePendingActions = false)
+        public static IList<BotAction> GetMenuActions(Role role, bool removePendingActions = false, bool removeAccessAction = false)
         {
             IList<BotAction> actions = new List<BotAction>();
 
@@ -52,6 +52,8 @@ namespace Phoenix.Bot.Utilities.Actions
             if (removePendingActions)
                 foreach (var action in GetPendingActions())
                     actions.Remove(action);
+            if (removeAccessAction)
+                actions.Remove(BotAction.Access);
 
             return actions;
         }
@@ -80,9 +82,9 @@ namespace Phoenix.Bot.Utilities.Actions
             };
         }
 
-        public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false)
+        public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false, bool removeAccessAction = false)
         {
-            var actionNames = GetMenuActions(role, removePendingActions).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
+            var actionNames = GetMenuActions(role, removePendingActions, removeAccessAction).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
             return ChoiceFactory.ToChoices(actionNames.ToList());
         }
 
@@ -91,7 +93,8 @@ namespace Phoenix.Bot.Utilities.Actions
             return new List<BotAction> 
             {
                 BotAction.Broadcast,
-                BotAction.Supplementary
+                BotAction.Supplementary,
+                BotAction.Grades
             };
         }
     }
