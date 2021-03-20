@@ -19,6 +19,7 @@ namespace Phoenix.Bot.Utilities.Actions
                         case BotAction.Supplementary:
                         case BotAction.SearchExercises:
                         case BotAction.SearchExams:
+                        case BotAction.ScheduleWeekly:
                             preparations.Add(BotActionPreparation.AffiliatedUserSelection);
                             break;
                         default:
@@ -38,6 +39,9 @@ namespace Phoenix.Bot.Utilities.Actions
                             preparations.Add(BotActionPreparation.CourseSelection);
                             preparations.Add(BotActionPreparation.DateExamSelection);
                             preparations.Add(BotActionPreparation.LectureExamSelection);
+                            break;
+                        case BotAction.ScheduleDaily:
+                            preparations.Add(BotActionPreparation.DateSelection);
                             break;
                         default:
                             preparations.Add(BotActionPreparation.NoPreparation);
@@ -59,6 +63,9 @@ namespace Phoenix.Bot.Utilities.Actions
                         case BotAction.Grades:
                             preparations.Add(BotActionPreparation.DateExamSelection);
                             preparations.Add(BotActionPreparation.LectureExamSelection);
+                            break;
+                        case BotAction.ScheduleDaily:
+                            preparations.Add(BotActionPreparation.DateSelection);
                             break;
                         case BotAction.Broadcast:
                             preparations.Add(BotActionPreparation.GroupSelection);

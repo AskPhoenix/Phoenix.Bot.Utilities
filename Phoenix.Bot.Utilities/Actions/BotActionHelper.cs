@@ -20,7 +20,7 @@ namespace Phoenix.Bot.Utilities.Actions
                     actions.Add(BotAction.Assignments);
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Grades);
-                    actions.Add(BotAction.Schedule);
+                    actions.Add(BotAction.ScheduleWeekly);
                     actions.Add(BotAction.SearchExercises);
                     goto default;
 
@@ -34,7 +34,7 @@ namespace Phoenix.Bot.Utilities.Actions
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Exams);
                     actions.Add(BotAction.Grades);
-                    actions.Add(BotAction.Schedule);
+                    actions.Add(BotAction.ScheduleWeekly);
                     goto default;
 
                 // Testers select the Role they want to connect as
@@ -64,7 +64,8 @@ namespace Phoenix.Bot.Utilities.Actions
             {
                 BotAction.Assignments       => "📋",
                 BotAction.Supplementary     => "➕",
-                BotAction.Schedule          => "📅",
+                BotAction.ScheduleWeekly    => "📅",
+                BotAction.ScheduleDaily     => "📅",
                 BotAction.SearchExercises   => "🔎",
                 BotAction.SearchExams       => "🔎",
                 BotAction.Grades            => "💯",
@@ -95,6 +96,15 @@ namespace Phoenix.Bot.Utilities.Actions
                 BotAction.Broadcast,
                 BotAction.Supplementary,
                 BotAction.Grades
+            };
+        }
+
+        public static IList<BotAction> GetNonMenuActions()
+        {
+            return new List<BotAction>(2)
+            {
+                BotAction.SearchExams,
+                BotAction.ScheduleDaily
             };
         }
     }

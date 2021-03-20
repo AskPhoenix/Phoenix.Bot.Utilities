@@ -13,8 +13,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public int ActiveUserId { get => this.AffiliatedUserId ?? this.UserId; }
 
-        protected ActionOptions(UserOptions userOptions, ActionOptions other)
-            : this(userOptions)
+        protected ActionOptions(ActionOptions other)
+            : base(other)
         {
             this.AffiliatedUserId = other.AffiliatedUserId;
             this.CourseId = other.CourseId;
@@ -27,6 +27,6 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             : base(userId, userRole) { }
 
         public ActionOptions(UserOptions userOptions)
-            : this(userOptions.UserId, userOptions.UserRole) { }
+            : base(userOptions) { }
     }
 }

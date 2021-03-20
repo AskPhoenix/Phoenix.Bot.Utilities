@@ -91,6 +91,12 @@ namespace Phoenix.Bot.Utilities.Dialogs
             {
                 public static string Top => BuildWaterfallName(nameof(Top), nameof(Access));
             }
+
+            public static class Schedule
+            {
+                public static string Daily => BuildWaterfallName(nameof(Daily), nameof(Schedule));
+                public static string Weekly => BuildWaterfallName(nameof(Weekly), nameof(Schedule));
+            }
         }
     }
 }

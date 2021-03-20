@@ -6,7 +6,8 @@
 
         Assignments,
         Supplementary,
-        Schedule,
+        ScheduleWeekly,
+        ScheduleDaily,
         SearchExercises,
         SearchExams,
         Grades,
@@ -30,7 +31,8 @@
             {
                 BotAction.Assignments       => "Για διάβασμα",
                 BotAction.Supplementary     => "Επιπλέον υλικό",
-                BotAction.Schedule          => "Πρόγραμμα",
+                BotAction.ScheduleWeekly    => "Πρόγραμμα",
+                BotAction.ScheduleDaily     => "Πρόγραμμα ημέρας",
                 BotAction.SearchExercises   => "Αναζήτηση εργασιών",
                 BotAction.SearchExams       => "Αναζήτηση βαθμών",
                 BotAction.Grades            => "Βαθμοί",
@@ -46,6 +48,11 @@
                 BotAction.Feedback          => "Κάνε ένα σχόλιο",
                 _                           => "Καμία ενέργεια"
             };
+        }
+
+        public static bool IsNonMenuAction(this BotAction botAction)
+        {
+            return BotActionHelper.GetNonMenuActions().Contains(botAction);
         }
     }
 }
