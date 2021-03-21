@@ -4,6 +4,8 @@
     {
         public int SmsCount { get; set; }
         public int LoginAttempts { get; set; }
+        public bool RevealExtensionPassword { get; set; }
+        public string TempExtensionPassword { get; set; }
     }
 
     public static class UserDataDefaults

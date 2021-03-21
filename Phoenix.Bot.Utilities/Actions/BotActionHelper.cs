@@ -85,7 +85,7 @@ namespace Phoenix.Bot.Utilities.Actions
 
         public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false, bool removeAccessAction = false)
         {
-            var actionNames = GetMenuActions(role, removePendingActions, removeAccessAction).Select(a => GetActionEmoji(a) + " " + a.ToFriendlyString());
+            var actionNames = GetMenuActions(role, removePendingActions, removeAccessAction).Select(a => a.ToFriendlyString(addEmoji: true));
             return ChoiceFactory.ToChoices(actionNames.ToList());
         }
 

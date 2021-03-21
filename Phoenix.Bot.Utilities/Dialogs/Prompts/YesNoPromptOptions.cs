@@ -10,10 +10,10 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         public YesNoPromptOptions() : base()
         {
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ απάντησε με ένα Ναι ή Όχι:");
-            this.Choices = new Choice[] 
+            this.Choices = new Choice[2] 
             {
                 new Choice("✔️ Ναι"),
-                new Choice("❌ Όχι, ευχαριστώ") { Synonyms = new List<string> { "Όχι" } }
+                new Choice("❌ Όχι, ευχαριστώ") { Synonyms = new List<string>(1) { "Όχι" } }
             };
         }
 
