@@ -12,6 +12,7 @@
         Home,
         Cancel,
         Reset,
+        Logout,
         
         // Action related: [30, 40)
         Exercises = CommandAttributes.ActionCommandsBase,
