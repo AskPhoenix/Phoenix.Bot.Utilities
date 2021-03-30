@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Phoenix.Bot.Utilities.Linguistic;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -35,6 +36,16 @@ namespace Phoenix.Bot.Utilities.Dialogs
         public static string GenerateVerificationCode(string token, uint digitsNum = 2)
         {
             return token.Substring(0, 2).ToUnaccented().ToUpper() + GenerateVerificationPin(digitsNum);
+        }
+
+        public static string GeneratePasscode(int size)
+        {
+            char[] invalidPasswordChars = { 'l', 'I', 'O', '0', '1' };
+
+            string passcode = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            passcode = new string(passcode.Where(c => !invalidPasswordChars.Contains(c)).ToArray()).Substring(0, size);
+
+            return passcode;
         }
     }
 }
