@@ -7,6 +7,10 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public class NavigationPromptOptions : PromptOptions
     {
+        public const string Previous = "⤴️ Προηγούμενο";
+        public const string Next = "⤵️ Επόμενο";
+        public const string Completion = "⌛ Ολοκλήρωση";
+
         public NavigationPromptOptions(string promptText = null, bool hasPrevious = true, bool hasNext = true) 
             : base()
         {
@@ -17,12 +21,12 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
             this.Choices = new List<Choice>(3);
 
+            this.Choices.Add(new Choice(Completion));
+
             if (hasPrevious)
-                this.Choices.Add(new Choice("⤴️ Προηγούμενο"));
+                this.Choices.Add(new Choice(Previous));
             if (hasNext)
-                this.Choices.Add(new Choice("⤵️ Επόμενο"));
-            
-            this.Choices.Add(new Choice("⌛ Ολοκλήρωση"));
+                this.Choices.Add(new Choice(Next));
         }
     }
 }
