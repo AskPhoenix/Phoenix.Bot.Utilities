@@ -40,7 +40,12 @@ namespace Phoenix.Bot.Utilities.State.Options.Authentification
 
         public bool IsCodeExpired(string code)
         {
-            return (DateTimeOffset.UtcNow - this.CodesCreatedAt[code]).Duration().Minutes >= CodeExpiresAfterMins;
+            return IsCodeExpired(this.CodesCreatedAt[code]);
+        }
+
+        public static bool IsCodeExpired(DateTimeOffset codeCreatedAt)
+        {
+            return (DateTimeOffset.UtcNow - codeCreatedAt).Duration().Minutes >= CodeExpiresAfterMins;
         }
     }
 }
