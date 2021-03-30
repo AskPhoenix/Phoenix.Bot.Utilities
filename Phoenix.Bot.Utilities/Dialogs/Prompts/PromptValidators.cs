@@ -10,7 +10,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
-        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext, CancellationToken _)
+        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext, CancellationToken cancellationToken)
         {
             long result = promptContext.Recognized.Value;
 
@@ -21,28 +21,16 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
         }
 
-        public static Task<bool> CodePromptValidator(PromptValidatorContext<string> promptContext, CancellationToken _)
+        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext, CancellationToken cancellationToken)
         {
-            if (!(promptContext.Options.Validations is string))
-                return Task.FromResult(false);
-
             string result = promptContext.Recognized.Value;
-            string validationType = promptContext.Options.Validations as string;
-
-            if (validationType == "pin")
-                return Task.FromResult(
-                    promptContext.Recognized.Succeeded &&
-                    result.Length <= 9 &&
-                    result.All(c => char.IsDigit(c)));
-            else
-                return Task.FromResult(
-                    promptContext.Recognized.Succeeded &&
-                    result.Substring(0, 2).All(c => char.IsLetter(c)) &&
-                    result[2..].Length <= 9 &&
-                    result[2..].All(c => char.IsDigit(c)));
+            return Task.FromResult(
+                promptContext.Recognized.Succeeded &&
+                result.Length <= 9 &&
+                result.All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext, CancellationToken _)
+        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext, CancellationToken cancellationToken)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);

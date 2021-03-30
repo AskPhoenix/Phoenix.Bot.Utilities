@@ -38,9 +38,9 @@ namespace Phoenix.Bot.Utilities.State.Options.Authentification
             return codeExists;
         }
 
-        public bool IsCodeValid(string code)
+        public bool IsCodeExpired(string code)
         {
-            return this.Codes.ContainsKey(code) && (DateTimeOffset.UtcNow - this.CodesCreatedAt[code]).Duration().Minutes < CodeExpiresAfterMins;
+            return (DateTimeOffset.UtcNow - this.CodesCreatedAt[code]).Duration().Minutes >= CodeExpiresAfterMins;
         }
     }
 }

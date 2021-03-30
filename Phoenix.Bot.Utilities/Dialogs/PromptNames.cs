@@ -5,8 +5,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class PromptNames
     {
-        public const string Phone = nameof(Phone) + nameof(NumberPrompt<int>); // generic type T is not included
-        public const string Code = nameof(Code) + nameof(NumberPrompt<int>);
+        public const string Phone = nameof(Phone) + nameof(NumberPrompt<int>); // generic type T is not included in the name
+        public const string Pin = nameof(Pin) + nameof(NumberPrompt<int>);
         public const string HiddenChoices = nameof(HiddenChoices) + nameof(UnaccentedChoicePrompt);
     }
 }
