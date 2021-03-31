@@ -40,7 +40,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                     options.Choices[i].Synonyms = new List<string>();
 
                 //Remove any emojis
-                string noEmojiChoice = options.Choices[i].Value.TrimEmojis();
+                string noEmojiChoice = options.Choices[i].Value.RemoveEmojis();
                 string unaccentedChoice = noEmojiChoice.ToUnaccented();
                 if (noEmojiChoice != options.Choices[i].Value)
                     options.Choices[i].Synonyms.Add(noEmojiChoice);

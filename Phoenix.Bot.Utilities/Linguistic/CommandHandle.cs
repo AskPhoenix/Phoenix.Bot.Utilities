@@ -33,6 +33,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
 
         public static bool TryInferCommand(string text, out Command cmd)
         {
+            string trimmedText = text.RemoveEmojis();
             cmd = Command.NoCommand;
             
             var cmdNames = Enum.GetNames(typeof(Command));
@@ -41,8 +42,8 @@ namespace Phoenix.Bot.Utilities.Linguistic
                 var cmdSynonyms = typeof(Synonyms).GetField(cmdName)?.GetValue(null) as string[];
                 if (cmdSynonyms == null)
                     continue;
-
-                if (cmdSynonyms.Any(s => s.IsTheSameWith(text.Trim(), CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)))
+                
+                if (cmdSynonyms.Any(s => s.IsTheSameWith(text, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)))
                 {
                     cmd = (Command)Enum.Parse(typeof(Command), cmdName);
                     break;

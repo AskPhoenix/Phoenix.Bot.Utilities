@@ -14,7 +14,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
             return new string(unaccented.ToArray());
         }
 
-        public static string TrimEmojis(this string str)
+        public static string RemoveEmojis(this string str)
             => new string(str.Where(c => !char.IsSurrogate(c) && !char.IsSymbol(c)).ToArray()).Trim();
 
 #nullable enable
