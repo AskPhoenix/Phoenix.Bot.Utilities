@@ -43,7 +43,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
             char[] invalidPasswordChars = { 'l', 'I', 'O', '0', '1' };
 
             string passcode = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-            passcode = new string(passcode.Where(c => !invalidPasswordChars.Contains(c)).ToArray()).Substring(0, size);
+            passcode = new string(passcode.Where(c => !invalidPasswordChars.Contains(c) && char.IsLetterOrDigit(c)).ToArray()).Substring(0, size);
 
             return passcode;
         }
