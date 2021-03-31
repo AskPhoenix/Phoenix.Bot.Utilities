@@ -1,5 +1,6 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using Phoenix.Bot.Utilities.Linguistic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,21 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 };
 
             return Task.FromResult(i >= 0);
+        }
+
+        public static Task<bool> CustomDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        {
+            if (promptContext.Recognized.Succeeded)
+                return Task.FromResult(true);
+            
+            string text = promptContext.Context.Activity.Text;
+            if (string.IsNullOrEmpty(text))
+                return Task.FromResult(false);
+
+            //TODO: Use locale
+            //TODO: Προσοχή με το ToUpperInvariant()
+            text = text.ToUnaccented().ToUpper();
+            return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΥΡΙΟ");
         }
     }
 }
