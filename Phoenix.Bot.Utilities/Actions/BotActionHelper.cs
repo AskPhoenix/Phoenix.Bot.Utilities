@@ -93,7 +93,6 @@ namespace Phoenix.Bot.Utilities.Actions
         {
             return new List<BotAction> 
             {
-                BotAction.Broadcast,
                 BotAction.Supplementary,
                 BotAction.Grades
             };
