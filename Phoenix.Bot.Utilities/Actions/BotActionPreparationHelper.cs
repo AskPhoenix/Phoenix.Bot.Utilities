@@ -67,9 +67,6 @@ namespace Phoenix.Bot.Utilities.Actions
                         case BotAction.ScheduleDaily:
                             preparations.Add(BotActionPreparation.DateSelection);
                             break;
-                        case BotAction.Broadcast:
-                            preparations.Add(BotActionPreparation.GroupSelection);
-                            break;
                         default:
                             preparations.Add(BotActionPreparation.NoPreparation);
                             break;
