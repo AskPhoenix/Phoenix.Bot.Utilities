@@ -46,6 +46,14 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
             };
         }
 
+        public static DateTimeOffset ResolveDateTimePromptResult(IList<DateTimeResolution> result, string msg)
+        {
+            if (result is null || !result.Any())
+                return ResolveDateTime(msg);
+            else
+                return ResolveDateTime(result);
+        }
+
         public static DateTimeOffset ParseDate(string date, string dateFormat = "d/M")
         {
             return DateTimeOffset.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
