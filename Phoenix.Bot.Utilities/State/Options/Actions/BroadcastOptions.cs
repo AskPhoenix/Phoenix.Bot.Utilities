@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
+using Phoenix.Bot.Utilities.Miscellaneous;
 using Phoenix.DataHandle.Main;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
-    public class BroadcastOptions : ActionOptions
+    public partial class BroadcastOptions : ActionOptions
     {
         public string Message { get; set; }
+        public DayPart DayPart { get; set; }
         public BroadcastAudience Audience { get; set; }
         public BroadcastVisibility Visibility { get; set; }
         public int? GroupCourseId { get; set; }
