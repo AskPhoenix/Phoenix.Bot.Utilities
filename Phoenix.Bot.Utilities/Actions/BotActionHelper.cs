@@ -74,7 +74,7 @@ namespace Phoenix.Bot.Utilities.Actions
 
                 BotAction.Exercises         => "📚",
                 BotAction.Exams             => "📝",
-                BotAction.Broadcast         => "🔔",
+                BotAction.Broadcast         => "📢",
 
 
                 BotAction.Help              => "💪",
