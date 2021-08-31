@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Phoenix.Bot.Utilities.Linguistic;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,6 +27,23 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
 
             // Just return the closest date including its year.
             return dateTimes.Aggregate((d, cd) => Math.Abs((d - DateTimeOffset.UtcNow).Days) < Math.Abs((cd - DateTimeOffset.UtcNow).Days) ? d : cd);
+        }
+
+        public static DateTimeOffset ResolveDateTime(string relativeDateText)
+        {
+            if (string.IsNullOrEmpty(relativeDateText))
+                throw new ArgumentNullException("Relative Date Text cannot be null or empty.");
+
+            string text = relativeDateText.ToUnaccented().ToUpper();
+
+            //TODO: Έλεγχος offset από το σήμερα αντί για κείμενο
+            return text switch
+            {
+                "ΧΘΕΣ" => DateTimeOffset.UtcNow.AddDays(-1),
+                "ΣΗΜΕΡΑ" => DateTimeOffset.UtcNow,
+                "ΑΥΡΙΟ" => DateTimeOffset.UtcNow.AddDays(1),
+                _ => throw new ArgumentException("Relative Date Text has invalid value. The valid values are: 'yesterday', 'today', and 'tomorrow'."),
+            };
         }
 
         public static DateTimeOffset ParseDate(string date, string dateFormat = "d/M")
