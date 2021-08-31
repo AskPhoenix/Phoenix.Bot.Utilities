@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.Bot.Utilities.Miscellaneous;
 using Phoenix.DataHandle.Main;
+using static Phoenix.Bot.Utilities.State.Options.Actions.BroadcastOptions;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -14,8 +15,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public enum BroadcastAudience
         {
-            None = 0,
-            Students,
+            Students = 0,
             Parents,
             StudentsParents,
             Staff,
@@ -37,5 +37,31 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public BroadcastOptions(UserOptions userOptions)
             : base(userOptions) { }
+    }
+
+    public static class BroadcastOptionsExtensions
+    {
+        public static string ToFriendlyString(this BroadcastAudience audience)
+        {
+            return audience switch
+            {
+                BroadcastAudience.Students => "Μαθητές",
+                BroadcastAudience.Parents => "Γονείς",
+                BroadcastAudience.StudentsParents => "Μαθητές & Γονείς",
+                BroadcastAudience.Staff => "Προσωπικό",
+                BroadcastAudience.All => "Όλοι",
+                _ => string.Empty
+            };
+        }
+
+        public static string ToFriendlyString(this BroadcastVisibility visibility)
+        {
+            return visibility switch
+            {
+                BroadcastVisibility.Group => "Τμήμα",
+                BroadcastVisibility.Global => "Παντού",
+                _ => string.Empty
+            };
+        }
     }
 }
