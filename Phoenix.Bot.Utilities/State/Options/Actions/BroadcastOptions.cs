@@ -48,7 +48,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
                 BroadcastAudience.Students => "Μαθητές",
                 BroadcastAudience.Parents => "Γονείς",
                 BroadcastAudience.StudentsParents => "Μαθητές & Γονείς",
-                BroadcastAudience.Staff => "Προσωπικό",
+                BroadcastAudience.Staff => "Προσωπικό φροντιστηρίου",
                 BroadcastAudience.All => "Όλοι",
                 _ => string.Empty
             };
@@ -59,7 +59,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             return visibility switch
             {
                 BroadcastVisibility.Group => "Τμήμα",
-                BroadcastVisibility.Global => "Παντού",
+                BroadcastVisibility.Global => "Σε όλο το σχολείο",
                 _ => string.Empty
             };
         }
