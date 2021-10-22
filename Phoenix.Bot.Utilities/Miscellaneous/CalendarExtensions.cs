@@ -41,8 +41,9 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
             {
                 "ΧΘΕΣ" => DateTimeOffset.UtcNow.AddDays(-1),
                 "ΣΗΜΕΡΑ" => DateTimeOffset.UtcNow,
+                "ΑΜΕΣΩΣ" => DateTimeOffset.UtcNow,
                 "ΑΥΡΙΟ" => DateTimeOffset.UtcNow.AddDays(1),
-                _ => throw new ArgumentException("Relative Date Text has invalid value. The valid values are: 'yesterday', 'today', and 'tomorrow'."),
+                _ => throw new ArgumentException("Relative Date Text has invalid value. The valid values are: 'yesterday', 'today', 'immediately', and 'tomorrow'."),
             };
         }
 
