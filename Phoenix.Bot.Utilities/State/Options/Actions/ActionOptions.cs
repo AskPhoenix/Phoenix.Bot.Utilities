@@ -23,8 +23,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         [JsonConstructor]
-        public ActionOptions(int userId, Role userRole)
-            : base(userId, userRole) { }
+        public ActionOptions(int userId, Role[] userRoles)
+            : base(userId, userRoles) { }
 
         public ActionOptions(UserOptions userOptions)
             : base(userOptions) { }

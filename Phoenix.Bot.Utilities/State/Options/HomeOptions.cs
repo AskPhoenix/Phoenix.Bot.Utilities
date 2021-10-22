@@ -9,10 +9,10 @@ namespace Phoenix.Bot.Utilities.State.Options
         public BotAction Action { get; set; }
 
         [JsonConstructor]
-        public HomeOptions(int userId, Role userRole)
-             : base(userId, userRole) { }
+        public HomeOptions(int userId, Role[] userRoles)
+             : base(userId, userRoles) { }
 
         public HomeOptions(UserOptions userOptions)
-            : this(userOptions.UserId, userOptions.UserRole) { }
+            : this(userOptions.UserId, userOptions.UserRoles) { }
     }
 }

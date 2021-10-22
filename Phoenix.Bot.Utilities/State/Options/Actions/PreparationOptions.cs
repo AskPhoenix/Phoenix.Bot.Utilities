@@ -18,25 +18,25 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool SelectTheClosestFutureDate { get; set; } = false;
 
         [JsonConstructor]
-        private PreparationOptions(int userId, Role userRole, int preparationsIndex, BotActionPreparation[] preparations)
-            : this(userId, userRole)
+        private PreparationOptions(int userId, Role[] userRoles, int preparationsIndex, BotActionPreparation[] preparations)
+            : this(userId, userRoles)
         {
             this.PreparationsIndex = preparationsIndex;
             this.preparations = preparations;
         }
 
-        public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role userRole)
-            : base(userId, userRole)
+        public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role[] userRoles)
+            : base(userId, userRoles)
         {
             this.preparations = preparations?.ToArray() ?? new BotActionPreparation[1] { BotActionPreparation.NoPreparation };
             this.ResetPreparationsIndex();
         }
 
         public PreparationOptions(IList<BotActionPreparation> preparations, UserOptions userOptions)
-            : this(preparations, userOptions.UserId, userOptions.UserRole) { }
+            : this(preparations, userOptions.UserId, userOptions.UserRoles) { }
 
-        public PreparationOptions(int userId, Role userRole)
-            : base(userId, userRole) { }
+        public PreparationOptions(int userId, Role[] userRoles)
+            : base(userId, userRoles) { }
 
         public BotActionPreparation GetNextPreparation()
         {

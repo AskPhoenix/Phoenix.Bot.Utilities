@@ -18,8 +18,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             : this(actionOptions, botAction == BotAction.ScheduleDaily) { }
 
         [JsonConstructor]
-        public ScheduleOptions(int userId, Role userRole)
-            : base(userId, userRole) { }
+        public ScheduleOptions(int userId, Role[] userRoles)
+            : base(userId, userRoles) { }
 
         public ScheduleOptions(UserOptions userOptions)
             : base(userOptions) { }
