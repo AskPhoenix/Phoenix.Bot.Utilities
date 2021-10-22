@@ -73,8 +73,11 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             var text = promptContext.Context.Activity.Text.ToUnaccented().ToUpper();
             tore &= text != "ΧΘΕΣ";
 
-            var res = CalendarExtensions.ResolveDateTime(promptContext.Recognized.Value);
-            tore &= res.Date >= DateTimeOffset.UtcNow.Date;
+            if (promptContext.Recognized.Succeeded)
+            {
+                var res = CalendarExtensions.ResolveDateTime(promptContext.Recognized.Value);
+                tore &= res.Date >= DateTimeOffset.UtcNow.Date;
+            }
 
             return tore;
         }
