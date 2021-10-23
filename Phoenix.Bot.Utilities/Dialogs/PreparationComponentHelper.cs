@@ -16,8 +16,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
         {
             if (showByGroup)
             {
-                //TODO: Check is SubCourse is null
-                return courses.ToDictionary(c => c.Id, c => c.Name + " - " + c.SubCourse + " ~ " + c.Group);
+                return courses.ToDictionary(c => c.Id, 
+                    c => c.Name + (c.SubCourse != null ? $" - " + c.SubCourse : "") + " ~ " + c.Group);
             }
             
             return courses.ToDictionary(c => c.Id, c => c.NameWithSubcourse);
