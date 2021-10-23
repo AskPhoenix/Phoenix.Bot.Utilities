@@ -15,8 +15,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool IsPreparingForSomeoneElse { get => this.PrepareForUserOrCourse && this.IdToPrepareFor != this.UserId; }
 
         [JsonConstructor]
-        private PreparationComponentOptions(int idToPrepareFor, DateTimeOffset? dateToPrepareFor, int userId, Role[] userRoles)
-            : base(userId, userRoles)
+        private PreparationComponentOptions(int idToPrepareFor, DateTimeOffset? dateToPrepareFor, int userId, Role userRole)
+            : base(userId, userRole)
         {
             this.IdToPrepareFor = idToPrepareFor;
             this.DateToPrepareFor = dateToPrepareFor;

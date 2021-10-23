@@ -25,8 +25,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         [JsonConstructor]
-        public AssignmentsManagementOptions(int userId, Role[] userRoles) 
-            : base(userId, userRoles) { }
+        public AssignmentsManagementOptions(int userId, Role userRole) 
+            : base(userId, userRole) { }
 
         public AssignmentsManagementOptions(UserOptions userOptions)
             : base(userOptions) { }

@@ -4,7 +4,7 @@ namespace Phoenix.Bot.Utilities.State
 {
     public struct MainState
     {
-        public bool RolesChecked { get; set; }
-        public Role[] SelectedRoles { get; set; }
+        public bool IsRoleChecked { get; set; }
+        public Role SelectedRole { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             : this(actionOptions, botAction == BotAction.SearchExercises) { }
 
         [JsonConstructor]
-        public AssignmentsOptions(int userId, Role[] userRoles)
-            : base(userId, userRoles) { }
+        public AssignmentsOptions(int userId, Role userRole)
+            : base(userId, userRole) { }
 
         public AssignmentsOptions(UserOptions userOptions)
             : base(userOptions) { }

@@ -7,47 +7,45 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionHelper
     {
-        public static IList<BotAction> GetMenuActions(IList<Role> roles, bool removePendingActions = false, bool removeAccessAction = false)
+        public static IList<BotAction> GetMenuActions(Role role, bool removePendingActions = false, bool removeAccessAction = false)
         {
             IList<BotAction> actions = new List<BotAction>();
 
-            foreach (var role in roles)
+            switch (role)
             {
-                switch (role)
-                {
-                    case Role.Parent:
-                        actions.Add(BotAction.Access);
-                        goto case Role.Student;
-                    case Role.Student:
-                        actions.Add(BotAction.Assignments);
-                        actions.Add(BotAction.Supplementary);
-                        actions.Add(BotAction.Grades);
-                        actions.Add(BotAction.ScheduleWeekly);
-                        actions.Add(BotAction.SearchExercises);
-                        break;
+                case Role.Parent:
+                    actions.Add(BotAction.Access);
+                    goto case Role.Student;
+                case Role.Student:
+                    actions.Add(BotAction.Assignments);
+                    actions.Add(BotAction.Supplementary);
+                    actions.Add(BotAction.Grades);
+                    actions.Add(BotAction.ScheduleWeekly);
+                    actions.Add(BotAction.SearchExercises);
+                    break;
 
-                    case Role.SchoolOwner:
-                    case Role.SchoolAdmin:
-                    case Role.Secretary:
-                        actions.Add(BotAction.Broadcast);
-                        break;
+                case Role.SchoolOwner:
+                case Role.SchoolAdmin:
+                case Role.Secretary:
+                    actions.Add(BotAction.Broadcast);
+                    goto case Role.Teacher;
 
-                    case Role.Teacher:
-                        actions.Add(BotAction.Assignments);
-                        actions.Add(BotAction.Exercises);
-                        actions.Add(BotAction.Supplementary);
-                        actions.Add(BotAction.Exams);
-                        actions.Add(BotAction.Grades);
-                        actions.Add(BotAction.ScheduleWeekly);
-                        break;
+                case Role.Teacher:
+                    actions.Add(BotAction.Assignments);
+                    actions.Add(BotAction.Exercises);
+                    actions.Add(BotAction.Supplementary);
+                    actions.Add(BotAction.Exams);
+                    actions.Add(BotAction.Grades);
+                    actions.Add(BotAction.ScheduleWeekly);
+                    break;
 
-                    // Testers select the Role they want to connect as
-                    case Role.SuperAdmin:
-                    case Role.SuperTester:
-                    case Role.SchoolTester:
-                        break;
-                }
+                // Testers select the Role they want to connect as
+                case Role.SuperAdmin:
+                case Role.SuperTester:
+                case Role.SchoolTester:
+                    break;
             }
+
 
             actions.Add(BotAction.Help);
             actions.Add(BotAction.Feedback);
@@ -86,9 +84,9 @@ namespace Phoenix.Bot.Utilities.Actions
             };
         }
 
-        public static IList<Choice> GetActionChoices(IList<Role> roles, bool removePendingActions = false, bool removeAccessAction = false)
+        public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false, bool removeAccessAction = false)
         {
-            var actionNames = GetMenuActions(roles, removePendingActions, removeAccessAction).Select(a => a.ToFriendlyString(addEmoji: true));
+            var actionNames = GetMenuActions(role, removePendingActions, removeAccessAction).Select(a => a.ToFriendlyString(addEmoji: true));
             return ChoiceFactory.ToChoices(actionNames.ToList());
         }
 
