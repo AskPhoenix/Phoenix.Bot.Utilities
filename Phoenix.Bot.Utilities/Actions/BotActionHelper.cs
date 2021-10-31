@@ -22,32 +22,33 @@ namespace Phoenix.Bot.Utilities.Actions
                     actions.Add(BotAction.Grades);
                     actions.Add(BotAction.ScheduleWeekly);
                     actions.Add(BotAction.SearchExercises);
-                    goto default;
+                    break;
 
                 case Role.SchoolOwner:
                 case Role.SchoolAdmin:
                 case Role.Secretary:
+                    actions.Add(BotAction.Broadcast);
+                    goto case Role.Teacher;
+
                 case Role.Teacher:
                     actions.Add(BotAction.Assignments);
-                    actions.Add(BotAction.Broadcast);
                     actions.Add(BotAction.Exercises);
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Exams);
                     actions.Add(BotAction.Grades);
                     actions.Add(BotAction.ScheduleWeekly);
-                    goto default;
+                    break;
 
                 // Testers select the Role they want to connect as
                 case Role.SuperAdmin:
                 case Role.SuperTester:
                 case Role.SchoolTester:
-                    goto case Role.Student;
-
-                default:
-                    actions.Add(BotAction.Help);
-                    actions.Add(BotAction.Feedback);
                     break;
             }
+
+
+            actions.Add(BotAction.Help);
+            actions.Add(BotAction.Feedback);
 
             if (removePendingActions)
                 foreach (var action in GetPendingActions())
@@ -74,7 +75,7 @@ namespace Phoenix.Bot.Utilities.Actions
 
                 BotAction.Exercises         => "📚",
                 BotAction.Exams             => "📝",
-                BotAction.Broadcast         => "🔔",
+                BotAction.Broadcast         => "📢",
 
 
                 BotAction.Help              => "💪",
@@ -93,7 +94,6 @@ namespace Phoenix.Bot.Utilities.Actions
         {
             return new List<BotAction> 
             {
-                BotAction.Broadcast,
                 BotAction.Supplementary,
                 BotAction.Grades
             };

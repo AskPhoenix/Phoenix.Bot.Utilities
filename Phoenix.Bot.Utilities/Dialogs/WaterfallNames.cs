@@ -102,6 +102,12 @@ namespace Phoenix.Bot.Utilities.Dialogs
             {
                 public static string Extension => BuildWaterfallName(nameof(Extension), nameof(AssignmentsManagement));
             }
+
+            public static class Broadcast
+            {
+                public static string Top => BuildWaterfallName(nameof(Top), nameof(Broadcast));
+                public static string Preparation => BuildWaterfallName(nameof(Preparation), nameof(Broadcast));
+            }
         }
     }
 }

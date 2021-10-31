@@ -1,6 +1,7 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Linguistic;
+using Phoenix.Bot.Utilities.Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,24 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             //TODO: Use locale
             //TODO: Προσοχή με το ToUpperInvariant()
             text = text.ToUnaccented().ToUpper();
-            return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΥΡΙΟ");
+            return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΜΕΣΩΣ" || text is "ΑΥΡΙΟ");
         }
+
+        public static async Task<bool> FutureDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        {
+            bool tore = await CustomDateTimePromptValidator(promptContext, cancellationToken);
+
+            var text = promptContext.Context.Activity.Text.ToUnaccented().ToUpper();
+            tore &= text != "ΧΘΕΣ";
+
+            if (promptContext.Recognized.Succeeded)
+            {
+                var res = CalendarExtensions.ResolveDateTime(promptContext.Recognized.Value);
+                tore &= res.Date >= DateTimeOffset.UtcNow.Date;
+            }
+
+            return tore;
+        }
+
     }
 }

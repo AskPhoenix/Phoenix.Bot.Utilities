@@ -26,7 +26,7 @@ namespace Phoenix.Bot.Utilities.Actions
                             break;
                     }
                     goto case Role.Student;
-                    
+
                 case Role.Student:
                     switch (action)
                     {
@@ -67,9 +67,6 @@ namespace Phoenix.Bot.Utilities.Actions
                         case BotAction.ScheduleDaily:
                             preparations.Add(BotActionPreparation.DateSelection);
                             break;
-                        case BotAction.Broadcast:
-                            preparations.Add(BotActionPreparation.GroupSelection);
-                            break;
                         default:
                             preparations.Add(BotActionPreparation.NoPreparation);
                             break;
@@ -79,7 +76,7 @@ namespace Phoenix.Bot.Utilities.Actions
                 case Role.SchoolTester:
                 case Role.SuperTester:
                 case Role.SuperAdmin:
-                    goto case Role.Student;
+                    goto default;
 
                 case Role.Undefined:
                 case Role.None:
@@ -87,7 +84,10 @@ namespace Phoenix.Bot.Utilities.Actions
                     preparations.Add(BotActionPreparation.NoPreparation);
                     break;
             }
-            
+
+            if (preparations.Count > 1 && preparations.Contains(BotActionPreparation.NoPreparation))
+                preparations.Remove(BotActionPreparation.NoPreparation);
+
             return preparations;
         }
     }
