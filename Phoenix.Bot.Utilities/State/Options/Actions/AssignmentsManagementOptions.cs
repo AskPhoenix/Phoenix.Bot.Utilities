@@ -10,7 +10,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public BotAction ExtensionAction { get; set; } = BotAction.Exercises;
 
         private const string ExtensionImageBaseUrl = "https://www.bot.askphoenix.gr/assets/";
-        private const string ExtensionButtonBaseUrl = "https://pwa.askphoenix.gr/teacher/";
+        private const string ExtensionButtonBaseUrl = "https://teacher.askphoenix.gr/teacher/";
 
         public const string ExerciseImageUrl = ExtensionImageBaseUrl + "exercise_bg.png";
         public const string ExamImageUrl = ExtensionImageBaseUrl + "exam_bg.png";
