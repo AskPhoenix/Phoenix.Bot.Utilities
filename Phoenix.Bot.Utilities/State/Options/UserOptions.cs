@@ -1,15 +1,15 @@
 ﻿using Newtonsoft.Json;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.State.Options
 {
     public class UserOptions
     {
         public int UserId { get; }
-        public Role UserRole { get; }
+        public RoleRank UserRole { get; }
 
         [JsonConstructor]
-        public UserOptions(int userId, Role userRole)
+        public UserOptions(int userId, RoleRank userRole)
         {
             this.UserId = userId;
             this.UserRole = userRole;

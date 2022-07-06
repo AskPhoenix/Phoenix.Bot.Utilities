@@ -7,9 +7,9 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class PreparationComponentHelper
     {
-        public static Dictionary<int, string> GetSelectables(IEnumerable<AspNetUsers> users)
+        public static Dictionary<int, string> GetSelectables(IEnumerable<User> users)
         {
-            return users.ToDictionary(u => u.Id, u => u.User.FirstName);
+            return users.ToDictionary(u => u.AspNetUserId, u => u.FirstName);
         }
 
         public static Dictionary<int, string> GetSelectables(IEnumerable<Course> courses, bool showByGroup = false)
@@ -20,7 +20,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
                     c => c.Name + (c.SubCourse != null ? $" - " + c.SubCourse : "") + " ~ " + c.Group);
             }
             
-            return courses.ToDictionary(c => c.Id, c => c.NameWithSubcourse);
+            return courses.ToDictionary(c => c.Id, c => c.Name + (c.SubCourse != null ? $" - " + c.SubCourse : ""));
         }
 
         public static Dictionary<int, string> GetSelectables(IEnumerable<DateTime> dates, string dateFormat = "d/M")

@@ -1,10 +1,10 @@
-﻿using Phoenix.DataHandle.Main;
+﻿using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.State
 {
     public struct MainState
     {
         public bool IsRoleChecked { get; set; }
-        public Role SelectedRole { get; set; }
+        public RoleRank SelectedRole { get; set; }
     }
 }

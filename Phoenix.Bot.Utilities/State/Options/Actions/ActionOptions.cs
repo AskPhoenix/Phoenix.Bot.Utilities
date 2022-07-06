@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 using System;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
@@ -23,7 +23,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         [JsonConstructor]
-        public ActionOptions(int userId, Role userRole)
+        public ActionOptions(int userId, RoleRank userRole)
             : base(userId, userRole) { }
 
         public ActionOptions(UserOptions userOptions)

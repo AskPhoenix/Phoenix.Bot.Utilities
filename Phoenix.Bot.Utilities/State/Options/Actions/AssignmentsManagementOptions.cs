@@ -1,7 +1,6 @@
-﻿using Microsoft.Bot.Schema;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -26,7 +25,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         [JsonConstructor]
-        public AssignmentsManagementOptions(int userId, Role userRole) 
+        public AssignmentsManagementOptions(int userId, RoleRank userRole) 
             : base(userId, userRole) { }
 
         public AssignmentsManagementOptions(UserOptions userOptions)

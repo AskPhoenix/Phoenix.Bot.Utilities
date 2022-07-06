@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool IsPreparingForSomeoneElse { get => this.PrepareForUserOrCourse && this.IdToPrepareFor != this.UserId; }
 
         [JsonConstructor]
-        private PreparationComponentOptions(int idToPrepareFor, DateTimeOffset? dateToPrepareFor, int userId, Role userRole)
+        private PreparationComponentOptions(int idToPrepareFor, DateTimeOffset? dateToPrepareFor, int userId, RoleRank userRole)
             : base(userId, userRole)
         {
             this.IdToPrepareFor = idToPrepareFor;

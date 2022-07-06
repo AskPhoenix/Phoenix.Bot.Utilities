@@ -1,5 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs.Choices;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,42 +7,43 @@ namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionHelper
     {
-        public static IList<BotAction> GetMenuActions(Role role, bool removePendingActions = false, bool removeAccessAction = false)
+        public static IList<BotAction> GetMenuActions(RoleRank roleRank,
+            bool removePendingActions = false, bool removeAccessAction = false)
         {
-            IList<BotAction> actions = new List<BotAction>();
+            var actions = new List<BotAction>();
 
-            switch (role)
+            switch (roleRank)
             {
-                case Role.Parent:
+                case RoleRank.Parent:
                     actions.Add(BotAction.Access);
-                    goto case Role.Student;
-                case Role.Student:
+                    goto case RoleRank.Student;
+                case RoleRank.Student:
                     actions.Add(BotAction.Assignments);
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Grades);
-                    actions.Add(BotAction.ScheduleWeekly);
+                    actions.Add(BotAction.ScheduleWeek);
                     actions.Add(BotAction.SearchExercises);
                     break;
 
-                case Role.SchoolOwner:
-                case Role.SchoolAdmin:
-                case Role.Secretary:
+                case RoleRank.SchoolOwner:
+                case RoleRank.SchoolAdmin:
+                case RoleRank.Secretary:
                     actions.Add(BotAction.Broadcast);
-                    goto case Role.Teacher;
+                    goto case RoleRank.Teacher;
 
-                case Role.Teacher:
+                case RoleRank.Teacher:
                     actions.Add(BotAction.Assignments);
                     actions.Add(BotAction.Exercises);
                     actions.Add(BotAction.Supplementary);
                     actions.Add(BotAction.Exams);
                     actions.Add(BotAction.Grades);
-                    actions.Add(BotAction.ScheduleWeekly);
+                    actions.Add(BotAction.ScheduleWeek);
                     break;
 
-                // Testers select the Role they want to connect as
-                case Role.SuperAdmin:
-                case Role.SuperTester:
-                case Role.SchoolTester:
+                // Testers select the RoleRank they want to connect as
+                case RoleRank.SuperAdmin:
+                case RoleRank.SuperTester:
+                case RoleRank.SchoolTester:
                     break;
             }
 
@@ -65,8 +66,8 @@ namespace Phoenix.Bot.Utilities.Actions
             {
                 BotAction.Assignments       => "📋",
                 BotAction.Supplementary     => "➕",
-                BotAction.ScheduleWeekly    => "📅",
-                BotAction.ScheduleDaily     => "📅",
+                BotAction.ScheduleWeek      => "📅",
+                BotAction.ScheduleDay       => "📅",
                 BotAction.SearchExercises   => "🔎",
                 BotAction.SearchExams       => "🔎",
                 BotAction.Grades            => "💯",
@@ -84,15 +85,17 @@ namespace Phoenix.Bot.Utilities.Actions
             };
         }
 
-        public static IList<Choice> GetActionChoices(Role role, bool removePendingActions = false, bool removeAccessAction = false)
+        public static IList<Choice> GetActionChoices(RoleRank roleRank,
+            bool removePendingActions = false, bool removeAccessAction = false)
         {
-            var actionNames = GetMenuActions(role, removePendingActions, removeAccessAction).Select(a => a.ToFriendlyString(addEmoji: true));
+            var actionNames = GetMenuActions(roleRank, removePendingActions, removeAccessAction)
+                .Select(a => a.ToFriendlyString(addEmoji: true));
             return ChoiceFactory.ToChoices(actionNames.ToList());
         }
 
         public static IList<BotAction> GetPendingActions()
         {
-            return new List<BotAction> 
+            return new List<BotAction>
             {
                 BotAction.Supplementary,
                 BotAction.Grades
@@ -101,10 +104,10 @@ namespace Phoenix.Bot.Utilities.Actions
 
         public static IList<BotAction> GetNonMenuActions()
         {
-            return new List<BotAction>(2)
+            return new List<BotAction>
             {
                 BotAction.SearchExams,
-                BotAction.ScheduleDaily
+                BotAction.ScheduleDay
             };
         }
     }

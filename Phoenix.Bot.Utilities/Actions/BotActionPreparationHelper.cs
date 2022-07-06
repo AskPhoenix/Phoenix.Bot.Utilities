@@ -1,17 +1,17 @@
-﻿using Phoenix.DataHandle.Main;
+﻿using Phoenix.DataHandle.Main.Types;
 using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.Actions
 {
     public static class BotActionPreparationHelper
     {
-        public static IList<BotActionPreparation> GetPreparations(BotAction action, Role role)
+        public static IList<BotActionPreparation> GetPreparations(BotAction action, RoleRank roleRank)
         {
-            IList<BotActionPreparation> preparations = new List<BotActionPreparation>();
+            var preparations = new List<BotActionPreparation>();
 
-            switch (role)
+            switch (roleRank)
             {
-                case Role.Parent:
+                case RoleRank.Parent:
                     switch (action)
                     {
                         case BotAction.Assignments:
@@ -19,15 +19,15 @@ namespace Phoenix.Bot.Utilities.Actions
                         case BotAction.Supplementary:
                         case BotAction.SearchExercises:
                         case BotAction.SearchExams:
-                        case BotAction.ScheduleWeekly:
+                        case BotAction.ScheduleWeek:
                             preparations.Add(BotActionPreparation.AffiliatedUserSelection);
                             break;
                         default:
                             break;
                     }
-                    goto case Role.Student;
+                    goto case RoleRank.Student;
 
-                case Role.Student:
+                case RoleRank.Student:
                     switch (action)
                     {
                         case BotAction.SearchExercises:
@@ -40,7 +40,7 @@ namespace Phoenix.Bot.Utilities.Actions
                             preparations.Add(BotActionPreparation.DateExamSelection);
                             preparations.Add(BotActionPreparation.LectureExamSelection);
                             break;
-                        case BotAction.ScheduleDaily:
+                        case BotAction.ScheduleDay:
                             preparations.Add(BotActionPreparation.DateSelection);
                             break;
                         default:
@@ -49,10 +49,10 @@ namespace Phoenix.Bot.Utilities.Actions
                     }
                     break;
 
-                case Role.SchoolOwner:
-                case Role.SchoolAdmin:
-                case Role.Secretary:
-                case Role.Teacher:
+                case RoleRank.SchoolOwner:
+                case RoleRank.SchoolAdmin:
+                case RoleRank.Secretary:
+                case RoleRank.Teacher:
                     switch (action)
                     {
                         case BotAction.Assignments:
@@ -64,7 +64,7 @@ namespace Phoenix.Bot.Utilities.Actions
                             preparations.Add(BotActionPreparation.DateExamSelection);
                             preparations.Add(BotActionPreparation.LectureExamSelection);
                             break;
-                        case BotAction.ScheduleDaily:
+                        case BotAction.ScheduleDay:
                             preparations.Add(BotActionPreparation.DateSelection);
                             break;
                         default:
@@ -73,13 +73,12 @@ namespace Phoenix.Bot.Utilities.Actions
                     }
                     break;
 
-                case Role.SchoolTester:
-                case Role.SuperTester:
-                case Role.SuperAdmin:
+                case RoleRank.SchoolTester:
+                case RoleRank.SuperTester:
+                case RoleRank.SuperAdmin:
                     goto default;
 
-                case Role.Undefined:
-                case Role.None:
+                case RoleRank.None:
                 default:
                     preparations.Add(BotActionPreparation.NoPreparation);
                     break;

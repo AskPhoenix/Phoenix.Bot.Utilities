@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main;
+using Phoenix.DataHandle.Main.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +18,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public bool SelectTheClosestFutureDate { get; set; } = false;
 
         [JsonConstructor]
-        private PreparationOptions(int userId, Role userRole, int preparationsIndex, BotActionPreparation[] preparations)
+        private PreparationOptions(int userId, RoleRank userRole, int preparationsIndex, BotActionPreparation[] preparations)
             : this(userId, userRole)
         {
             this.PreparationsIndex = preparationsIndex;
             this.preparations = preparations;
         }
 
-        public PreparationOptions(IList<BotActionPreparation> preparations, int userId, Role userRole)
+        public PreparationOptions(IList<BotActionPreparation> preparations, int userId, RoleRank userRole)
             : base(userId, userRole)
         {
             this.preparations = preparations?.ToArray() ?? new BotActionPreparation[1] { BotActionPreparation.NoPreparation };
@@ -35,7 +35,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public PreparationOptions(IList<BotActionPreparation> preparations, UserOptions userOptions)
             : this(preparations, userOptions.UserId, userOptions.UserRole) { }
 
-        public PreparationOptions(int userId, Role userRole)
+        public PreparationOptions(int userId, RoleRank userRole)
             : base(userId, userRole) { }
 
         public BotActionPreparation GetNextPreparation()

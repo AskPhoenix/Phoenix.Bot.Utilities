@@ -1,4 +1,6 @@
-﻿namespace Phoenix.Bot.Utilities.Actions
+﻿using Phoenix.Language.Types;
+
+namespace Phoenix.Bot.Utilities.Actions
 {
     public enum BotAction
     {
@@ -6,8 +8,8 @@
 
         Assignments,
         Supplementary,
-        ScheduleWeekly,
-        ScheduleDaily,
+        ScheduleWeek,
+        ScheduleDay,
         SearchExercises,
         SearchExams,
         Grades,
@@ -24,7 +26,6 @@
 
     public static class BotActionExtensions
     {
-        //TODO: Use locale
         public static string ToFriendlyString(this BotAction action, bool addEmoji = false)
         {
             string actionString = string.Empty;
@@ -33,24 +34,23 @@
 
             actionString += action switch
             {
-                BotAction.Assignments       => "Για διάβασμα",
-                BotAction.Supplementary     => "Επιπλέον υλικό",
-                BotAction.ScheduleWeekly    => "Πρόγραμμα",
-                BotAction.ScheduleDaily     => "Πρόγραμμα ημέρας",
-                BotAction.SearchExercises   => "Αναζήτηση εργασιών",
-                BotAction.SearchExams       => "Αναζήτηση βαθμών",
-                BotAction.Grades            => "Βαθμοί",
-                
-                BotAction.Access            => "Πρόσβαση",
+                BotAction.Assignments       => BotActionResources.Assignments,
+                BotAction.Supplementary     => BotActionResources.Supplementary,
+                BotAction.ScheduleWeek      => BotActionResources.ScheduleWeek,
+                BotAction.ScheduleDay       => BotActionResources.ScheduleDay,
+                BotAction.SearchExercises   => BotActionResources.SearchExercises,
+                BotAction.SearchExams       => BotActionResources.SearchExams,
+                BotAction.Grades            => BotActionResources.Grades,
 
-                BotAction.Exercises         => "Ασκήσεις",
-                BotAction.Exams             => "Διαγωνίσματα",
-                BotAction.Broadcast         => "Ανακοινώσεις",
+                BotAction.Access            => BotActionResources.Access,
 
+                BotAction.Exercises         => BotActionResources.Exercises,
+                BotAction.Exams             => BotActionResources.Exams,
+                BotAction.Broadcast         => BotActionResources.Broadcast,
 
-                BotAction.Help              => "Βοήθεια",
-                BotAction.Feedback          => "Κάνε ένα σχόλιο",
-                _                           => "Καμία ενέργεια"
+                BotAction.Help              => BotActionResources.Help,
+                BotAction.Feedback          => BotActionResources.Feedback,
+                _                           => BotActionResources.NoAction
             };
 
             return actionString;

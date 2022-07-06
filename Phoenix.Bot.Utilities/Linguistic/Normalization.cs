@@ -17,9 +17,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
         public static string RemoveEmojis(this string str)
             => new string(str.Where(c => !char.IsSurrogate(c) && !char.IsSymbol(c)).ToArray()).Trim();
 
-#nullable enable
         public static bool IsTheSameWith(this string strA, string? strB, CultureInfo? culture, CompareOptions options)
             => string.Compare(strA, strB, culture, options) == 0;
-#nullable disable
     }
 }
