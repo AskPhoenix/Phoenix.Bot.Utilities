@@ -10,12 +10,12 @@ echo.
 
 dotnet restore
 
-echo Building...
+echo Building Release...
 echo.
 
 dotnet build --configuration Release --no-restore
 
-echo Packing for Release configuration...
+echo Packing Release...
 echo.
 
 dotnet pack --configuration Release --no-restore
