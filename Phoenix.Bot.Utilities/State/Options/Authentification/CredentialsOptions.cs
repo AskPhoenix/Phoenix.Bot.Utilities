@@ -8,7 +8,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Authentification
     {
         public const int CodeExpiresAfterMins = 5;
 
-        public string Phone { get; set; }
+        public string Phone { get; set; } = null!;
         public bool IsOwnerAuthentication { get; set; }
         public int PhoneOwnerUserId { get; set; }
         public int? VerifiedUserId { get; set; }

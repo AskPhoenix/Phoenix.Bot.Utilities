@@ -5,7 +5,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class WaterfallNames
     {
-        private static string BuildWaterfallName(string name, string subname = null)
+        private static string BuildWaterfallName(string name, string? subname = null)
         {
             if (!string.IsNullOrEmpty(subname))
                 subname = "_" + subname;

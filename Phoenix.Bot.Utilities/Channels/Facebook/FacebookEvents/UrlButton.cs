@@ -7,7 +7,7 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
     public class UrlButton : Button
     {
         private string webviewHeightRatio = "full";
-        private string webviewShareButton = null;
+        private string? webviewShareButton = null;
 
         [JsonProperty("type")]
         public override string Type { get => "web_url"; }
@@ -45,30 +45,27 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         /// It may only be specified if messenger_extensions is true.
         /// </summary>
         [JsonProperty("fallback_url")]
-        public string FallbackUrl { get; set; }
+        public string? FallbackUrl { get; set; }
 
         /// <summary>
         /// Optional. Set to hide to disable the share button in the Webview (for sensitive info).
         /// This does not affect any shares initiated by the developer using Extensions.
         /// </summary>
         [JsonProperty("webview_share_button")]
-        public string WebviewShareButton
+        public string? WebviewShareButton
         {
             get => webviewShareButton;
             set => webviewShareButton = value == null || value == "hide" ? value :
                 throw new FacebookException("webview_share_button value of Url Button must be hide if set.");
         }
 
-        public UrlButton() { }
-
-        public UrlButton(string title,
-            string url,
+        public UrlButton(string title, string url,
             string webviewHeightRatio = "full",
             bool messengerExtensions = false,
-            string fallback_Url = null,
-            string webviewShareButton = null)
+            string? fallback_Url = null,
+            string? webviewShareButton = null)
+            : base(title)
         {
-            this.Title = title;
             this.Url = url;
             this.WebviewHeightRatio = webviewHeightRatio;
             this.MessengerExtensions = messengerExtensions;
@@ -77,6 +74,5 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         }
 
         public UrlAction ToUrlAction() => new UrlAction(Url, WebviewHeightRatio, MessengerExtensions, FallbackUrl, WebviewShareButton);
-
     }
 }

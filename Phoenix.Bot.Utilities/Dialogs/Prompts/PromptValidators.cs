@@ -5,25 +5,24 @@ using Phoenix.Bot.Utilities.Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
-        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext)
         {
             long result = promptContext.Recognized.Value;
 
             return Task.FromResult(
                 promptContext.Recognized.Succeeded &&
                 result > 0 &&
-                (Math.Ceiling(Math.Log10(result)) == 10 && result / 100000000 == 69) ||
+                Math.Ceiling(Math.Log10(result)) == 10 && result / 100000000 == 69 ||
                 (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
         }
 
-        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext)
         {
             string result = promptContext.Recognized.Value;
             return Task.FromResult(
@@ -32,26 +31,27 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 result.All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);
 
-            if (!(promptContext.Options.Validations is IList<string> hiddenChoices))
+            if (promptContext.Options.Validations is not IList<string> hiddenChoices)
                 return Task.FromResult(false);
 
             int i = hiddenChoices.IndexOf(promptContext.Context.Activity.Text);
             if (i >= 0)
                 promptContext.Recognized.Value = new FoundChoice()
                 {
-                    Index = promptContext.Options.Choices.Count() + i,
+                    Index = promptContext.Options.Choices.Count + i,
                     Value = promptContext.Context.Activity.Text
                 };
 
             return Task.FromResult(i >= 0);
         }
 
-        public static Task<bool> CustomDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> CustomDateTimePromptValidator(
+            PromptValidatorContext<IList<DateTimeResolution>> promptContext)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);
@@ -66,9 +66,10 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΜΕΣΩΣ" || text is "ΑΥΡΙΟ");
         }
 
-        public static async Task<bool> FutureDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        public static async Task<bool> FutureDateTimePromptValidator(
+            PromptValidatorContext<IList<DateTimeResolution>> promptContext)
         {
-            bool tore = await CustomDateTimePromptValidator(promptContext, cancellationToken);
+            bool tore = await CustomDateTimePromptValidator(promptContext);
 
             var text = promptContext.Context.Activity.Text.ToUnaccented().ToUpper();
             tore &= text != "ΧΘΕΣ";
@@ -81,6 +82,5 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 
             return tore;
         }
-
     }
 }

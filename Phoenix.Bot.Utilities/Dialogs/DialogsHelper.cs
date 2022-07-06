@@ -19,7 +19,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
                 response = await httpClient.GetAsync(giphyUrl).Result.Content.ReadAsStringAsync();
             }
 
-            return JObject.Parse(response)["data"].First["images"]["downsized"]["url"].ToString();
+            return JObject.Parse(response)["data"]!.First!["images"]!["downsized"]!["url"]!.ToString();
         }
 
         public static int GenerateVerificationPin(uint digitsNum = 4)
@@ -35,7 +35,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
         public static string GenerateVerificationCode(string token, uint digitsNum = 2)
         {
-            return token.Substring(0, 2).ToUnaccented().ToUpper() + GenerateVerificationPin(digitsNum);
+            return token[..2].ToUnaccented().ToUpper() + GenerateVerificationPin(digitsNum);
         }
 
         public static string GeneratePasscode(int size)
@@ -43,7 +43,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
             char[] invalidPasswordChars = { 'l', 'I', 'O', '0', '1' };
 
             string passcode = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-            passcode = new string(passcode.Where(c => !invalidPasswordChars.Contains(c) && char.IsLetterOrDigit(c)).ToArray()).Substring(0, size);
+            passcode = new string(passcode.Where(c => !invalidPasswordChars.Contains(c) && char.IsLetterOrDigit(c)).ToArray())[..size];
 
             return passcode;
         }

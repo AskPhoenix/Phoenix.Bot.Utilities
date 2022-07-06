@@ -9,7 +9,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
     public class PreparationOptions : ActionOptions
     {
-        public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations?.Clone();
+        public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations.Clone();
         [JsonProperty]
         private readonly BotActionPreparation[] preparations;
 
@@ -36,7 +36,10 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             : this(preparations, userOptions.UserId, userOptions.UserRole) { }
 
         public PreparationOptions(int userId, RoleRank userRole)
-            : base(userId, userRole) { }
+            : base(userId, userRole)
+        {
+            preparations = Array.Empty<BotActionPreparation>();
+        }
 
         public BotActionPreparation GetNextPreparation()
         {

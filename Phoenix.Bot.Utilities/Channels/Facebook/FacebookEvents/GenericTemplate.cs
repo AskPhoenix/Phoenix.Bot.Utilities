@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
@@ -33,12 +34,15 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         [MaxLength(10, ErrorMessage = "There must be up to 10 elements in a Generic Template Caraousel.")]
         public GenericElement[] Elements { get; set; }
 
-        public GenericTemplate() { }
-
         public GenericTemplate(GenericElement[] elements, string imageAspectRatio = "horizontal")
         {
             this.ImageAspectRatio = imageAspectRatio;
             this.Elements = elements;
+        }
+
+        public GenericTemplate()
+            : this(Array.Empty<GenericElement>())
+        {
         }
     }
 }

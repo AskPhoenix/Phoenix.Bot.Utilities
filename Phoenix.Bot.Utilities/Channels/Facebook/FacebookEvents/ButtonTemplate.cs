@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
@@ -24,12 +25,15 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         [MaxLength(3, ErrorMessage = "ButtonTemplate must contain up to 3 buttons.")]
         public Button[] Buttons { get; set; }
 
-        public ButtonTemplate() { }
-
         public ButtonTemplate(string text, Button[] buttons)
         {
             this.Text = text;
             this.Buttons = buttons;
+        }
+
+        public ButtonTemplate(string text)
+            : this(text, Array.Empty<Button>())
+        {
         }
     }
 }

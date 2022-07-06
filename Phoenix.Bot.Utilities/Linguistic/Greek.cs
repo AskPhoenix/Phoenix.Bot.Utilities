@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Phoenix.Bot.Utilities.Linguistic
 {
@@ -18,7 +16,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
             else if (letter == 'ό')
                 letter = 'έ';
 
-            return name.Substring(0, name.Length - 2) + letter;
+            return name[..^2] + letter;
         }
 
         public static string DayArticle(DayOfWeek day, bool accusative = true)
