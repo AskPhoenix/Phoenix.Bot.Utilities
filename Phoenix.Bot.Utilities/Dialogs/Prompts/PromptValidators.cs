@@ -5,13 +5,15 @@ using Phoenix.Bot.Utilities.Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
-        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext)
+        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext,
+            CancellationToken cancellationToken = default)
         {
             long result = promptContext.Recognized.Value;
 
@@ -22,7 +24,8 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
         }
 
-        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext)
+        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext,
+            CancellationToken cancellationToken = default)
         {
             string result = promptContext.Recognized.Value;
             return Task.FromResult(
@@ -31,7 +34,8 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 result.All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext)
+        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext,
+            CancellationToken cancellationToken = default)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);
@@ -51,7 +55,8 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         }
 
         public static Task<bool> CustomDateTimePromptValidator(
-            PromptValidatorContext<IList<DateTimeResolution>> promptContext)
+            PromptValidatorContext<IList<DateTimeResolution>> promptContext,
+            CancellationToken cancellationToken = default)
         {
             if (promptContext.Recognized.Succeeded)
                 return Task.FromResult(true);
@@ -67,7 +72,8 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         }
 
         public static async Task<bool> FutureDateTimePromptValidator(
-            PromptValidatorContext<IList<DateTimeResolution>> promptContext)
+            PromptValidatorContext<IList<DateTimeResolution>> promptContext,
+            CancellationToken cancellationToken = default)
         {
             bool tore = await CustomDateTimePromptValidator(promptContext);
 
