@@ -8,20 +8,16 @@
     <Copyright>AskPhoenix 2021</Copyright>
     <PackageProjectUrl>https://www.askphoenix.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AskPhoenix/Phoenix.Bot.Utilities</RepositoryUrl>
-    <Version>3.0.0-beta.4</Version>
+    <Version>3.0.0-beta.5</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="nuget.exe" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AdaptiveCards" Version="2.7.3" />
-    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.16.1" />
-    <PackageReference Include="Phoenix.DataHandle" Version="3.0.0-beta1.41" />
-    <PackageReference Include="Phoenix.Language" Version="3.0.0-alpha.3" />
+    <PackageReference Include="AdaptiveCards" Version="2.7.*" />
+    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.16.*" />
+    <PackageReference Include="Phoenix.DataHandle" Version="3.0.0-beta1.*" />
+    <PackageReference Include="Phoenix.Language" Version="3.0.0-alpha.*" />
   </ItemGroup>
 
 </Project>
