@@ -1,5 +1,4 @@
 ﻿using Phoenix.DataHandle.Main.Types;
-using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.Actions
 {

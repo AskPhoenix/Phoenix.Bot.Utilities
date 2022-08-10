@@ -1,4 +1,5 @@
-﻿using Phoenix.Language.Types;
+﻿using Phoenix.Bot.Utilities.Linguistic;
+using Phoenix.Language.Types;
 
 namespace Phoenix.Bot.Utilities.Actions
 {
@@ -59,6 +60,14 @@ namespace Phoenix.Bot.Utilities.Actions
         public static bool IsNonMenuAction(this BotAction botAction)
         {
             return BotActionHelper.GetNonMenuActions().Contains(botAction);
+        }
+
+        public static BotAction FindFromCommand(Command cmd)
+        {
+            if (!cmd.IsActionCommand())
+                return BotAction.NoAction;
+
+            return (BotAction)(cmd - CommandTopics.ActionCommandsBase + 1);
         }
     }
 }

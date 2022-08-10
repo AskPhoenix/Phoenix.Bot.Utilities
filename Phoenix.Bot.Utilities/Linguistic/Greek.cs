@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Phoenix.Bot.Utilities.Linguistic
+﻿namespace Phoenix.Bot.Utilities.Linguistic
 {
     public static class Greek
     {

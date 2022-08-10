@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
 using System.Text;
 
 namespace Phoenix.Bot.Utilities.Linguistic
