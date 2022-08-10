@@ -4,16 +4,20 @@ using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.State
 {
-    public struct UserData
+    public class UserData
     {
-        public ApplicationUser AppUser { get; set; }
-        public RoleRank SelectedRole { get; set; }
-        public School School { get; set; }
+        public bool IsConnected { get; set; }
 
+        public ApplicationUser? AppUser { get; set; }
+        public User? PhoenixUser { get; set; }
+        public RoleRank? SelectedRole { get; set; }
+        public bool IsBackend { get; set; }
+        public School? School { get; set; }
+        
         public int SmsCount { get; set; }
         public int LoginAttempts { get; set; }
         public bool RevealExtensionPassword { get; set; }
-        public string TempExtensionPassword { get; set; }
+        public string? TempExtensionPassword { get; set; }
     }
 
     public static class UserDataDefaults

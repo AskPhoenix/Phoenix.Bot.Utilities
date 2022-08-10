@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
+using Phoenix.DataHandle.Main.Models;
 using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.State.Options.Authentification
@@ -9,14 +9,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Authentification
         public string Pin { get; set; } = null!;
 
         public VerificationOptions(CredentialsOptions credentialsOptions)
-            : this(credentialsOptions.Codes, credentialsOptions.CodesCreatedAt)
+            : this(credentialsOptions.Codes)
         {
             this.Phone = credentialsOptions.Phone;
             this.IsOwnerAuthentication = credentialsOptions.IsOwnerAuthentication;
         }
 
         [JsonConstructor]
-        private VerificationOptions(Dictionary<string, int> codes, Dictionary<string, DateTimeOffset> codesCreatedAt)
-            : base(codes, codesCreatedAt) { }
+        private VerificationOptions(Dictionary<OneTimeCode, int> codes)
+            : base(codes) { }
     }
 }
