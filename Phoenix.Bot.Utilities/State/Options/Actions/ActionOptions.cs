@@ -1,32 +1,22 @@
-﻿using Newtonsoft.Json;
-using Phoenix.DataHandle.Main.Types;
-using System;
-
-namespace Phoenix.Bot.Utilities.State.Options.Actions
+﻿namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
-    public class ActionOptions : UserOptions
+    public class ActionOptions
     {
         public int? AffiliatedUserId { get; set; }
         public int? CourseId { get; set; }
         public DateTimeOffset? DateToPrepareFor { get; set; }
         public int? LectureId { get; set; }
 
-        public int ActiveUserId { get => this.AffiliatedUserId ?? this.UserId; }
+        public ActionOptions()
+        {
+        }
 
-        protected ActionOptions(ActionOptions other)
-            : base(other)
+        internal ActionOptions(ActionOptions other)
         {
             this.AffiliatedUserId = other.AffiliatedUserId;
             this.CourseId = other.CourseId;
             this.DateToPrepareFor = other.DateToPrepareFor;
             this.LectureId = other.LectureId;
         }
-
-        [JsonConstructor]
-        public ActionOptions(int userId, RoleRank userRole)
-            : base(userId, userRole) { }
-
-        public ActionOptions(UserOptions userOptions)
-            : base(userOptions) { }
     }
 }

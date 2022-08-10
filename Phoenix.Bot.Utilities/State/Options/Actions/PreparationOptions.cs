@@ -1,44 +1,34 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
     public class PreparationOptions : ActionOptions
     {
         public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations.Clone();
+        
         [JsonProperty]
         private readonly BotActionPreparation[] preparations;
 
         public int PreparationsIndex { get; private set; }
-
         public bool SelectTheClosestFutureDate { get; set; } = false;
 
+        public PreparationOptions()
+            : this(Array.Empty<BotActionPreparation>())
+        {
+        }
+
         [JsonConstructor]
-        private PreparationOptions(int userId, RoleRank userRole, int preparationsIndex, BotActionPreparation[] preparations)
-            : this(userId, userRole)
+        private PreparationOptions(int preparationsIndex, BotActionPreparation[] preparations)
         {
             this.PreparationsIndex = preparationsIndex;
             this.preparations = preparations;
         }
 
-        public PreparationOptions(IList<BotActionPreparation> preparations, int userId, RoleRank userRole)
-            : base(userId, userRole)
+        public PreparationOptions(IList<BotActionPreparation> preparations)
         {
             this.preparations = preparations?.ToArray() ?? new BotActionPreparation[1] { BotActionPreparation.NoPreparation };
             this.ResetPreparationsIndex();
-        }
-
-        public PreparationOptions(IList<BotActionPreparation> preparations, UserOptions userOptions)
-            : this(preparations, userOptions.UserId, userOptions.UserRole) { }
-
-        public PreparationOptions(int userId, RoleRank userRole)
-            : base(userId, userRole)
-        {
-            preparations = Array.Empty<BotActionPreparation>();
         }
 
         public BotActionPreparation GetNextPreparation()
@@ -60,7 +50,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             PreparationsIndex = -1;
         }
 
-        public ActionOptions GetActionOptions()
+        public ActionOptions ToActionOptions()
         {
             return new ActionOptions(this)
             {

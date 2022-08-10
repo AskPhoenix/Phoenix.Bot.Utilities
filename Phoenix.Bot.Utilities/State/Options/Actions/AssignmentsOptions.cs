@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main.Types;
+﻿using Phoenix.Bot.Utilities.Actions;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -16,12 +14,5 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public AssignmentsOptions(ActionOptions actionOptions, BotAction botAction)
             : this(actionOptions, botAction == BotAction.SearchExercises) { }
-
-        [JsonConstructor]
-        public AssignmentsOptions(int userId, RoleRank userRole)
-            : base(userId, userRole) { }
-
-        public AssignmentsOptions(UserOptions userOptions)
-            : base(userOptions) { }
     }
 }

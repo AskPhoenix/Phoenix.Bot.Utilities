@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.DataHandle.Main.Models;
-using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.State.Options.Authentification
 {

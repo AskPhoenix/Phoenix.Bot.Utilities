@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main.Types;
+﻿using Phoenix.Bot.Utilities.Actions;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
@@ -16,12 +14,5 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
 
         public ScheduleOptions(ActionOptions actionOptions, BotAction botAction)
             : this(actionOptions, botAction == BotAction.ScheduleDay) { }
-
-        [JsonConstructor]
-        public ScheduleOptions(int userId, RoleRank userRole)
-            : base(userId, userRole) { }
-
-        public ScheduleOptions(UserOptions userOptions)
-            : base(userOptions) { }
     }
 }
