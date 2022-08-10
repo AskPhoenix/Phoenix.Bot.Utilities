@@ -12,7 +12,7 @@ namespace Phoenix.Bot.Utilities.State
         public User? PhoenixUser { get; set; }
         public RoleRank? SelectedRole { get; set; }
         public bool IsBackend { get; set; }
-        public School? School { get; set; }
+        public School School { get; set; } = null!;
         
         public int SmsCount { get; set; }
         public int LoginAttempts { get; set; }
