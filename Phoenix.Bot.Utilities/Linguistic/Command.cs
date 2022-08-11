@@ -1,4 +1,6 @@
-﻿namespace Phoenix.Bot.Utilities.Linguistic
+﻿using Phoenix.Bot.Utilities.Actions;
+
+namespace Phoenix.Bot.Utilities.Linguistic
 {
     public enum Command
     {
@@ -35,8 +37,15 @@
             (int)me >= CommandTopics.ChannelCommandsBase && (int)me < CommandTopics.GeneralCommandsBase;
         public static bool IsGeneralCommand(this Command me) =>
             (int)me >= CommandTopics.GeneralCommandsBase && (int)me < CommandTopics.ActionCommandsBase;
-
         public static bool IsActionCommand(this Command me) =>
             (int)me >= CommandTopics.ActionCommandsBase;
+
+        public static BotAction ToBotAction(this Command me)
+        {
+            if (!me.IsActionCommand())
+                return BotAction.NoAction;
+
+            return (BotAction)(me - CommandTopics.ActionCommandsBase + 1);
+        }
     }
 }

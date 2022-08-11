@@ -16,7 +16,7 @@ namespace Phoenix.Bot.Utilities.State
     public static class UserDataExtensions
     {
         public static async Task RefreshAsync(this UserData me,
-            UserConnection userConnection, ApplicationUserManager userManager)
+            UserConnection? userConnection, ApplicationUserManager userManager)
         {
             bool wasConnected = me.IsConnected;
             me.IsConnected = userConnection is not null && userConnection.ActivatedAt.HasValue;
