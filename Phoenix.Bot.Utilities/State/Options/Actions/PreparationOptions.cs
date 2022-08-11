@@ -11,24 +11,26 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         private readonly BotActionPreparation[] preparations;
 
         public int PreparationsIndex { get; private set; }
-        public bool SelectTheClosestFutureDate { get; set; } = false;
+        public bool SelectTheClosestFutureDate { get; set; }
 
-        public PreparationOptions()
-            : this(Array.Empty<BotActionPreparation>())
+        public PreparationOptions(ActionOptions actionOptions)
+            : this(actionOptions, new[] { BotActionPreparation.NoPreparation })
         {
         }
 
-        [JsonConstructor]
-        private PreparationOptions(int preparationsIndex, BotActionPreparation[] preparations)
+        public PreparationOptions(ActionOptions actionOptions, BotActionPreparation[] preparations)
+            : base(actionOptions)
         {
-            this.PreparationsIndex = preparationsIndex;
             this.preparations = preparations;
+            this.ResetPreparationsIndex();
         }
 
-        public PreparationOptions(IList<BotActionPreparation> preparations)
+        // TODO: Check if the rest of the properties is loaded correctly
+        [JsonConstructor]
+        public PreparationOptions(BotActionPreparation[] preparations, int preparationsIndex)
         {
-            this.preparations = preparations?.ToArray() ?? new BotActionPreparation[1] { BotActionPreparation.NoPreparation };
-            this.ResetPreparationsIndex();
+            this.preparations = preparations;
+            this.PreparationsIndex = preparationsIndex;
         }
 
         public BotActionPreparation GetNextPreparation()
@@ -50,7 +52,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             PreparationsIndex = -1;
         }
 
-        public ActionOptions ToActionOptions()
+        public ActionOptions GetActionOptions()
         {
             return new ActionOptions(this)
             {

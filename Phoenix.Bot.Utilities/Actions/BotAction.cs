@@ -102,8 +102,7 @@ namespace Phoenix.Bot.Utilities.Actions
             return NonMenuActions().Contains(me);
         }
 
-        public static BotAction[] FindMenuActions(RoleRank roleRank,
-            bool includePending = false, bool includeAccess = false)
+        public static BotAction[] FindMenuActions(RoleRank roleRank, bool includePending = false)
         {
             var actions = new List<BotAction>();
 
@@ -149,8 +148,6 @@ namespace Phoenix.Bot.Utilities.Actions
             if (!includePending)
                 foreach (var action in PendingActions())
                     actions.Remove(action);
-            if (!includeAccess)
-                actions.Remove(BotAction.Access);
 
             return actions.ToArray();
         }
