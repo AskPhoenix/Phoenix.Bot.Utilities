@@ -10,19 +10,8 @@ namespace Phoenix.Bot.Utilities.State
 
         public ApplicationUser? AppUser { get; set; }
         public User? PhoenixUser { get; set; }
-        public RoleRank? SelectedRole { get; set; }
         public bool IsBackend { get; set; }
+        public RoleRank? SelectedRole { get; set; }
         public School School { get; set; } = null!;
-        
-        public int SmsCount { get; set; }
-        public int LoginAttempts { get; set; }
-        public bool RevealExtensionPassword { get; set; }
-        public string? TempExtensionPassword { get; set; }
-    }
-
-    public static class UserDataDefaults
-    {
-        public const uint MaxSmsNumber = 5;
-        public const uint MaxLoginAttempts = 5;
     }
 }

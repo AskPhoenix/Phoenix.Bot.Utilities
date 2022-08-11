@@ -22,7 +22,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
             return JObject.Parse(response)["data"]!.First!["images"]!["downsized"]!["url"]!.ToString();
         }
 
-        public static int GenerateVerificationPin(uint digitsNum = 4)
+        public static int GenerateVerificationCode(uint digitsNum = 4)
         {
             if (digitsNum > 9)
                 throw new Exception("The number of digits must be less than or equal to 9.");
@@ -33,9 +33,9 @@ namespace Phoenix.Bot.Utilities.Dialogs
             return new Random().Next(min, max);
         }
 
-        public static string GenerateVerificationCode(string token, uint digitsNum = 2)
+        public static string GenerateIdentificationCode(string token, uint digitsNum = 2)
         {
-            return token[..2].ToUnaccented().ToUpper() + GenerateVerificationPin(digitsNum);
+            return token[..2].ToUnaccented().ToUpper() + GenerateVerificationCode(digitsNum);
         }
 
         public static string GeneratePasscode(int size)

@@ -27,16 +27,12 @@ namespace Phoenix.Bot.Utilities.Dialogs
         public static class Auth
         {
             public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
-
-            public static class Credentials
-            {
-                public static string Phone => BuildWaterfallName(nameof(Phone), nameof(Auth));
-            }
+            public static string Credentials => BuildWaterfallName(nameof(Credentials), nameof(Auth));
+            public static string GenerateCode => BuildWaterfallName(nameof(GenerateCode), nameof(Auth));
 
             public static class Verification
             {
-                public static string SendCode => BuildWaterfallName(nameof(SendCode), nameof(Auth));
-                public static string CheckCode => BuildWaterfallName(nameof(CheckCode), nameof(Auth));
+                public static string Top => BuildWaterfallName(nameof(Top), nameof(Verification));
             }
         }
 

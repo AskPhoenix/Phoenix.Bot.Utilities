@@ -1,22 +1,21 @@
-﻿using Newtonsoft.Json;
-using Phoenix.DataHandle.Main.Models;
-using System.Collections.Generic;
+﻿using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.State.Options.Authentification
 {
-    public class VerificationOptions : CredentialsOptions
+    public class VerificationOptions : AuthenticationOptions
     {
-        public string Pin { get; set; } = null!;
+        public OneTimeCodePurpose OTCPurpose { get; set; }
 
-        public VerificationOptions(CredentialsOptions credentialsOptions)
-            : this(credentialsOptions.Codes)
+        public VerificationOptions()
+            : base()
         {
-            this.Phone = credentialsOptions.Phone;
-            this.IsOwnerAuthentication = credentialsOptions.IsOwnerAuthentication;
         }
 
-        [JsonConstructor]
-        private VerificationOptions(Dictionary<OneTimeCode, int> codes)
-            : base(codes) { }
+        public VerificationOptions(AuthenticationOptions authOptions)
+        {
+            this.Phone = authOptions.Phone;
+            this.PhoneOwnerId = authOptions.PhoneOwnerId;
+            this.IsOwnerAuthentication = authOptions.IsOwnerAuthentication;
+        }
     }
 }
