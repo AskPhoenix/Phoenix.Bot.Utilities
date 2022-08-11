@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Bot.Utilities.State.Options.Authentification
+﻿namespace Phoenix.Bot.Utilities.State.Options
 {
     public class AuthenticationOptions
     {
