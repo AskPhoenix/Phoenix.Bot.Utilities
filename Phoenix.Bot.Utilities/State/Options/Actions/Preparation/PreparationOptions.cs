@@ -1,76 +1,36 @@
-﻿using Newtonsoft.Json;
-using Phoenix.Bot.Utilities.Actions;
+﻿using Phoenix.Bot.Utilities.Actions;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions.Preparation
 {
     public class PreparationOptions : ActionOptions
     {
-        public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations.Clone();
-
-        [JsonProperty]
-        private readonly BotActionPreparation[] preparations;
-
-        public int PreparationsIndex { get; private set; }
-        public bool SelectTheClosestFutureDate { get; set; }
+        public Stack<BotActionPreparation> Preparations { get; } = new();
 
         public PreparationOptions()
-            : this(new ActionOptions())
+            : base()
         {
         }
 
-        public PreparationOptions(BotActionPreparation[] preparations)
+        public PreparationOptions(IEnumerable<BotActionPreparation> preparations)
             : this(new(), preparations)
         {
         }
 
         public PreparationOptions(ActionOptions actionOptions)
-            : this(actionOptions, new[] { BotActionPreparation.NoPreparation })
-        {
-        }
-
-        public PreparationOptions(ActionOptions actionOptions, BotActionPreparation[] preparations)
             : base(actionOptions)
         {
-            this.preparations = preparations.Distinct().ToArray();
-            ResetPreparationsIndex();
         }
 
-        // TODO: Check if the rest of the properties is loaded correctly
-        [JsonConstructor]
-        private PreparationOptions(BotActionPreparation[] preparations, int preparationsIndex)
+        public PreparationOptions(ActionOptions actionOptions, IEnumerable<BotActionPreparation> preparations)
+            : base(actionOptions)
         {
-            this.preparations = preparations;
-            PreparationsIndex = preparationsIndex;
-        }
-
-        public BotActionPreparation GetNextPreparation()
-        {
-            PreparationsIndex++;
-            return GetCurrentPreparation();
-        }
-
-        public BotActionPreparation GetCurrentPreparation()
-        {
-            if (PreparationsIndex < preparations.Length)
-                return preparations[Math.Max(0, PreparationsIndex)];
-
-            return BotActionPreparation.NoPreparation;
-        }
-
-        public void ResetPreparationsIndex()
-        {
-            PreparationsIndex = -1;
+            foreach (var prep in preparations.Reverse())
+                this.Preparations.Push(prep);
         }
 
         public ActionOptions GetActionOptions()
         {
-            return new ActionOptions(this)
-            {
-                AffiliatedUserId = AffiliatedUserId,
-                CourseId = CourseId,
-                DateToPrepareFor = DateToPrepareFor,
-                LectureId = LectureId
-            };
+            return new(this);
         }
     }
 }

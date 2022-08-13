@@ -4,7 +4,6 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions.Preparation
 {
     public class PreparationComponentOptions
     {
-        public bool IsSelfPrepare { get; set; }
         public int? UserIdToPrepareFor { get; }
         public int? CourseIdToPrepareFor { get; }
         public DateTimeOffset? DateToPrepareFor { get; }
