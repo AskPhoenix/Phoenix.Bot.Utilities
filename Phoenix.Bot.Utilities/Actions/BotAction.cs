@@ -82,25 +82,11 @@ namespace Phoenix.Bot.Utilities.Actions
             return actionString;
         }
 
-        public static BotAction[] PendingActions()
-        {
-            return new[] { BotAction.Supplementary, BotAction.Grades };
-        }
+        public static BotAction[] PendingActions => new[] { BotAction.Supplementary, BotAction.Grades };
+        public static BotAction[] NonMenuActions => new[] { BotAction.SearchExams, BotAction.ScheduleDay };
 
-        public static BotAction[] NonMenuActions()
-        {
-            return new[] { BotAction.SearchExams, BotAction.ScheduleDay };
-        }
-
-        public static bool IsPendingAction(this BotAction me)
-        {
-            return PendingActions().Contains(me);
-        }
-
-        public static bool IsNonMenuAction(this BotAction me)
-        {
-            return NonMenuActions().Contains(me);
-        }
+        public static bool IsPendingAction(this BotAction me) => PendingActions.Contains(me);
+        public static bool IsNonMenuAction(this BotAction me) => NonMenuActions.Contains(me);
 
         public static BotAction[] FindMenuActions(RoleRank roleRank, bool includePending = false)
         {
@@ -146,7 +132,7 @@ namespace Phoenix.Bot.Utilities.Actions
             actions.Add(BotAction.Feedback);
 
             if (!includePending)
-                foreach (var action in PendingActions())
+                foreach (var action in PendingActions)
                     actions.Remove(action);
 
             return actions.ToArray();
