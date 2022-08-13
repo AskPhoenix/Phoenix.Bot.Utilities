@@ -2,11 +2,6 @@
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Linguistic;
 using Phoenix.Bot.Utilities.Miscellaneous;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
@@ -94,7 +89,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 
             if (promptCtx.Recognized.Succeeded)
             {
-                var res = CalendarExtensions.ResolveDateTime(promptCtx.Recognized.Value);
+                var res = ResolveHelper.ResolveDateTime(promptCtx.Recognized.Value);
                 tore &= res.Date >= DateTimeOffset.UtcNow.Date;
             }
 

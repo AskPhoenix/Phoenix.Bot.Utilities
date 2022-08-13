@@ -1,13 +1,9 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Phoenix.Bot.Utilities.Linguistic;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 
 namespace Phoenix.Bot.Utilities.Miscellaneous
 {
-    public static class CalendarExtensions
+    public static class ResolveHelper
     {
         public static DateTimeOffset ResolveDateTime(IList<DateTimeResolution> dateTimeResolution)
         {
@@ -49,19 +45,13 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
 
         public static DateTimeOffset ResolveDateTimePromptResult(IList<DateTimeResolution> result, string msg)
         {
+            if (result is null && string.IsNullOrEmpty(msg))
+                throw new InvalidOperationException();
+
             if (result is null || !result.Any())
                 return ResolveDateTime(msg);
-            else
-                return ResolveDateTime(result);
+            
+            return ResolveDateTime(result);
         }
-
-        public static DateTimeOffset ParseDate(string date, string dateFormat = "d/M")
-        {
-            return DateTimeOffset.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
-        }
-
-        //TODO: Remove
-        public static DateTime GreeceLocalTime()
-               => TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("E. Europe Standard Time"));
     }
 }
