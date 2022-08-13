@@ -52,32 +52,6 @@ namespace Phoenix.Bot.Utilities.Dialogs
             return await base.OnContinueDialogAsync(innerDc, cancellationToken);
         }
 
-        // TODO: Use Enum for errors
-        // TODO: Replace with Exception that contains the error enum value and is caught at the Adapter
-        protected async Task<DialogTurnResult> ExitAsync(string message, string solution, int error,
-            WaterfallStepContext stepCtx, CancellationToken canTkn)
-        {
-            await stepCtx.Context.SendActivityAsync(
-                $"{message} (Κωδ. σφάλματος: {error.ToString("D4"):0})", cancellationToken: canTkn);
-
-            if (!string.IsNullOrEmpty(solution))
-                await stepCtx.Context.SendActivityAsync(solution, cancellationToken: canTkn);
-            else
-                await stepCtx.Context.SendActivityAsync(
-                    "Παρακαλώ επικοινώνησε με το φροντιστήριο για την επίλυση του προβλήματος.", cancellationToken: canTkn);
-
-            return await stepCtx.CancelAllDialogsAsync(canTkn);
-        }
-
-        protected Task<DialogTurnResult> ExitAsync(WaterfallStepContext stepCtx, CancellationToken canTkn)
-        {
-            return ExitAsync(
-                message: "Υπήρξε κάποιο πρόβλημα.",
-                solution: "Παρακαλώ επικοινωνήστε με το κέντρο σας για την επίλυσή του.",
-                error: 0,
-                stepCtx, canTkn);
-        }
-
         private async Task GetStateAsync(ITurnContext turnContext,
             CancellationToken cancellationToken = default)
         {
