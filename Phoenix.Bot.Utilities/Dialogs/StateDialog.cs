@@ -33,8 +33,8 @@ namespace Phoenix.Bot.Utilities.Dialogs
 
             _userManager = userManager;
 
-            _userRepository = new(phoenixContext);
-            _schoolRepository = new(phoenixContext);
+            _userRepository = new(phoenixContext, nonObviatedOnly: true);
+            _schoolRepository = new(phoenixContext, nonObviatedOnly: true);
         }
 
         protected override async Task<DialogTurnResult> OnBeginDialogAsync(DialogContext innerDc, object options, CancellationToken cancellationToken = default)
@@ -53,6 +53,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
         }
 
         // TODO: Use Enum for errors
+        // TODO: Replace with Exception that contains the error enum value and is caught at the Adapter
         protected async Task<DialogTurnResult> ExitAsync(string message, string solution, int error,
             WaterfallStepContext stepCtx, CancellationToken canTkn)
         {

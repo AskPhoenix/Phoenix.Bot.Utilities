@@ -4,7 +4,7 @@ namespace Phoenix.Bot.Utilities.Linguistic
 {
     public static class CommandHandle
     {
-        //TODO: Deprecated
+        //TODO: Check and bring back
         public static bool TryGetCommand(string text, out Command cmd)
         {
             cmd = text switch
@@ -51,7 +51,6 @@ namespace Phoenix.Bot.Utilities.Linguistic
             return cmd > 0;
         }
 
-        //TODO: Deprecated
         public static bool IsCommand(string text) => text.StartsWith("--") && text.EndsWith("--");
     }
 }
