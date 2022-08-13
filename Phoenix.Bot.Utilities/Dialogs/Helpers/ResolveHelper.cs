@@ -1,5 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
-using Phoenix.DataHandle.Utilities;
+using Phoenix.Bot.Utilities.Linguistic;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Helpers
 {
@@ -30,16 +30,13 @@ namespace Phoenix.Bot.Utilities.Dialogs.Helpers
             if (string.IsNullOrEmpty(relativeDateText))
                 throw new ArgumentNullException("Relative Date Text cannot be null or empty.");
 
-            string text = relativeDateText.ToUnaccented().ToUpper();
-
-            //TODO: Έλεγχος offset από το σήμερα αντί για κείμενο
-            return text switch
+            return relativeDateText.ToDateLiteral() switch
             {
-                "ΧΘΕΣ" => DateTimeOffset.UtcNow.AddDays(-1),
-                "ΣΗΜΕΡΑ" => DateTimeOffset.UtcNow,
-                "ΑΜΕΣΩΣ" => DateTimeOffset.UtcNow,
-                "ΑΥΡΙΟ" => DateTimeOffset.UtcNow.AddDays(1),
-                _ => throw new ArgumentException("Relative Date Text has invalid value. The valid values are: 'yesterday', 'today', 'immediately', and 'tomorrow'."),
+                DateLiteral.Yesterday   => DateTimeOffset.UtcNow.AddDays(-1.0),
+                DateLiteral.Today       => DateTimeOffset.UtcNow,
+                DateLiteral.Tomorrow    => DateTimeOffset.UtcNow.AddDays(1.0),
+                _                       => throw new ArgumentException(
+                    $"Date literal is not valid. The valid values are: {Enum.GetNames<DateLiteral>()}."),
             };
         }
 

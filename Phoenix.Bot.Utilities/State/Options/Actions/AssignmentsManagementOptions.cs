@@ -6,7 +6,6 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
     {
         public BotAction ExtensionAction { get; set; } = BotAction.Exercises;
 
-        // TODO: Change image URLs (upload files somewhere like on a drive)
         private const string ExtensionImageBaseUrl = "https://bot.askphoenix.gr/assets/";
         private const string ExtensionButtonBaseUrl = "https://teacher.askphoenix.gr/teacher/";
 

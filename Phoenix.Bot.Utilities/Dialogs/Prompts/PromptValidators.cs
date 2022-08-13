@@ -1,7 +1,7 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Dialogs.Helpers;
-using Phoenix.DataHandle.Utilities;
+using Phoenix.Bot.Utilities.Linguistic;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
@@ -72,22 +72,23 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
             if (string.IsNullOrEmpty(text))
                 return Task.FromResult(false);
 
-            //TODO: Use locale
-            //TODO: Προσοχή με το ToUpperInvariant()
-            text = text.ToUnaccented().ToUpper();
-            return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΜΕΣΩΣ" || text is "ΑΥΡΙΟ");
+            bool isDateLiteral = text.TryToDateLiteral(out DateLiteral dateLiteral);
+
+            return Task.FromResult(isDateLiteral && dateLiteral != DateLiteral.Never);
         }
 
         public static async Task<bool> FutureDateTimePromptValidator(
             PromptValidatorContext<IList<DateTimeResolution>> promptCtx,
             CancellationToken canTkn = default)
         {
+            string text = promptCtx.Context.Activity.Text;
+
             bool tore = await CustomDateTimePromptValidator(promptCtx);
 
-            var text = promptCtx.Context.Activity.Text.ToUnaccented().ToUpper();
-            tore &= text != "ΧΘΕΣ";
-
-            if (promptCtx.Recognized.Succeeded)
+            bool isDateLiteral = text.TryToDateLiteral(out DateLiteral dateLiteral);
+            if (isDateLiteral)
+                tore &= dateLiteral > 0;
+            else
             {
                 var res = ResolveHelper.ResolveDateTime(promptCtx.Recognized.Value);
                 tore &= res.Date >= DateTimeOffset.UtcNow.Date;
