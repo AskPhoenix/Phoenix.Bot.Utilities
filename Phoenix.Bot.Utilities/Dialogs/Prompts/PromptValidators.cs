@@ -3,6 +3,8 @@ using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Dialogs.Helpers;
 using Phoenix.Bot.Utilities.Linguistic;
 
+#pragma warning disable IDE0060
+
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
@@ -83,7 +85,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         {
             string text = promptCtx.Context.Activity.Text;
 
-            bool tore = await CustomDateTimePromptValidator(promptCtx);
+            bool tore = await CustomDateTimePromptValidator(promptCtx, canTkn);
 
             bool isDateLiteral = text.TryToDateLiteral(out DateLiteral dateLiteral);
             if (isDateLiteral)

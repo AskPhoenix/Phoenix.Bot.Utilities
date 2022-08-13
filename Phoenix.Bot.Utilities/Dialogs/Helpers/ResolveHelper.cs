@@ -8,7 +8,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Helpers
         public static DateTimeOffset ResolveDateTime(IList<DateTimeResolution> dateTimeResolution)
         {
             if (dateTimeResolution == null || dateTimeResolution.Count == 0)
-                throw new ArgumentNullException("Date Time Resolution cannot be null or empty.");
+                throw new ArgumentNullException(nameof(dateTimeResolution));
             if (dateTimeResolution.Count == 1)
                 return DateTimeOffset.Parse(dateTimeResolution.Single().Value);
 
@@ -28,7 +28,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Helpers
         public static DateTimeOffset ResolveDateTime(string relativeDateText)
         {
             if (string.IsNullOrEmpty(relativeDateText))
-                throw new ArgumentNullException("Relative Date Text cannot be null or empty.");
+                throw new ArgumentNullException(nameof(relativeDateText));
 
             return relativeDateText.ToDateLiteral() switch
             {
