@@ -23,7 +23,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
             return courses.ToDictionary(c => c.Id, c => c.Name + (c.SubCourse != null ? $" - " + c.SubCourse : ""));
         }
 
-        public static Dictionary<int, string> GetSelectables(IEnumerable<DateTime> dates, string dateFormat = "d/M")
+        public static Dictionary<int, string> GetSelectables(IEnumerable<DateTimeOffset> dates, string dateFormat = "d/M")
         {
             if (dates == null)
                 throw new ArgumentNullException(nameof(dates));

@@ -13,6 +13,16 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public int PreparationsIndex { get; private set; }
         public bool SelectTheClosestFutureDate { get; set; }
 
+        public PreparationOptions()
+            : this(new ActionOptions())
+        {
+        }
+
+        public PreparationOptions(BotActionPreparation[] preparations)
+            : this(new(), preparations)
+        {
+        }
+
         public PreparationOptions(ActionOptions actionOptions)
             : this(actionOptions, new[] { BotActionPreparation.NoPreparation })
         {
@@ -21,13 +31,13 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public PreparationOptions(ActionOptions actionOptions, BotActionPreparation[] preparations)
             : base(actionOptions)
         {
-            this.preparations = preparations;
+            this.preparations = preparations.Distinct().ToArray();
             this.ResetPreparationsIndex();
         }
 
         // TODO: Check if the rest of the properties is loaded correctly
         [JsonConstructor]
-        public PreparationOptions(BotActionPreparation[] preparations, int preparationsIndex)
+        private PreparationOptions(BotActionPreparation[] preparations, int preparationsIndex)
         {
             this.preparations = preparations;
             this.PreparationsIndex = preparationsIndex;

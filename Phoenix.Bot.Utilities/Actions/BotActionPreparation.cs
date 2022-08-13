@@ -12,4 +12,12 @@
         LectureSelection,           // Select among Lectures for a Date                             user/course, date   --> lecture
         LectureExamSelection        // Select among Lectures for a Date with Exam(s)                user/course, date   --> lecture
     }
+
+    public static class BotActionPreparationExtensions
+    {
+        public static string PreparationComponentName(this BotActionPreparation me)
+        {
+            return me.ToString() + "_PreparationComponent";
+        }
+    }
 }
