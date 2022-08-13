@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Phoenix.Bot.Utilities.Channels.Facebook
+﻿namespace Phoenix.Bot.Utilities.Channels.Facebook
 {
     public class FacebookException : Exception
     {

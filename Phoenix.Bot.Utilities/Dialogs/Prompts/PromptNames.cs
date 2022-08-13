@@ -1,7 +1,6 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
-using Phoenix.Bot.Utilities.Dialogs.Prompts;
 
-namespace Phoenix.Bot.Utilities.Dialogs
+namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptNames
     {

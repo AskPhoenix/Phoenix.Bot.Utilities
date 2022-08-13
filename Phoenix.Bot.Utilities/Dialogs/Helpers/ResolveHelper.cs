@@ -1,7 +1,7 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Phoenix.Bot.Utilities.Linguistic;
 
-namespace Phoenix.Bot.Utilities.Miscellaneous
+namespace Phoenix.Bot.Utilities.Dialogs.Helpers
 {
     public static class ResolveHelper
     {
@@ -50,7 +50,7 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
 
             if (result is null || !result.Any())
                 return ResolveDateTime(msg);
-            
+
             return ResolveDateTime(result);
         }
     }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Bot.Schema;
 using Newtonsoft.Json.Linq;
 using Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Phoenix.Bot.Utilities.Channels.Facebook
 {

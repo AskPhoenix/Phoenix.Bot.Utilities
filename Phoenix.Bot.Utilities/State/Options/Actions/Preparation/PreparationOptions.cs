@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Phoenix.Bot.Utilities.Actions;
 
-namespace Phoenix.Bot.Utilities.State.Options.Actions
+namespace Phoenix.Bot.Utilities.State.Options.Actions.Preparation
 {
     public class PreparationOptions : ActionOptions
     {
         public BotActionPreparation[] GetPreparations() => (BotActionPreparation[])preparations.Clone();
-        
+
         [JsonProperty]
         private readonly BotActionPreparation[] preparations;
 
@@ -32,7 +32,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
             : base(actionOptions)
         {
             this.preparations = preparations.Distinct().ToArray();
-            this.ResetPreparationsIndex();
+            ResetPreparationsIndex();
         }
 
         // TODO: Check if the rest of the properties is loaded correctly
@@ -40,7 +40,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         private PreparationOptions(BotActionPreparation[] preparations, int preparationsIndex)
         {
             this.preparations = preparations;
-            this.PreparationsIndex = preparationsIndex;
+            PreparationsIndex = preparationsIndex;
         }
 
         public BotActionPreparation GetNextPreparation()
@@ -66,10 +66,10 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         {
             return new ActionOptions(this)
             {
-                AffiliatedUserId = this.AffiliatedUserId,
-                CourseId = this.CourseId,
-                DateToPrepareFor = this.DateToPrepareFor,
-                LectureId = this.LectureId
+                AffiliatedUserId = AffiliatedUserId,
+                CourseId = CourseId,
+                DateToPrepareFor = DateToPrepareFor,
+                LectureId = LectureId
             };
         }
     }

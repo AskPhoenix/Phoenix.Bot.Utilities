@@ -1,9 +1,8 @@
 ﻿using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using System.Collections.Generic;
 
-namespace Phoenix.Bot.Utilities.Dialogs.Prompts
+namespace Phoenix.Bot.Utilities.Dialogs.Prompts.Options
 {
     public class NavigationPromptOptions : PromptOptions
     {
@@ -11,23 +10,23 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         public const string Next = "⤵️ Επόμενο";
         public const string Completion = "⌛ Ολοκλήρωση";
 
-        public NavigationPromptOptions(string? promptText = null, bool hasPrevious = true, bool hasNext = true) 
+        public NavigationPromptOptions(string? promptText = null, bool hasPrevious = true, bool hasNext = true)
             : base()
         {
             if (string.IsNullOrWhiteSpace(promptText))
                 promptText = "Επίλεξε «Επόμενο» για να συνεχίσουμε:";
 
-            this.Prompt = MessageFactory.Text(promptText);
-            this.RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
-            this.Choices = new List<Choice>(3)
+            Prompt = MessageFactory.Text(promptText);
+            RetryPrompt = MessageFactory.Text("Παρακαλώ επίλεξε πώς επιθυμείς να συνεχίσουμε:");
+            Choices = new List<Choice>(3)
             {
                 new(Completion)
             };
 
             if (hasPrevious)
-                this.Choices.Add(new Choice(Previous));
+                Choices.Add(new(Previous));
             if (hasNext)
-                this.Choices.Add(new Choice(Next));
+                Choices.Add(new(Next));
         }
     }
 }

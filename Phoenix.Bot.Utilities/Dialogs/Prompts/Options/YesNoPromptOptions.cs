@@ -2,9 +2,8 @@
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Linguistic;
-using System.Collections.Generic;
 
-namespace Phoenix.Bot.Utilities.Dialogs.Prompts
+namespace Phoenix.Bot.Utilities.Dialogs.Prompts.Options
 {
     public class YesNoPromptOptions : PromptOptions
     {
@@ -15,21 +14,21 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
         public YesNoPromptOptions()
             : this(false) { }
 
-        public YesNoPromptOptions(bool simpleNo) 
+        public YesNoPromptOptions(bool simpleNo)
             : base()
         {
-            this.RetryPrompt = MessageFactory.Text("Παρακαλώ απάντησε με ένα Ναι ή Όχι:");
-            this.Choices = new Choice[2] 
+            RetryPrompt = MessageFactory.Text("Παρακαλώ απάντησε με ένα Ναι ή Όχι:");
+            Choices = new Choice[2]
             {
-                new Choice(Yes),
-                new Choice(simpleNo ? No : NoThanks) { Synonyms = new List<string>(1) { No.RemoveEmojis() } }
+                new(Yes),
+                new(simpleNo ? No : NoThanks) { Synonyms = new(1) { No.RemoveEmojis(postTrim: true) } }
             };
         }
 
         public YesNoPromptOptions(string promptText, bool simpleNo = false)
             : this(simpleNo)
         {
-            this.Prompt = MessageFactory.Text(promptText);
+            Prompt = MessageFactory.Text(promptText);
         }
     }
 }

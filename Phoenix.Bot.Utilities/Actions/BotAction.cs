@@ -1,5 +1,5 @@
 ﻿using Phoenix.DataHandle.Main.Types;
-using Phoenix.Language.Types;
+using Phoenix.Language.Bot.Types.BotAction;
 
 namespace Phoenix.Bot.Utilities.Actions
 {

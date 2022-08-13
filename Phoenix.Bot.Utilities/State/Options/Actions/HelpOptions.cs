@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Bot.Utilities.State.Options
+﻿namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
     public class HelpOptions
     {

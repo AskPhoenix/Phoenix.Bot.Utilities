@@ -4,7 +4,7 @@ using Phoenix.DataHandle.Main.Types;
 
 namespace Phoenix.Bot.Utilities.Dialogs
 {
-    public static class DialogExtensions
+    public static class ContextExtensions
     {
         public static ChannelProvider GetProvider(this ITurnContext turnContext)
         {

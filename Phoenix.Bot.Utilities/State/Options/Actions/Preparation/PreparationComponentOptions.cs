@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Phoenix.Bot.Utilities.State.Options.Actions
+namespace Phoenix.Bot.Utilities.State.Options.Actions.Preparation
 {
     public class PreparationComponentOptions
     {
@@ -10,14 +10,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public DateTimeOffset? DateToPrepareFor { get; }
         public bool ExamsOnly { get; set; }
         public Dictionary<int, string>? Selectables { get; set; }
-        
+
         [JsonConstructor]
         public PreparationComponentOptions(int? userIdToPrepareFor = null, int? courseIdToPrepareFor = null,
             DateTimeOffset? dateToPrepareFor = null)
         {
-            this.UserIdToPrepareFor = userIdToPrepareFor;
-            this.CourseIdToPrepareFor = courseIdToPrepareFor;
-            this.DateToPrepareFor = dateToPrepareFor;
+            UserIdToPrepareFor = userIdToPrepareFor;
+            CourseIdToPrepareFor = courseIdToPrepareFor;
+            DateToPrepareFor = dateToPrepareFor;
         }
     }
 }
