@@ -1,4 +1,4 @@
-﻿using Phoenix.Bot.Utilities.Linguistic;
+﻿using Phoenix.DataHandle.Utilities;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Helpers
 {

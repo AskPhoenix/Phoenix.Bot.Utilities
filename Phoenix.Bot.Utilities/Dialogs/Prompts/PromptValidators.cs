@@ -1,7 +1,7 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Dialogs.Helpers;
-using Phoenix.Bot.Utilities.Linguistic;
+using Phoenix.DataHandle.Utilities;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
