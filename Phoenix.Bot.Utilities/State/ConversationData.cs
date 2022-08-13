@@ -6,7 +6,6 @@ namespace Phoenix.Bot.Utilities.State
     public class ConversationData
     {
         public School School { get; set; } = null!;
-        public string? Locale { get; set; }
         public Command Command { get; set; }
     }
 }
