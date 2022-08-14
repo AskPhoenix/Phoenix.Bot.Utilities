@@ -21,7 +21,7 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
         }
 
-        public static Task<bool> VerificationCodePromptValidator(PromptValidatorContext<string> promptCtx,
+        public static Task<bool> CodePromptValidator(PromptValidatorContext<string> promptCtx,
             CancellationToken canTkn = default)
         {
             string result = promptCtx.Recognized.Value;
@@ -32,15 +32,19 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
                 result.All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> IdentificationCodePromptValidator(PromptValidatorContext<string> promptCtx,
+        public static Task<bool> AlphaCodePromptValidator(PromptValidatorContext<string> promptCtx,
             CancellationToken canTkn = default)
         {
             string result = promptCtx.Recognized.Value;
+
+            var alphaPart = result.TakeWhile(c => char.IsLetter(c));
+            var numPart = result.SkipWhile(c => char.IsLetter(c));
+
             return Task.FromResult(
                 promptCtx.Recognized.Succeeded &&
-                result.Length <= 9 &&
-                result.TakeWhile(c => char.IsLetter(c)).Count() == 2 &&
-                result.SkipWhile(c => char.IsLetter(c)).All(c => char.IsDigit(c)));
+                alphaPart.Any() &&
+                numPart.All(c => char.IsDigit(c)) &&
+                numPart.Count() <= 9);
         }
 
         public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptCtx,
