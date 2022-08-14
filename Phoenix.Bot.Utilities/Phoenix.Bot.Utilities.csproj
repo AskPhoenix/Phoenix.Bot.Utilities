@@ -8,7 +8,7 @@
     <Copyright>AskPhoenix 2021</Copyright>
     <PackageProjectUrl>https://www.askphoenix.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AskPhoenix/Phoenix.Bot.Utilities</RepositoryUrl>
-    <Version>3.0.0-beta.42</Version>
+    <Version>3.0.0-beta.43</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
 	<ImplicitUsings>enable</ImplicitUsings>
