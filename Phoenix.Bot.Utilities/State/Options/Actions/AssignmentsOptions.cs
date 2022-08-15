@@ -13,6 +13,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         public AssignmentsOptions(ActionOptions actionOptions, BotAction botAction)
-            : this(actionOptions, botAction == BotAction.SearchExercises) { }
+            : this(actionOptions, botAction == BotAction.SearchExercises)
+        {
+        }
     }
 }
