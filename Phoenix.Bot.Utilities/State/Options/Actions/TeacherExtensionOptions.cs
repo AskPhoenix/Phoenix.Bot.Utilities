@@ -2,7 +2,7 @@
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
-    public class AssignmentsManagementOptions : ActionOptions
+    public class TeacherExtensionOptions : ActionOptions
     {
         public BotAction ExtensionAction { get; set; } = BotAction.Exercises;
 
@@ -15,7 +15,7 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public const string ExerciseButtonUrl = ExtensionButtonBaseUrl + "homework";
         public const string ExamButtonUrl = ExtensionButtonBaseUrl + "exams";
 
-        public AssignmentsManagementOptions(ActionOptions actionOptions, BotAction extensionAction)
+        public TeacherExtensionOptions(ActionOptions actionOptions, BotAction extensionAction)
             : base(actionOptions)
         {
             this.ExtensionAction = extensionAction;
