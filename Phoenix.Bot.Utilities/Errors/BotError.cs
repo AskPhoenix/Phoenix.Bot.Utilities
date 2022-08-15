@@ -29,7 +29,8 @@ namespace Phoenix.Bot.Utilities.Errors
         AuthMaxFails,
 
         CourseHasNoExams = BotErrorCodeBases.CourseErrorCodesBase,
-        CourseHasNoLectures
+        CourseHasNoLectures,
+        CourseNotValid
     }
 
     public static class BotErrorCodeBases
@@ -98,6 +99,7 @@ namespace Phoenix.Bot.Utilities.Errors
 
                 BotError.CourseHasNoExams => ErrorMessageResources.CourseHasNoExams,
                 BotError.CourseHasNoLectures => ErrorMessageResources.CourseHasNoLectures,
+                BotError.CourseNotValid => ErrorMessageResources.CourseNotValid,
                 _ => ErrorMessageResources.Unknown
             };
         }
@@ -119,6 +121,8 @@ namespace Phoenix.Bot.Utilities.Errors
 
                 BotError.AuthFailed => ErrorSolutionResources.AuthFailed,
                 BotError.AuthMaxFails => ErrorSolutionResources.AuthMaxFails,
+
+                BotError.CourseNotValid => ErrorSolutionResources.CourseNotValid,
 
                 _ => ErrorSolutionResources.Default
             };
