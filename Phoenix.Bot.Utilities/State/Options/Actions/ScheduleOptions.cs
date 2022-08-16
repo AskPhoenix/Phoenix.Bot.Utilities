@@ -13,6 +13,8 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         }
 
         public ScheduleOptions(ActionOptions actionOptions, BotAction botAction)
-            : this(actionOptions, botAction == BotAction.ScheduleDay) { }
+            : this(actionOptions, botAction == BotAction.ScheduleDay)
+        {
+        }
     }
 }

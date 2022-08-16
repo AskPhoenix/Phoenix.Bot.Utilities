@@ -55,10 +55,11 @@ namespace Phoenix.Bot.Utilities.Dialogs
         private async Task GetStateAsync(ITurnContext turnContext,
             CancellationToken cancellationToken = default)
         {
-            // The state refresh is performed in the Dialog Bot class
-
             UData = await _userDataAcsr.GetAsync(turnContext, () => new(), cancellationToken);
             CData = await _convDataAcsr.GetAsync(turnContext, () => new(), cancellationToken);
+
+            await UData.RefreshAsync(_userRepository, _userManager);
+            await CData.RefreshAsync(_schoolRepository);
         }
 
         protected Task SetUserStateAsync(ITurnContext turnContext,
