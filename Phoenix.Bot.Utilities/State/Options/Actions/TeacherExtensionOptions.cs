@@ -15,10 +15,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public const string ExerciseButtonUrl = ExtensionButtonBaseUrl + "homework";
         public const string ExamButtonUrl = ExtensionButtonBaseUrl + "exams";
 
-        public TeacherExtensionOptions(ActionOptions actionOptions, BotAction extensionAction)
+        public TeacherExtensionOptions()
+            : base()
+        {
+        }
+
+        public TeacherExtensionOptions(ActionOptions actionOptions)
             : base(actionOptions)
         {
-            this.ExtensionAction = extensionAction;
         }
     }
 }

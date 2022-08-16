@@ -27,10 +27,5 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions.Preparation
             foreach (var prep in preparations.Reverse())
                 this.Preparations.Push(prep);
         }
-
-        public ActionOptions GetActionOptions()
-        {
-            return new(this);
-        }
     }
 }
