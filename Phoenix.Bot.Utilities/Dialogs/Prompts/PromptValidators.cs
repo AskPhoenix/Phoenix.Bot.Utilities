@@ -1,86 +1,106 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using Phoenix.Bot.Utilities.Dialogs.Helpers;
 using Phoenix.Bot.Utilities.Linguistic;
-using Phoenix.Bot.Utilities.Miscellaneous;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+
+#pragma warning disable IDE0060
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
-        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptCtx,
+            CancellationToken canTkn = default)
         {
-            long result = promptContext.Recognized.Value;
+            long result = promptCtx.Recognized.Value;
 
             return Task.FromResult(
-                promptContext.Recognized.Succeeded &&
+                promptCtx.Recognized.Succeeded &&
                 result > 0 &&
-                (Math.Ceiling(Math.Log10(result)) == 10 && result / 100000000 == 69) ||
+                Math.Ceiling(Math.Log10(result)) == 10 && result / 100000000 == 69 ||
                 (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
         }
 
-        public static Task<bool> PinPromptValidator(PromptValidatorContext<string> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> CodePromptValidator(PromptValidatorContext<string> promptCtx,
+            CancellationToken canTkn = default)
         {
-            string result = promptContext.Recognized.Value;
+            string result = promptCtx.Recognized.Value;
+
             return Task.FromResult(
-                promptContext.Recognized.Succeeded &&
+                promptCtx.Recognized.Succeeded &&
                 result.Length <= 9 &&
                 result.All(c => char.IsDigit(c)));
         }
 
-        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> AlphaCodePromptValidator(PromptValidatorContext<string> promptCtx,
+            CancellationToken canTkn = default)
         {
-            if (promptContext.Recognized.Succeeded)
+            string result = promptCtx.Recognized.Value;
+
+            var alphaPart = result.TakeWhile(c => char.IsLetter(c));
+            var numPart = result.SkipWhile(c => char.IsLetter(c));
+
+            return Task.FromResult(
+                promptCtx.Recognized.Succeeded &&
+                alphaPart.Any() &&
+                numPart.All(c => char.IsDigit(c)) &&
+                numPart.Count() <= 9);
+        }
+
+        public static Task<bool> HiddenChoicesValidator(PromptValidatorContext<FoundChoice> promptCtx,
+            CancellationToken canTkn = default)
+        {
+            if (promptCtx.Recognized.Succeeded)
                 return Task.FromResult(true);
 
-            if (!(promptContext.Options.Validations is IList<string> hiddenChoices))
+            if (promptCtx.Options.Validations is not IList<string> hiddenChoices)
                 return Task.FromResult(false);
 
-            int i = hiddenChoices.IndexOf(promptContext.Context.Activity.Text);
+            int i = hiddenChoices.IndexOf(promptCtx.Context.Activity.Text);
             if (i >= 0)
-                promptContext.Recognized.Value = new FoundChoice()
+                promptCtx.Recognized.Value = new FoundChoice()
                 {
-                    Index = promptContext.Options.Choices.Count() + i,
-                    Value = promptContext.Context.Activity.Text
+                    Index = promptCtx.Options.Choices.Count + i,
+                    Value = promptCtx.Context.Activity.Text
                 };
 
             return Task.FromResult(i >= 0);
         }
 
-        public static Task<bool> CustomDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        public static Task<bool> CustomDateTimePromptValidator(
+            PromptValidatorContext<IList<DateTimeResolution>> promptCtx,
+            CancellationToken canTkn = default)
         {
-            if (promptContext.Recognized.Succeeded)
+            if (promptCtx.Recognized.Succeeded)
                 return Task.FromResult(true);
             
-            string text = promptContext.Context.Activity.Text;
+            string text = promptCtx.Context.Activity.Text;
             if (string.IsNullOrEmpty(text))
                 return Task.FromResult(false);
 
-            //TODO: Use locale
-            //TODO: Προσοχή με το ToUpperInvariant()
-            text = text.ToUnaccented().ToUpper();
-            return Task.FromResult(text is "ΧΘΕΣ" || text is "ΣΗΜΕΡΑ" || text is "ΑΜΕΣΩΣ" || text is "ΑΥΡΙΟ");
+            bool isDateLiteral = text.TryToDateLiteral(out DateLiteral dateLiteral);
+
+            return Task.FromResult(isDateLiteral && dateLiteral != DateLiteral.Never);
         }
 
-        public static async Task<bool> FutureDateTimePromptValidator(PromptValidatorContext<IList<DateTimeResolution>> promptContext, CancellationToken cancellationToken)
+        public static async Task<bool> FutureDateTimePromptValidator(
+            PromptValidatorContext<IList<DateTimeResolution>> promptCtx,
+            CancellationToken canTkn = default)
         {
-            bool tore = await CustomDateTimePromptValidator(promptContext, cancellationToken);
+            string text = promptCtx.Context.Activity.Text;
 
-            var text = promptContext.Context.Activity.Text.ToUnaccented().ToUpper();
-            tore &= text != "ΧΘΕΣ";
+            bool tore = await CustomDateTimePromptValidator(promptCtx, canTkn);
 
-            if (promptContext.Recognized.Succeeded)
+            bool isDateLiteral = text.TryToDateLiteral(out DateLiteral dateLiteral);
+            if (isDateLiteral)
+                tore &= dateLiteral > 0;
+            else
             {
-                var res = CalendarExtensions.ResolveDateTime(promptContext.Recognized.Value);
+                var res = ResolveHelper.ResolveDateTime(promptCtx.Recognized.Value);
                 tore &= res.Date >= DateTimeOffset.UtcNow.Date;
             }
 
             return tore;
         }
-
     }
 }

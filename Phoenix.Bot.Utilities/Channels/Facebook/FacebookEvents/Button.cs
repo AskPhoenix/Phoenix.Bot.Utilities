@@ -14,5 +14,10 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         [JsonProperty("title")]
         [StringLength(20, ErrorMessage = "Button title must contain up to 20 characters.")]
         public string Title { get; set; }
+
+        public Button(string title)
+        {
+            this.Title = title;
+        }
     }
 }

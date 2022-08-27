@@ -1,22 +1,24 @@
 ﻿using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using Phoenix.Bot.Utilities.Linguistic;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Phoenix.DataHandle.Utilities;
 
 namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public class UnaccentedChoicePrompt : ChoicePrompt
     {
-        public UnaccentedChoicePrompt(string dialogId, PromptValidator<FoundChoice> validator = null, string defaultLocale = null)
+        public UnaccentedChoicePrompt(string dialogId,
+            PromptValidator<FoundChoice>? validator = null, string? defaultLocale = null)
             : base(dialogId, validator, defaultLocale) { }
 
-        public UnaccentedChoicePrompt(string dialogId, Dictionary<string, ChoiceFactoryOptions> choiceDefaults, PromptValidator<FoundChoice> validator = null, string defaultLocale = null)
+        public UnaccentedChoicePrompt(string dialogId,
+            Dictionary<string, ChoiceFactoryOptions> choiceDefaults,
+            PromptValidator<FoundChoice>? validator = null, string? defaultLocale = null)
             : base(dialogId, choiceDefaults, validator, defaultLocale) { }
 
-        protected override Task<PromptRecognizerResult<FoundChoice>> OnRecognizeAsync(ITurnContext turnContext, IDictionary<string, object> state, PromptOptions options, CancellationToken cancellationToken = default)
+        protected override Task<PromptRecognizerResult<FoundChoice>> OnRecognizeAsync(
+            ITurnContext turnContext, IDictionary<string, object> state, PromptOptions options,
+            CancellationToken cancellationToken = default)
         {
             //Adds the unaccented version of every choice after removing any potential emojis as its synonym
             //If there are synonyms, their unaccented version (without checking for emojis) is also stored

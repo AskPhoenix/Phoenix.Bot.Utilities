@@ -16,20 +16,15 @@ namespace Phoenix.Bot.Utilities.Channels.Facebook.FacebookEvents
         [StringLength(1000, ErrorMessage = "Payload cannot exceed 1000 characters in length.")]
         public string Payload { get; set; }
 
-        public PostbackButton() { }
-
-        public PostbackButton(string title)
+        public PostbackButton(string title, string payload)
+            : base(title)
         {
-            this.Title = title;
-            this.Payload = title;
+            this.Payload = payload;
         }
 
-        public PostbackButton(
-            string title,
-            string payload)
+        public PostbackButton(string title)
+            : this(title, title)
         {
-            this.Title = title;
-            this.Payload = payload;
         }
     }
 }

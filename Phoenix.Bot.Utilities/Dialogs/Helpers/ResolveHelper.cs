@@ -1,18 +1,14 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Phoenix.Bot.Utilities.Linguistic;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 
-namespace Phoenix.Bot.Utilities.Miscellaneous
+namespace Phoenix.Bot.Utilities.Dialogs.Helpers
 {
-    public static class CalendarExtensions
+    public static class ResolveHelper
     {
         public static DateTimeOffset ResolveDateTime(IList<DateTimeResolution> dateTimeResolution)
         {
             if (dateTimeResolution == null || dateTimeResolution.Count == 0)
-                throw new ArgumentNullException("Date Time Resolution cannot be null or empty.");
+                throw new ArgumentNullException(nameof(dateTimeResolution));
             if (dateTimeResolution.Count == 1)
                 return DateTimeOffset.Parse(dateTimeResolution.Single().Value);
 
@@ -32,36 +28,27 @@ namespace Phoenix.Bot.Utilities.Miscellaneous
         public static DateTimeOffset ResolveDateTime(string relativeDateText)
         {
             if (string.IsNullOrEmpty(relativeDateText))
-                throw new ArgumentNullException("Relative Date Text cannot be null or empty.");
+                throw new ArgumentNullException(nameof(relativeDateText));
 
-            string text = relativeDateText.ToUnaccented().ToUpper();
-
-            //TODO: Έλεγχος offset από το σήμερα αντί για κείμενο
-            return text switch
+            return relativeDateText.ToDateLiteral() switch
             {
-                "ΧΘΕΣ" => DateTimeOffset.UtcNow.AddDays(-1),
-                "ΣΗΜΕΡΑ" => DateTimeOffset.UtcNow,
-                "ΑΜΕΣΩΣ" => DateTimeOffset.UtcNow,
-                "ΑΥΡΙΟ" => DateTimeOffset.UtcNow.AddDays(1),
-                _ => throw new ArgumentException("Relative Date Text has invalid value. The valid values are: 'yesterday', 'today', 'immediately', and 'tomorrow'."),
+                DateLiteral.Yesterday   => DateTimeOffset.UtcNow.AddDays(-1.0),
+                DateLiteral.Today       => DateTimeOffset.UtcNow,
+                DateLiteral.Tomorrow    => DateTimeOffset.UtcNow.AddDays(1.0),
+                _                       => throw new ArgumentException(
+                    $"Date literal is not valid. The valid values are: {Enum.GetNames<DateLiteral>()}."),
             };
         }
 
         public static DateTimeOffset ResolveDateTimePromptResult(IList<DateTimeResolution> result, string msg)
         {
+            if (result is null && string.IsNullOrEmpty(msg))
+                throw new InvalidOperationException();
+
             if (result is null || !result.Any())
                 return ResolveDateTime(msg);
-            else
-                return ResolveDateTime(result);
-        }
 
-        public static DateTimeOffset ParseDate(string date, string dateFormat = "d/M")
-        {
-            return DateTimeOffset.ParseExact(date, dateFormat, CultureInfo.InvariantCulture);
+            return ResolveDateTime(result);
         }
-
-        //TODO: Remove
-        public static DateTime GreeceLocalTime()
-               => TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("E. Europe Standard Time"));
     }
 }

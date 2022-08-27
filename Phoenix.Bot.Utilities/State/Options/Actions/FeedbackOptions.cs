@@ -1,8 +1,7 @@
-﻿namespace Phoenix.Bot.Utilities.State.Options
+﻿namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
     public class FeedbackOptions
     {
-        public int UserId { get; set; }
         public bool BotAskedForFeedback { get; set; }
     }
 }

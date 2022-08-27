@@ -1,15 +1,11 @@
-﻿using Microsoft.Bot.Schema;
-using Newtonsoft.Json;
-using Phoenix.Bot.Utilities.Actions;
-using Phoenix.DataHandle.Main;
+﻿using Phoenix.Bot.Utilities.Actions;
 
 namespace Phoenix.Bot.Utilities.State.Options.Actions
 {
-    public class AssignmentsManagementOptions : ActionOptions
+    public class TeacherExtensionOptions : ActionOptions
     {
         public BotAction ExtensionAction { get; set; } = BotAction.Exercises;
 
-        // TODO: Change image URLs (upload files somewhere like on a drive)
         private const string ExtensionImageBaseUrl = "https://bot.askphoenix.gr/assets/";
         private const string ExtensionButtonBaseUrl = "https://teacher.askphoenix.gr/teacher/";
 
@@ -19,17 +15,14 @@ namespace Phoenix.Bot.Utilities.State.Options.Actions
         public const string ExerciseButtonUrl = ExtensionButtonBaseUrl + "homework";
         public const string ExamButtonUrl = ExtensionButtonBaseUrl + "exams";
 
-        public AssignmentsManagementOptions(ActionOptions actionOptions, BotAction extensionAction)
-            : base(actionOptions)
+        public TeacherExtensionOptions()
+            : base()
         {
-            this.ExtensionAction = extensionAction;
         }
 
-        [JsonConstructor]
-        public AssignmentsManagementOptions(int userId, Role userRole) 
-            : base(userId, userRole) { }
-
-        public AssignmentsManagementOptions(UserOptions userOptions)
-            : base(userOptions) { }
+        public TeacherExtensionOptions(ActionOptions actionOptions)
+            : base(actionOptions)
+        {
+        }
     }
 }

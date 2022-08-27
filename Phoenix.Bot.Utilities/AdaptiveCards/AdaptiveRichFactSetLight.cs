@@ -1,5 +1,4 @@
 ﻿using AdaptiveCards;
-using System.Collections.Generic;
 
 namespace Phoenix.Bot.Utilities.AdaptiveCards
 {

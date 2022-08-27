@@ -5,7 +5,7 @@ namespace Phoenix.Bot.Utilities.Dialogs
 {
     public static class WaterfallNames
     {
-        private static string BuildWaterfallName(string name, string subname = null)
+        private static string BuildWaterfallName(string name, string? subname = null)
         {
             if (!string.IsNullOrEmpty(subname))
                 subname = "_" + subname;
@@ -27,16 +27,12 @@ namespace Phoenix.Bot.Utilities.Dialogs
         public static class Auth
         {
             public static string Top => BuildWaterfallName(nameof(Top), nameof(Auth));
-
-            public static class Credentials
-            {
-                public static string Phone => BuildWaterfallName(nameof(Phone), nameof(Auth));
-            }
+            public static string Credentials => BuildWaterfallName(nameof(Credentials), nameof(Auth));
+            public static string GenerateCode => BuildWaterfallName(nameof(GenerateCode), nameof(Auth));
 
             public static class Verification
             {
-                public static string SendCode => BuildWaterfallName(nameof(SendCode), nameof(Auth));
-                public static string CheckCode => BuildWaterfallName(nameof(CheckCode), nameof(Auth));
+                public static string Top => BuildWaterfallName(nameof(Top), nameof(Verification));
             }
         }
 
@@ -98,9 +94,9 @@ namespace Phoenix.Bot.Utilities.Dialogs
                 public static string Weekly => BuildWaterfallName(nameof(Weekly), nameof(Schedule));
             }
 
-            public static class AssignmentsManagement
+            public static class TeacherExtension
             {
-                public static string Extension => BuildWaterfallName(nameof(Extension), nameof(AssignmentsManagement));
+                public static string Extension => BuildWaterfallName(nameof(Extension), nameof(TeacherExtension));
             }
 
             public static class Broadcast
