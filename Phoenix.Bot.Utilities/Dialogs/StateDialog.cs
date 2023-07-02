@@ -37,22 +37,23 @@ namespace Phoenix.Bot.Utilities.Dialogs
             _schoolRepository = new(phoenixContext, nonObviatedOnly: true);
         }
 
-        protected override async Task<DialogTurnResult> OnBeginDialogAsync(DialogContext innerDc, object options, CancellationToken cancellationToken = default)
-        {
-            await this.GetStateAsync(innerDc.Context, cancellationToken);
+        //protected override async Task<DialogTurnResult> OnBeginDialogAsync(DialogContext innerDc,
+        //    object options, CancellationToken cancellationToken = default)
+        //{
+        //    await this.GetStateAsync(innerDc.Context, cancellationToken);
 
-            return await base.OnBeginDialogAsync(innerDc, options, cancellationToken);
-        }
+        //    return await base.OnBeginDialogAsync(innerDc, options, cancellationToken);
+        //}
 
-        protected override async Task<DialogTurnResult> OnContinueDialogAsync(DialogContext innerDc,
-            CancellationToken cancellationToken = default)
-        {
-            await this.GetStateAsync(innerDc.Context, cancellationToken);
+        //protected override async Task<DialogTurnResult> OnContinueDialogAsync(DialogContext innerDc,
+        //    CancellationToken cancellationToken = default)
+        //{
+        //    await this.GetStateAsync(innerDc.Context, cancellationToken);
 
-            return await base.OnContinueDialogAsync(innerDc, cancellationToken);
-        }
+        //    return await base.OnContinueDialogAsync(innerDc, cancellationToken);
+        //}
 
-        private async Task GetStateAsync(ITurnContext turnContext,
+        protected async Task GetStateAsync(ITurnContext turnContext,
             CancellationToken cancellationToken = default)
         {
             UData = await _userDataAcsr.GetAsync(turnContext, () => new(), cancellationToken);

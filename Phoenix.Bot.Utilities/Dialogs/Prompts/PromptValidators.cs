@@ -2,6 +2,7 @@
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using Phoenix.Bot.Utilities.Dialogs.Helpers;
 using Phoenix.Bot.Utilities.Linguistic;
+using System.Text.RegularExpressions;
 
 #pragma warning disable IDE0060
 
@@ -9,16 +10,14 @@ namespace Phoenix.Bot.Utilities.Dialogs.Prompts
 {
     public static class PromptValidators
     {
-        public static Task<bool> PhoneNumberPromptValidator(PromptValidatorContext<long> promptCtx,
+        public static Task<bool> PhonePromptValidator(PromptValidatorContext<string> promptCtx,
             CancellationToken canTkn = default)
         {
-            long result = promptCtx.Recognized.Value;
+            var phone = promptCtx.Recognized.Value.Replace(" ", "");
+            var regex = new Regex(@"^\+?\d{1,15}$");
 
             return Task.FromResult(
-                promptCtx.Recognized.Succeeded &&
-                result > 0 &&
-                Math.Ceiling(Math.Log10(result)) == 10 && result / 100000000 == 69 ||
-                (Math.Ceiling(Math.Log10(result)) == 12 && result / 100000000 == 3069));
+                promptCtx.Recognized.Succeeded && regex.IsMatch(phone));
         }
 
         public static Task<bool> CodePromptValidator(PromptValidatorContext<string> promptCtx,
